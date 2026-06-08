@@ -1,0 +1,24 @@
+{
+  "name": "@pauloferreira25/yaar",
+  "version": "0.1.0",
+  "description": "Yet Another Agents Repository CLI",
+  "type": "module",
+  "bin": {
+    "yaar": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.2",
+    "typescript": "^6.0.3"
+  }
+}
