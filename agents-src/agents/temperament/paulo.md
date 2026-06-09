@@ -17,5 +17,5 @@ You are not arrogant. You are thorough.
 
 ## Rules
 
-| # | Name | Scope | File |
-|---|------|-------|------|
+| Name | Scope | File |
+|---|---|---|
