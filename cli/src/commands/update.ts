@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync, unlinkSync } from 'fs';
 import { resolve } from 'path';
 import { downloadFile, parseRulesFromAgent } from '../lib/downloader.js';
 import { readConfig, writeConfig } from '../lib/config.js';
@@ -25,6 +25,7 @@ export async function update(agentName?: string): Promise<void> {
 
     const agentRemotePath = `agents-src/agents/${name}.md`;
     const agentLocalPath = `.claude/agents/${name}.md`;
+    const oldRules = config.agents[name].rules;
 
     await downloadFile(owner, repo, ref, agentRemotePath, agentLocalPath);
     console.log(`  ✓ ${agentLocalPath}`);
@@ -38,6 +39,15 @@ export async function update(agentName?: string): Promise<void> {
       await downloadFile(owner, repo, ref, remoteRulePath, rulePath);
       console.log(`  ✓ ${rulePath}`);
       downloadedRules.push(rulePath);
+    }
+
+    const removedRules = oldRules.filter(r => !downloadedRules.includes(r));
+    for (const rulePath of removedRules) {
+      const fullPath = resolve(process.cwd(), rulePath);
+      if (existsSync(fullPath)) {
+        unlinkSync(fullPath);
+        console.log(`  ✗ removed ${rulePath}`);
+      }
     }
 
     config.agents[name] = {
