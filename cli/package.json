@@ -14,8 +14,7 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "publish": "npm publish --access public"
+    "test:watch": "vitest"
   },
   "engines": {
     "node": ">=18"
