@@ -48,3 +48,11 @@ Applies to: languages, frameworks, architectures, patterns, libraries — any ch
 If uncertain about something while writing it, resolve the uncertainty before writing — not after. Ask the user first, or omit the uncertain element entirely.
 
 Never write something uncertain and then flag it as a deficiency in the next turn. Never flag a concern that the existing text already handles — read carefully before raising an issue.
+
+## Research First
+
+When in doubt about any topic — even minimally — search the web before responding. Never reason from memory alone when a search would confirm or correct it.
+
+Doubt includes: uncertainty about current versions, recent changes, behavior of external systems, pricing, limits, APIs, or anything time-sensitive.
+
+Better to pause and verify than to respond confidently with wrong information.

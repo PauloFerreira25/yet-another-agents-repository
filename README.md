@@ -1,81 +1,137 @@
 # YAAR — Yet Another Agents Repository
 
-Coleção de agentes especializados para Claude Code, portáteis entre projetos via script de instalação.
+A repository of specialized Claude Code subagents, installable across projects via the `@pauloferreira25/yaar` CLI.
 
-## Conceito
+## How it works
 
-Claude Code (o orquestrador) lê as instruções do **Mestre** via `CLAUDE.md` e delega tarefas para agentes especializados usando a ferramenta nativa `Agent`. Cada agente roda em seu próprio contexto isolado com um system prompt focado no seu domínio.
+Each agent is a Markdown file with a YAML frontmatter block, a system prompt, and a Rules table. When installed, the agent lives in `.claude/agents/` and Claude Code loads it automatically as a subagent.
 
-```
-Dev faz pergunta
-  → Claude Code (Mestre) identifica o domínio
-    → Delega para o agente correto (Backend / Frontend / CDK)
-      → Agente lê suas regras sob demanda
-        → Retorna resultado para o Mestre
-          → Mestre consolida e responde
-```
-
-## Estrutura do repositório
+Rules are separate Markdown files referenced in the agent's Rules table. The agent reads them on demand using the `Read` tool — only when the task scope matches. This keeps token usage minimal while keeping the agent's knowledge precise.
 
 ```
-yaar/
-  agents/
-    mestre.md        ← orquestrador: identifica domínio e delega
-    backend.md       ← especialista: APIs, banco, lógica de negócio
-    frontend.md      ← especialista: React, UI, componentes
-    cdk.md           ← especialista: AWS CDK, infra, recursos cloud
-  rules/
-    backend.md       ← convenções do agente backend (lidas sob demanda)
-    frontend.md      ← convenções do agente frontend (lidas sob demanda)
-    cdk.md           ← convenções do agente CDK (lidas sob demanda)
-  install.sh         ← instala/atualiza os agentes em um projeto alvo
+agents-src/agents/backend/aws-lambda-typescript.md   ← agent file
+agents-src/.rules/common/how-to-think.md             ← rule file (read on demand)
 ```
 
-## Como funciona em um projeto alvo
+### Agent file format
 
-Após rodar `install.sh`, o projeto alvo fica com:
+```markdown
+---
+name: aws-lambda-typescript
+description: "Use when implementing or reviewing backend code running on AWS Lambda with TypeScript."
+tools: Read, Write, Edit, Bash, Glob, Grep
+model: sonnet
+---
 
-```
-projeto/
-  CLAUDE.md                    ← @.claude/agents/mestre.md
-  .claude/
-    agents/
-      mestre.md                ← baixado de yaar/agents/
-      backend.md               ← baixado de yaar/agents/
-      frontend.md              ← baixado de yaar/agents/
-      cdk.md                   ← baixado de yaar/agents/
-  .rules/
-    backend.md                 ← baixado de yaar/rules/
-    frontend.md                ← baixado de yaar/rules/
-    cdk.md                     ← baixado de yaar/rules/
-  knowledge/                   ← criado pelo dev, específico do projeto
-    backend/
-      stack.md                 ← ex: "Node 20, Fastify, PostgreSQL"
-    frontend/
-      stack.md                 ← ex: "React 18, TypeScript, Tailwind"
-    cdk/
-      stack.md                 ← ex: "AWS CDK v2, Lambda, RDS"
+System prompt body.
+
+## Rules
+
+| Name       | Scope                                    | File                                         |
+|------------|------------------------------------------|----------------------------------------------|
+| how-to-act | Before making any change or restructuring | .rules/common/how-to-act.md                 |
 ```
 
-## Três camadas de conhecimento
+The `description` field is what Claude Code uses to decide when to invoke the agent — write it as a trigger sentence starting with `"Use when..."`.
 
-| Camada | O quê | Onde | Atualiza como |
-|---|---|---|---|
-| **Persona** | System prompt do agente | `yaar/agents/*.md` → `.claude/agents/` | `install.sh` |
-| **Regras** | Convenções universais do agente | `yaar/rules/*.md` → `.rules/` | `install.sh` |
-| **Conhecimento** | Contexto específico do projeto | `knowledge/` | Dev, manualmente |
-
-**Regras** são lidas pelo agente sob demanda (Read tool) — não são carregadas em toda interação.  
-**Conhecimento** nunca é tocado pelo `install.sh`.
-
-## Instalação e atualização
+## CLI
 
 ```bash
-# Primeira instalação
-curl -fsSL https://raw.githubusercontent.com/PauloFerreira25/yet-another-agents-repository/main/install.sh | bash
-
-# Atualização
-./install.sh
+npm install -g @pauloferreira25/yaar
 ```
 
-O script baixa os arquivos de `yaar` via raw GitHub e sobrescreve apenas `.claude/agents/` e `.rules/`. O diretório `knowledge/` nunca é tocado.
+### Commands
+
+```bash
+# Install an agent into the current project
+yaar add temperament/paulo
+yaar add backend/aws-lambda-typescript
+
+# Update all installed agents (or a specific one)
+yaar update
+yaar update temperament/paulo
+
+# Remove an agent
+yaar remove temperament/paulo
+
+# List available agents in the repository
+yaar list remote
+
+# List agents installed in the current project
+yaar list local
+```
+
+Installing an agent also downloads all rules files referenced in its Rules table. Everything is tracked in `.yaar.json` at the project root.
+
+### Environment variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `YAAR_SOURCE` | `PauloFerreira25/yet-another-agents-repository` | GitHub source (`owner/repo`) |
+| `YAAR_REF` | `main` | Branch or tag to install from |
+
+## Repository structure
+
+```
+agents-src/
+  agents/
+    temperament/
+      paulo.md                          ← methodical, quality-focused agent
+    backend/
+      aws-lambda-typescript.md          ← Lambda + TypeScript specialist
+    yaar/
+      agent-author.md                   ← meta-agent for writing agents and rules
+  .rules/
+    common/
+      how-to-think.md                   ← epistemic integrity, forward-only reasoning
+      how-to-act.md                     ← scope discipline, safe sequencing, copy rules
+      output-standards.md               ← tone, language, formatting
+    coding-principles/
+      design.md
+      naming.md
+      dependencies.md
+      error-handling.md
+      security.md
+      testing.md
+    architecture/
+      lambda/
+        domain-structure.md
+        layer-rules.md
+        composition-root.md
+        infra-dynamo.md
+cli/
+  src/                                  ← TypeScript source for @pauloferreira25/yaar
+  tests/                                ← Vitest test suite
+```
+
+The `yaar/` category is intentionally excluded from `yaar list remote` — those agents are tools for authoring this repository, not for general use.
+
+## What gets installed in your project
+
+```
+your-project/
+  .yaar.json                            ← tracks installed agents and their files
+  .claude/
+    agents/
+      temperament/
+        paulo.md
+      backend/
+        aws-lambda-typescript.md
+  .rules/
+    common/
+      how-to-think.md
+      how-to-act.md
+      output-standards.md
+```
+
+Rules are shared across agents. If two agents reference the same rule file, it is downloaded once and reused.
+
+## Contributing
+
+To add a new agent:
+
+1. Create `agents-src/agents/<category>/<name>.md` with the frontmatter, system prompt, and Rules table
+2. Add any new rule files to `agents-src/.rules/<path>.md`
+3. Rule files must start with a frontmatter block: `name`, `Scope`, and `description`
+
+The `yaar/agent-author` agent knows the full format and can help write both agents and rules files.

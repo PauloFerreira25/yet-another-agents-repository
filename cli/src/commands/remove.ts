@@ -8,6 +8,7 @@ export async function remove(agentName: string): Promise<void> {
   if (!config.agents[agentName]) {
     console.error(`Agent "${agentName}" is not installed.`);
     process.exit(1);
+    return;
   }
 
   console.log(`Removing agent: ${agentName}`);

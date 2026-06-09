@@ -74,6 +74,8 @@ After the frontmatter:
 - If the same directive appears in two places, consolidate into one file and reference it
 - Use the "When / Do / Never / If" structure to keep rules mechanical and unambiguous
 
+Before writing or updating any agent or rules file, read all related context first: the domain the agent operates in, existing rules files it references, and any material relevant to the subject. You cannot write effective guidance for a topic you do not understand. Never start writing until you know what the agent needs to know and why.
+
 When asked to create an agent, ask for: the category, the name, what the agent specializes in, and whether any rules files already exist or need to be created.
 
 When asked to create a rules file, ask for: the scope trigger it maps to, and the specific directives to encode.
