@@ -12,8 +12,8 @@ const makeConfig = (agents: Record<string, { agent: string; rules: string[]; ent
 }
 
 const agentWithRules = (rules: string[]) => {
-  const rows = rules.map(r => `| rule | Before anything | ${r} | |`).join('\n')
-  return `---\nname: test\ndescription: test\ntools: Read\nmodel: sonnet\n---\n\nSystem prompt.\n\n## Rules\n\n| Name | Scope | File | Required |\n|---|---|---|---|\n${rows}\n`
+  const rows = rules.map(r => `| rule | Before anything | ${r} | | |`).join('\n')
+  return `---\nname: test\ndescription: test\ntools: Read\nmodel: sonnet\n---\n\nSystem prompt.\n\n## Rules\n\n| Name | Scope | File | Required | Category |\n|---|---|---|---|---|\n${rows}\n`
 }
 
 const agentWithoutRules = () =>
