@@ -1,7 +1,7 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
-import { downloadFile, parseRulesFromAgent } from '../lib/downloader.js';
-import { getOrCreateConfig, writeConfig, DEFAULT_SOURCE, DEFAULT_REF } from '../lib/config.js';
+import { downloadFile, parseRulesFromAgent, parseFrontmatter } from '../lib/downloader.js';
+import { getOrCreateConfig, writeConfig, DEFAULT_SOURCE, DEFAULT_REF, AgentEntry } from '../lib/config.js';
 
 export async function add(
   agentName: string,
@@ -33,7 +33,24 @@ export async function add(
     downloadedFiles.push(rulePath);
   }
 
-  config.agents[agentName] = { files: downloadedFiles };
+  const entry: AgentEntry = { files: downloadedFiles };
+  config.agents[agentName] = entry;
+
+  const frontmatter = parseFrontmatter(agentContent);
+  if (frontmatter.entrypoint === true) {
+    const reference = `@${agentLocalPath}`;
+    const claudeMdPath = resolve(process.cwd(), 'CLAUDE.md');
+    const existing = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, 'utf-8') : '';
+
+    if (!existing.includes(reference)) {
+      const updated = existing ? existing.trimEnd() + '\n' + reference + '\n' : reference + '\n';
+      writeFileSync(claudeMdPath, updated, 'utf-8');
+      console.log(`  ✓ CLAUDE.md → ${reference}`);
+    }
+
+    entry.entrypoint = agentLocalPath;
+  }
+
   writeConfig(config);
 
   console.log(`Agent "${agentName}" added successfully.`);
