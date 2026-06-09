@@ -28,3 +28,5 @@ At the start of every session, read all rules marked as **required** before doin
 | CDK Entrypoints | Before creating files in bin/ or deploy scripts | .rules/architecture/cdk/typescript/entrypoints.md | |
 | CDK Config Injection | Before passing config to a stack or component | .rules/architecture/cdk/typescript/config-injection.md | |
 | CDK Components | Before creating or extending a component | .rules/architecture/cdk/typescript/components-inheritance.md | |
+| CDK Lambda API Gateway | Before creating or updating an API Gateway construct | .rules/architecture/cdk/lambda-api-gateway.md | |
+| CDK HTTP Lambda Construct | Before creating a Lambda construct that exposes an HTTP endpoint | .rules/architecture/cdk/stack-base/http-lambda-construct.md | |
