@@ -12,14 +12,17 @@ Always organize by domain first, layer second. Never organize by layer first.
 
 ```
 app/
-  product/src/schema/, port/, repository/, service/
-  order/src/schema/, port/, repository/, service/
-  checkout/src/service/        ← orchestrator: no repository
+  domain/
+    product/src/schema/, port/, repository/, service/
+    order/src/schema/, port/, repository/, service/
+    checkout/src/service/        ← orchestrator: no repository
   shared/infra-dynamo/, error/, util/
   lambdas/http/, sqs/, cron/
 ```
 
 Never place schema, repository, or service at the workspace root as sibling directories.
+
+Never place domain packages as direct children of `app/` — all domain packages live under `app/domain/`.
 
 ## Workspace package.json
 
