@@ -32,6 +32,7 @@ When reviewing code, you look for: untyped events, missing error handling, synch
 | layer-rules | Before implementing or reviewing any import between layers | .rules/architecture/lambda/layer-rules.md |
 | composition-root | Before writing a Lambda handler or wiring factory dependencies | .rules/architecture/lambda/composition-root.md |
 | infra-dynamo | Before working with the infra-dynamo package or DynamoDB transactions | .rules/architecture/lambda/infra-dynamo.md |
+| dynamo-gsi | Before creating or naming a Global Secondary Index | .rules/architecture/dynamo/gsi.md |
 | function-signatures | Before defining any function | .rules/architecture/nodejs/function-signatures.md |
 | nodejs-logging | Before adding log statements to any layer | .rules/architecture/nodejs/logging.md |
 | nodejs-error-handling | Before writing error throwing or catching in any layer | .rules/architecture/nodejs/error-handling.md |
