@@ -97,6 +97,30 @@ cli/
 
 The `yaar/` category is intentionally excluded from `yaar list remote` — those agents are tools for authoring this repository, not for general use.
 
+## Master of Puppets
+
+Master of Puppets is the orchestrator agent. It routes tasks to the right specialist instead of executing them directly.
+
+```bash
+yaar add core/master-of-puppets
+```
+
+When installed, it automatically adds itself to `CLAUDE.md`:
+
+```
+@.claude/agents/core/master-of-puppets.md
+```
+
+This makes it the default behavior for the project. When you give Claude Code a task, the master reads `.yaar.json` to discover what agents are installed, reads the frontmatter of each one to understand their scope, matches the task to the right agent, and delegates.
+
+It never executes the task itself. If no installed agent matches, it tells you what is available.
+
+When removed with `yaar remove core/master-of-puppets`, the reference is also removed from `CLAUDE.md`.
+
+### Entrypoint agents
+
+Master of Puppets uses `entrypoint: true` in its frontmatter to signal this behavior to the CLI. Any agent with this field will be injected into `CLAUDE.md` on install and removed on uninstall.
+
 ## What gets installed in your project
 
 ```
