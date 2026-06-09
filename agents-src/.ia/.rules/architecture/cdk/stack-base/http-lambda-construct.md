@@ -11,7 +11,7 @@ See [[cdk-directory-and-layers]] for where each file lives.
 ```
 stacks/base/lambdas/base-lambda.ts       ← abstract — role, log group, lambda.Function
 stacks/base/lambdas/base-http-lambda.ts  ← abstract — extends BaseLambda, adds HttpApi wiring
-stacks/components/lambdas/*.ts           ← concrete — extends BaseHttpLambda, domain wiring + route
+stacks/components/lambdas/*.ts           ← concrete — one file per domain, owns all lambdas for that domain
 ```
 
 ## BaseLambda
@@ -108,10 +108,10 @@ export abstract class BaseHttpLambda extends BaseLambda {
 
 ## Concrete domain component
 
-Extends `BaseHttpLambda`. Sets domain-specific env vars, grants, and registers its own route via `addRoute()`. This is the only class that lives in `stacks/components/`.
+One file per domain. The domain class creates all lambdas for that domain internally — each as a separate `BaseHttpLambda` subclass instantiated inside the constructor. It sets domain-specific env vars, grants, and registers all routes. The stack instantiates one domain component and wires it to the table and API.
 
 ```ts
-// stacks/components/lambdas/list-samples-lambda.ts
+// stacks/components/lambdas/samples-lambda.ts
 import { Construct } from "constructs";
 import * as apigwv2 from "aws-cdk-lib/aws-apigatewayv2";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
@@ -120,25 +120,71 @@ import {
   BaseHttpLambdaProps,
 } from "../../base/lambdas/base-http-lambda";
 
-export interface ListSamplesLambdaProps
-  extends Omit<BaseHttpLambdaProps, "environment"> {
+interface SamplesLambdaFnProps extends Omit<BaseHttpLambdaProps, "environment"> {
   readonly table: dynamodb.Table;
 }
 
-export class ListSamplesLambda extends BaseHttpLambda {
-  constructor(scope: Construct, id: string, props: ListSamplesLambdaProps) {
+class ListSamplesFn extends BaseHttpLambda {
+  constructor(scope: Construct, id: string, props: SamplesLambdaFnProps) {
     super(scope, id, {
       ...props,
-      environment: {
-        SAMPLES_TABLE: props.table.tableName,
-      },
+      environment: { SAMPLES_TABLE: props.table.tableName },
+    });
+    props.table.grantReadData(this.fn);
+    this.addRoute("ListSamplesIntegration", "/samples", apigwv2.HttpMethod.GET);
+  }
+}
+
+class CreateSampleFn extends BaseHttpLambda {
+  constructor(scope: Construct, id: string, props: SamplesLambdaFnProps) {
+    super(scope, id, {
+      ...props,
+      environment: { SAMPLES_TABLE: props.table.tableName },
+    });
+    props.table.grantWriteData(this.fn);
+    this.addRoute("CreateSampleIntegration", "/samples", apigwv2.HttpMethod.POST);
+  }
+}
+
+export interface SamplesLambdaProps {
+  readonly table: dynamodb.Table;
+  readonly api: apigwv2.HttpApi;
+  readonly assetPath: string;
+  readonly handler: string;
+}
+
+export class SamplesLambda extends Construct {
+  constructor(scope: Construct, id: string, props: SamplesLambdaProps) {
+    super(scope, id);
+
+    new ListSamplesFn(this, "ListSamples", {
+      functionName: "list-samples",
+      assetPath: props.assetPath,
+      handler: props.handler,
+      api: props.api,
+      table: props.table,
     });
 
-    props.table.grantReadData(this.fn);
-
-    this.addRoute("ListSamplesIntegration", "/samples", apigwv2.HttpMethod.GET);
+    new CreateSampleFn(this, "CreateSample", {
+      functionName: "create-sample",
+      assetPath: props.assetPath,
+      handler: props.handler,
+      api: props.api,
+      table: props.table,
+    });
   }
 }
 ```
 
-Never add routes inside `BaseHttpLambda` — only in the concrete class. Never receive lambda functions as props in the API Gateway construct. See [[lambda-api-gateway]].
+The stack instantiates `SamplesLambda` once — it never creates individual lambda constructs directly:
+
+```ts
+new SamplesLambda(this, "SamplesLambda", {
+  table: samplesTable.table,
+  api: samplesApi.api,
+  assetPath: props.config.lambdaAssets.samples,
+  handler: "index.handler",
+});
+```
+
+Never add routes inside `BaseHttpLambda` — only in the concrete function class. Never receive lambda functions as props in the API Gateway construct. See [[lambda-api-gateway]].
