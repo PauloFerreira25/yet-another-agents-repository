@@ -75,8 +75,32 @@ Installing an agent also downloads all rules files referenced in its Rules table
 
 | Variable | Default | Description |
 |---|---|---|
-| `YAAR_SOURCE` | `PauloFerreira25/yet-another-agents-repository` | GitHub source (`owner/repo`) |
-| `YAAR_REF` | `main` | Branch or tag to install from |
+| `YAAR_SOURCE` | `PauloFerreira25/yet-another-agents-repository` | Default GitHub source (`owner/repo`) used when `--source` is not specified |
+| `YAAR_REF` | `main` | Default branch or tag used when `--ref` is not specified |
+
+## Multiple sources
+
+Each agent tracks its own source repository and ref. You can install agents from different repositories in the same project using `--source` and `--ref`:
+
+```bash
+yaar add core/master-of-puppets
+yaar add backend/custom-agent --source my-org/agents --ref main
+
+# List agents from a specific repository
+yaar list remote --source my-org/agents --ref main
+```
+
+`yaar list local` shows the source for each installed agent:
+
+```
+Installed agents:
+  - core/master-of-puppets (PauloFerreira25/yet-another-agents-repository@main)
+  - backend/custom-agent (my-org/agents@main)
+```
+
+`yaar update` re-downloads each agent from the source it was originally installed from, so mixed-source projects stay consistent.
+
+Projects created with an older version of YAAR (where `source` and `ref` were stored at the top of `.yaar.json`) are migrated automatically on the next command — no manual changes required.
 
 ## Repository structure
 
