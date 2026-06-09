@@ -24,14 +24,14 @@ export async function remove(agentName: string): Promise<void> {
   }
 
   if (entry.entrypoint) {
-    const reference = `@${entry.agent}`;
+    const block = `Read the agent below and become it — follow its instructions for every task:\n\n@${entry.agent}`;
     const claudeMdPath = resolve(process.cwd(), 'CLAUDE.md');
     if (existsSync(claudeMdPath)) {
       const content = readFileSync(claudeMdPath, 'utf-8');
-      const updated = content.split('\n').filter(line => line.trim() !== reference).join('\n');
-      if (updated !== content) {
-        writeFileSync(claudeMdPath, updated, 'utf-8');
-        console.log(`  ✓ CLAUDE.md reference removed`);
+      const updated = content.replace(block, '').replace(/\n{3,}/g, '\n\n').trim();
+      if (updated !== content.trim()) {
+        writeFileSync(claudeMdPath, updated ? updated + '\n' : '', 'utf-8');
+        console.log(`  ✓ CLAUDE.md entrypoint removed`);
       }
     }
   }

@@ -13,16 +13,18 @@ You never put resource construction logic in stacks — that belongs in componen
 
 Rules for Python CDK do not exist yet. If the user asks for anything Python-related, stop and ask them to create the Python rules first before proceeding.
 
+At the start of every session, read all rules marked as **required** before doing anything else.
+
 ## Rules
 
-| Name | Scope | File |
-|---|---|---|
-| How to Think | Before stating facts, proposing solutions, or when stuck | .rules/common/how-to-think.md |
-| How to Act | Before making any change, copying content, or restructuring files | .rules/common/how-to-act.md |
-| Output Standards | When writing any response, rule file, or documentation | .rules/common/output-standards.md |
-| CDK Directory and Layers | Before creating any file in cdk/ | .rules/architecture/cdk/directory-and-layers.md |
-| CDK Stack Naming | Before creating or naming a new stack | .rules/architecture/cdk/stack-naming.md |
-| CDK Stack Dependencies | When sharing values between stacks | .rules/architecture/cdk/stack-dependencies.md |
-| CDK Entrypoints | Before creating files in bin/ or deploy scripts | .rules/architecture/cdk/typescript/entrypoints.md |
-| CDK Config Injection | Before passing config to a stack or component | .rules/architecture/cdk/typescript/config-injection.md |
-| CDK Components | Before creating or extending a component | .rules/architecture/cdk/typescript/components-inheritance.md |
+| Name | Scope | File | Required |
+|---|---|---|---|
+| How to Think | Before stating facts, proposing solutions, or when stuck | .rules/common/how-to-think.md | yes |
+| How to Act | Before making any change, copying content, or restructuring files | .rules/common/how-to-act.md | yes |
+| Output Standards | When writing any response, rule file, or documentation | .rules/common/output-standards.md | yes |
+| CDK Directory and Layers | Before creating any file in cdk/ | .rules/architecture/cdk/directory-and-layers.md | |
+| CDK Stack Naming | Before creating or naming a new stack | .rules/architecture/cdk/stack-naming.md | |
+| CDK Stack Dependencies | When sharing values between stacks | .rules/architecture/cdk/stack-dependencies.md | |
+| CDK Entrypoints | Before creating files in bin/ or deploy scripts | .rules/architecture/cdk/typescript/entrypoints.md | |
+| CDK Config Injection | Before passing config to a stack or component | .rules/architecture/cdk/typescript/config-injection.md | |
+| CDK Components | Before creating or extending a component | .rules/architecture/cdk/typescript/components-inheritance.md | |

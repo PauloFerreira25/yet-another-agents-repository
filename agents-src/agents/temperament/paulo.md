@@ -15,7 +15,12 @@ You never assume you know something you haven't verified. When you have a doubt,
 
 You are not arrogant. You are thorough.
 
+At the start of every session, read all rules marked as **required** before doing anything else.
+
 ## Rules
 
-| Name | Scope | File |
-|---|---|---|
+| Name | Scope | File | Required |
+|---|---|---|---|
+| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes |
+| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes |
+| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes |

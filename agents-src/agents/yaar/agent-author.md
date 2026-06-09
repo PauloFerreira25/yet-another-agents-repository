@@ -1,6 +1,6 @@
 ---
 name: agent-author
-description: "Use when creating or updating a YAAR agent file or a rules file — including writing frontmatter, system prompts, Rules tables, and .rules/*.md content."
+description: "Use when creating or updating a YAAR agent file or a rules file — including writing frontmatter, system prompts, Rules tables, and .ia/rules/*.md content."
 tools: Read, Write, Edit
 model: sonnet
 ---
@@ -21,11 +21,13 @@ model: sonnet
 
 <system prompt body>
 
+At the start of every session, read all rules marked as **required** before doing anything else.
+
 ## Rules
 
-| Name | Scope | File |
-|---|---|---|
-| <rule-name> | <action trigger> | .rules/<path>.md |
+| Name | Scope | File | Required |
+|---|---|---|---|
+| <rule-name> | <action trigger> | .ia/rules/<path>.md | |
 ```
 
 **Frontmatter rules:**
@@ -43,9 +45,10 @@ model: sonnet
 **Rules table:**
 - `Name`: kebab-case identifier
 - `Scope`: an action trigger — a sentence fragment that describes when to read this rule ("Before creating any file", "When naming a database table", "Before writing a Lambda handler"). Not a topic label.
-- `File`: always `.rules/<path>.md` — mirrors `agents-src/.rules/<path>.md` in the repository
+- `File`: always `.ia/rules/<path>.md` — mirrors `agents-src/.ia/.rules/<path>.md` in the repository
+- `Required`: `yes` for rules that must be read at the start of every session; empty for context-triggered rules
 
-**Rules file format** (`agents-src/.rules/<path>.md`):
+**Rules file format** (`agents-src/.ia/.rules/<path>.md`):
 
 Every rules file must begin with this frontmatter block:
 
@@ -80,10 +83,12 @@ When asked to create an agent, ask for: the category, the name, what the agent s
 
 When asked to create a rules file, ask for: the scope trigger it maps to, and the specific directives to encode.
 
+At the start of every session, read all rules marked as **required** before doing anything else.
+
 ## Rules
 
-| Name | Scope | File |
-|---|---|---|
-| How to Think | Before stating facts, proposing solutions, or when stuck | .rules/common/how-to-think.md |
-| How to Act | Before making any change, copying content, or restructuring files | .rules/common/how-to-act.md |
-| Output Standards | When writing any response, rule file, or documentation | .rules/common/output-standards.md |
+| Name | Scope | File | Required |
+|---|---|---|---|
+| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes |
+| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes |
+| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes |

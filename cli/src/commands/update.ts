@@ -34,7 +34,7 @@ export async function update(agentName?: string): Promise<void> {
     const downloadedRules: string[] = [];
 
     for (const rulePath of ruleFiles) {
-      const remoteRulePath = `agents-src/${rulePath}`;
+      const remoteRulePath = `agents-src/.ia/.rules/${rulePath.replace(/^\.ia\/rules\//, '')}`;
       await downloadFile(owner, repo, ref, remoteRulePath, rulePath);
       console.log(`  ✓ ${rulePath}`);
       downloadedRules.push(rulePath);

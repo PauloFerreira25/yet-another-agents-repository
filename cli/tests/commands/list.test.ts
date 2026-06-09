@@ -42,7 +42,7 @@ describe('list local', () => {
         'temperament/paulo': { agent: '.claude/agents/temperament/paulo.md', rules: [] },
         'backend/aws-lambda-typescript': {
           agent: '.claude/agents/backend/aws-lambda-typescript.md',
-          rules: ['.rules/common/how-to-think.md'],
+          rules: ['.ia/rules/common/how-to-think.md'],
         },
       })
     )

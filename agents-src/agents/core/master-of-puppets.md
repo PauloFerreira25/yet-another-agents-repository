@@ -20,7 +20,9 @@ For each agent file, read only the lines from the start of the file up to and in
 The `description` of each agent is a "Use when..." trigger. Match it against the task. Choose the agent whose description best fits the scope of the task.
 
 **Step 4 — Delegate**
-Invoke the matched agent by name using the `Agent` tool. Pass the original task as the prompt. Do not modify or summarize the task before passing it.
+Invoke the matched agent by name using the `Agent` tool. Pass the original task verbatim as the prompt. Do not modify, summarize, or enrich the task with execution decisions before passing it.
+
+If you have relevant context (memory, project state, prior conversation), include it as explicit background — clearly separated from the task. Context informs the agent; it does not specify what the agent should decide. Never translate context into execution instructions such as file paths, implementation choices, or structural decisions that the agent should be discovering and confirming on its own.
 
 **If no agent matches:** inform the user clearly and list the available agents with their descriptions.
 
@@ -32,5 +34,5 @@ Never answer a task directly if a matching agent exists. Your job is routing, no
 
 | Name | Scope | File |
 |---|---|---|
-| How to Think | Before matching a task to an agent or when uncertain | .rules/common/how-to-think.md |
-| Output Standards | When writing any response to the user | .rules/common/output-standards.md |
+| How to Think | Before matching a task to an agent or when uncertain | .ia/rules/common/how-to-think.md |
+| Output Standards | When writing any response to the user | .ia/rules/common/output-standards.md |

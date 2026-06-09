@@ -26,7 +26,7 @@ export async function add(
   const downloadedRules: string[] = [];
 
   for (const rulePath of ruleFiles) {
-    const remoteRulePath = `agents-src/${rulePath}`;
+    const remoteRulePath = `agents-src/.ia/.rules/${rulePath.replace(/^\.ia\/rules\//, '')}`;
     await downloadFile(owner, repo, ref, remoteRulePath, rulePath);
     console.log(`  ✓ ${rulePath}`);
     downloadedRules.push(rulePath);
@@ -36,14 +36,14 @@ export async function add(
 
   const frontmatter = parseFrontmatter(agentContent);
   if (frontmatter.entrypoint === true) {
-    const reference = `@${agentLocalPath}`;
+    const block = `Read the agent below and become it — follow its instructions for every task:\n\n@${agentLocalPath}`;
     const claudeMdPath = resolve(process.cwd(), 'CLAUDE.md');
     const existing = existsSync(claudeMdPath) ? readFileSync(claudeMdPath, 'utf-8') : '';
 
-    if (!existing.includes(reference)) {
-      const updated = existing ? existing.trimEnd() + '\n' + reference + '\n' : reference + '\n';
+    if (!existing.includes(block)) {
+      const updated = existing ? existing.trimEnd() + '\n\n' + block + '\n' : block + '\n';
       writeFileSync(claudeMdPath, updated, 'utf-8');
-      console.log(`  ✓ CLAUDE.md → ${reference}`);
+      console.log(`  ✓ CLAUDE.md → entrypoint injected`);
     }
 
     entry.entrypoint = true;
