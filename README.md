@@ -9,16 +9,16 @@ Each agent is a Markdown file with a YAML frontmatter block, a system prompt, an
 Rules are separate Markdown files referenced in the agent's Rules table. The agent reads them on demand using the `Read` tool — only when the task scope matches. This keeps token usage minimal while keeping the agent's knowledge precise.
 
 ```
-agents-src/agents/backend/aws-lambda-typescript.md   ← agent file
-agents-src/.rules/common/how-to-think.md             ← rule file (read on demand)
+agents-src/agents/<category>/<name>.md   ← agent file
+agents-src/.rules/<category>/<name>.md   ← rule file (read on demand)
 ```
 
 ### Agent file format
 
 ```markdown
 ---
-name: aws-lambda-typescript
-description: "Use when implementing or reviewing backend code running on AWS Lambda with TypeScript."
+name: <name>
+description: "Use when <trigger context>."
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---
@@ -27,14 +27,23 @@ System prompt body.
 
 ## Rules
 
-| Name       | Scope                                    | File                                         |
-|------------|------------------------------------------|----------------------------------------------|
-| how-to-act | Before making any change or restructuring | .rules/common/how-to-act.md                 |
+| Name        | Scope                              | File                          |
+|-------------|------------------------------------|-------------------------------|
+| <rule-name> | <action trigger>                   | .rules/<category>/<name>.md   |
 ```
 
 The `description` field is what Claude Code uses to decide when to invoke the agent — write it as a trigger sentence starting with `"Use when..."`.
 
 ## CLI
+
+### With npx (no install required)
+
+```bash
+npx @pauloferreira25/yaar list remote
+npx @pauloferreira25/yaar add <category/agent>
+```
+
+### Global install
 
 ```bash
 npm install -g @pauloferreira25/yaar
@@ -44,15 +53,14 @@ npm install -g @pauloferreira25/yaar
 
 ```bash
 # Install an agent into the current project
-yaar add temperament/paulo
-yaar add backend/aws-lambda-typescript
+yaar add <category/agent>
 
 # Update all installed agents (or a specific one)
 yaar update
-yaar update temperament/paulo
+yaar update <category/agent>
 
 # Remove an agent
-yaar remove temperament/paulo
+yaar remove <category/agent>
 
 # List available agents in the repository
 yaar list remote
@@ -75,33 +83,16 @@ Installing an agent also downloads all rules files referenced in its Rules table
 ```
 agents-src/
   agents/
-    temperament/
-      paulo.md                          ← methodical, quality-focused agent
-    backend/
-      aws-lambda-typescript.md          ← Lambda + TypeScript specialist
+    <category>/
+      <name>.md          ← agent file: frontmatter + system prompt + Rules table
     yaar/
-      agent-author.md                   ← meta-agent for writing agents and rules
+      ...                ← internal agents (excluded from yaar list remote)
   .rules/
-    common/
-      how-to-think.md                   ← epistemic integrity, forward-only reasoning
-      how-to-act.md                     ← scope discipline, safe sequencing, copy rules
-      output-standards.md               ← tone, language, formatting
-    coding-principles/
-      design.md
-      naming.md
-      dependencies.md
-      error-handling.md
-      security.md
-      testing.md
-    architecture/
-      lambda/
-        domain-structure.md
-        layer-rules.md
-        composition-root.md
-        infra-dynamo.md
+    <category>/
+      <name>.md          ← rule file: frontmatter + directives, read on demand
 cli/
-  src/                                  ← TypeScript source for @pauloferreira25/yaar
-  tests/                                ← Vitest test suite
+  src/                   ← TypeScript source for @pauloferreira25/yaar
+  tests/                 ← Vitest test suite
 ```
 
 The `yaar/` category is intentionally excluded from `yaar list remote` — those agents are tools for authoring this repository, not for general use.
@@ -110,18 +101,14 @@ The `yaar/` category is intentionally excluded from `yaar list remote` — those
 
 ```
 your-project/
-  .yaar.json                            ← tracks installed agents and their files
+  .yaar.json             ← tracks installed agents and their files
   .claude/
     agents/
-      temperament/
-        paulo.md
-      backend/
-        aws-lambda-typescript.md
+      <category>/
+        <name>.md
   .rules/
-    common/
-      how-to-think.md
-      how-to-act.md
-      output-standards.md
+    <category>/
+      <name>.md
 ```
 
 Rules are shared across agents. If two agents reference the same rule file, it is downloaded once and reused.
