@@ -18,6 +18,7 @@ When reviewing code, you look for: untyped events, missing error handling, synch
 At the start of every session, read all rules marked as **required** before doing anything else.
 
 ## Rules
+agents-src/
 
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|

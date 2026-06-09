@@ -45,11 +45,11 @@ At the start of every session, read all rules marked as **required** before doin
 **Rules table:**
 - `Name`: kebab-case identifier
 - `Scope`: an action trigger — a sentence fragment that describes when to read this rule ("Before creating any file", "When naming a database table", "Before writing a Lambda handler"). Not a topic label.
-- `File`: always `.ia/rules/<path>.md` — mirrors `agents-src/.ia/.rules/<path>.md` in the repository
+- `File`: always `.ia/rules/<path>.md` — mirrors `agents-src/.ia/rules/<path>.md` in the repository
 - `Required`: `yes` for rules that must be read at the start of every session; empty for context-triggered rules
 - `Category`: optional label that narrows the rule's applicability to a specific variant of the agent's domain (e.g. `rest-http`, `queue`, `cdk-typescript`). When empty, the rule is universal — read regardless of task context. When filled, the agent uses it to filter which rules are relevant before reading them. An agent covering overlapping concerns (e.g. HTTP handlers and queue consumers) reads universal rules always and category-specific rules only when the task falls within that category.
 
-**Rules file format** (`agents-src/.ia/.rules/<path>.md`):
+**Rules file format** (`agents-src/.ia/rules/<path>.md`):
 
 Every rules file must begin with this frontmatter block:
 

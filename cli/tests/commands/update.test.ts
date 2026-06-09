@@ -102,12 +102,12 @@ describe('update', () => {
 
     expect(downloadFileMock).toHaveBeenCalledWith(
       'owner', 'repo', 'main',
-      'agents-src/.ia/.rules/common/rule-a.md',
+      'agents-src/.ia/rules/common/rule-a.md',
       ruleA
     )
     expect(downloadFileMock).toHaveBeenCalledWith(
       'owner', 'repo', 'main',
-      'agents-src/.ia/.rules/common/rule-b.md',
+      'agents-src/.ia/rules/common/rule-b.md',
       ruleB
     )
 
