@@ -4,8 +4,8 @@ import { join } from 'path'
 import { tmpdir } from 'os'
 import { list } from '../../src/commands/list.js'
 
-const makeConfig = (agents: Record<string, { agent: string; rules: string[] }>) =>
-  JSON.stringify({ source: 'owner/repo', ref: 'main', agents }, null, 2)
+const makeConfig = (agents: Record<string, { source: string; ref: string; agent: string; rules: string[] }>) =>
+  JSON.stringify({ agents }, null, 2)
 
 describe('list local', () => {
   let tmpDir: string
@@ -28,19 +28,21 @@ describe('list local', () => {
   })
 
   it('shows message when agents list is empty', async () => {
-    writeFileSync(join(tmpDir, '.yaar.json'), makeConfig({}))
+    writeFileSync(join(tmpDir, '.yaar.json'), JSON.stringify({ agents: {} }))
 
     await list('local')
 
     expect(console.log).toHaveBeenCalledWith('No agents installed.')
   })
 
-  it('lists installed agents', async () => {
+  it('lists installed agents with their source and ref', async () => {
     writeFileSync(
       join(tmpDir, '.yaar.json'),
       makeConfig({
-        'temperament/paulo': { agent: '.claude/agents/temperament/paulo.md', rules: [] },
+        'temperament/paulo': { source: 'owner/repo', ref: 'main', agent: '.claude/agents/temperament/paulo.md', rules: [] },
         'backend/aws-lambda-typescript': {
+          source: 'owner/repo',
+          ref: 'main',
           agent: '.claude/agents/backend/aws-lambda-typescript.md',
           rules: ['.ia/rules/common/how-to-think.md'],
         },
@@ -49,8 +51,23 @@ describe('list local', () => {
 
     await list('local')
 
-    expect(console.log).toHaveBeenCalledWith(expect.stringContaining('owner/repo@main'))
-    expect(console.log).toHaveBeenCalledWith('  - temperament/paulo')
-    expect(console.log).toHaveBeenCalledWith('  - backend/aws-lambda-typescript')
+    expect(console.log).toHaveBeenCalledWith('Installed agents:')
+    expect(console.log).toHaveBeenCalledWith('  - temperament/paulo (owner/repo@main)')
+    expect(console.log).toHaveBeenCalledWith('  - backend/aws-lambda-typescript (owner/repo@main)')
+  })
+
+  it('shows each agent with its own source when agents come from different repositories', async () => {
+    writeFileSync(
+      join(tmpDir, '.yaar.json'),
+      makeConfig({
+        'core/base-agent': { source: 'org-a/agents', ref: 'main', agent: '.claude/agents/core/base-agent.md', rules: [] },
+        'core/custom-agent': { source: 'org-b/agents', ref: 'v2', agent: '.claude/agents/core/custom-agent.md', rules: [] },
+      })
+    )
+
+    await list('local')
+
+    expect(console.log).toHaveBeenCalledWith('  - core/base-agent (org-a/agents@main)')
+    expect(console.log).toHaveBeenCalledWith('  - core/custom-agent (org-b/agents@v2)')
   })
 })

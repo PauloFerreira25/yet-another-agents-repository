@@ -11,7 +11,7 @@ export async function add(
   const ref = options.ref ?? DEFAULT_REF;
   const [owner, repo] = source.split('/');
 
-  const config = getOrCreateConfig(source, ref);
+  const config = getOrCreateConfig();
 
   console.log(`Adding agent: ${agentName}`);
 
@@ -32,7 +32,7 @@ export async function add(
     downloadedRules.push(rulePath);
   }
 
-  const entry: AgentEntry = { agent: agentLocalPath, rules: downloadedRules };
+  const entry: AgentEntry = { source, ref, agent: agentLocalPath, rules: downloadedRules };
 
   const frontmatter = parseFrontmatter(agentContent);
   if (frontmatter.entrypoint === true) {

@@ -4,8 +4,12 @@ import { join, dirname, resolve } from 'path'
 import { tmpdir } from 'os'
 import { update } from '../../src/commands/update.js'
 
-const makeConfig = (agents: Record<string, { agent: string; rules: string[]; entrypoint?: boolean }>) =>
-  JSON.stringify({ source: 'owner/repo', ref: 'main', agents }, null, 2)
+const makeConfig = (agents: Record<string, { agent: string; rules: string[]; entrypoint?: boolean }>) => {
+  const withSource = Object.fromEntries(
+    Object.entries(agents).map(([k, v]) => [k, { source: 'owner/repo', ref: 'main', ...v }])
+  )
+  return JSON.stringify({ agents: withSource }, null, 2)
+}
 
 const agentWithRules = (rules: string[]) => {
   const rows = rules.map(r => `| rule | Before anything | ${r} | |`).join('\n')

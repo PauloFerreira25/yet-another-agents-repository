@@ -11,8 +11,6 @@ export async function update(
 ): Promise<void> {
   const { downloadFile } = { downloadFile: downloadFileFn, ...deps };
   const config = readConfig();
-  const [owner, repo] = config.source.split('/');
-  const { ref } = config;
 
   const agentsToUpdate = agentName ? [agentName] : Object.keys(config.agents);
 
@@ -27,11 +25,15 @@ export async function update(
       continue;
     }
 
+    const entry = config.agents[name];
+    const [owner, repo] = entry.source.split('/');
+    const { ref } = entry;
+
     console.log(`Updating agent: ${name}`);
 
     const agentRemotePath = `agents-src/agents/${name}.md`;
     const agentLocalPath = `.claude/agents/${name}.md`;
-    const oldRules = config.agents[name].rules;
+    const oldRules = entry.rules;
 
     await downloadFile(owner, repo, ref, agentRemotePath, agentLocalPath);
     console.log(`  ✓ ${agentLocalPath}`);
@@ -57,9 +59,11 @@ export async function update(
     }
 
     config.agents[name] = {
+      source: entry.source,
+      ref: entry.ref,
       agent: agentLocalPath,
       rules: downloadedRules,
-      ...(config.agents[name].entrypoint && { entrypoint: true }),
+      ...(entry.entrypoint && { entrypoint: true }),
     };
   }
 
