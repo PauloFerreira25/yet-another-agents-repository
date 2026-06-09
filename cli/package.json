@@ -1,6 +1,6 @@
 {
   "name": "@pauloferreira25/yaar",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Yet Another Agents Repository CLI",
   "type": "module",
   "bin": {

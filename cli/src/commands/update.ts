@@ -1,9 +1,15 @@
 import { readFileSync, existsSync, unlinkSync } from 'fs';
 import { resolve } from 'path';
-import { downloadFile, parseRulesFromAgent } from '../lib/downloader.js';
+import { downloadFile as downloadFileFn, parseRulesFromAgent } from '../lib/downloader.js';
 import { readConfig, writeConfig } from '../lib/config.js';
 
-export async function update(agentName?: string): Promise<void> {
+type DownloadFile = typeof downloadFileFn;
+
+export async function update(
+  agentName?: string,
+  deps: { downloadFile?: DownloadFile } = {}
+): Promise<void> {
+  const { downloadFile } = { downloadFile: downloadFileFn, ...deps };
   const config = readConfig();
   const [owner, repo] = config.source.split('/');
   const { ref } = config;
