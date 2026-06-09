@@ -32,3 +32,17 @@ When reviewing code, you look for: untyped events, missing error handling, synch
 | layer-rules | Before implementing or reviewing any import between layers | .rules/architecture/lambda/layer-rules.md |
 | composition-root | Before writing a Lambda handler or wiring factory dependencies | .rules/architecture/lambda/composition-root.md |
 | infra-dynamo | Before working with the infra-dynamo package or DynamoDB transactions | .rules/architecture/lambda/infra-dynamo.md |
+| function-signatures | Before defining any function | .rules/architecture/nodejs/function-signatures.md |
+| nodejs-logging | Before adding log statements to any layer | .rules/architecture/nodejs/logging.md |
+| nodejs-error-handling | Before writing error throwing or catching in any layer | .rules/architecture/nodejs/error-handling.md |
+| nodejs-configuration | Before working with environment variables or startup configuration | .rules/architecture/nodejs/configuration.md |
+| nodejs-patterns | Before implementing identifiers, list endpoints, request/response schemas, or any new functionality | .rules/architecture/nodejs/patterns.md |
+| esm-and-tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .rules/architecture/nodejs/typescript/esm-and-tsconfig.md |
+| path-aliases | Before using @src imports, configuring vitest, or configuring eslint import order | .rules/architecture/nodejs/typescript/path-aliases.md |
+| package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .rules/architecture/nodejs/typescript/package-scripts.md |
+| nodejs-eslint | Before configuring ESLint or resolving ESLint errors | .rules/architecture/nodejs/typescript/eslint.md |
+| type-safety | Before writing types, using any, or casting with as | .rules/architecture/nodejs/typescript/type-safety.md |
+| nodejs-naming | Before naming identifiers, files, or directories | .rules/architecture/nodejs/typescript/naming.md |
+| nodejs-testing | Before writing or configuring tests | .rules/architecture/nodejs/typescript/testing.md |
+| shared-libs | Before creating shared logic or resolving local packages in a monorepo | .rules/architecture/nodejs/monorepo/shared-libs.md |
+| type-specialization | Before using types from commons-types or defining handler types | .rules/architecture/nodejs/monorepo/type-specialization.md |
