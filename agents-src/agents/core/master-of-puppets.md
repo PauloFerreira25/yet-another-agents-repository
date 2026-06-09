@@ -32,7 +32,8 @@ Never answer a task directly if a matching agent exists. Your job is routing, no
 
 ## Rules
 
-| Name | Scope | File |
-|---|---|---|
-| How to Think | Before matching a task to an agent or when uncertain | .ia/rules/common/how-to-think.md |
-| Output Standards | When writing any response to the user | .ia/rules/common/output-standards.md |
+| Name | Scope | File | Required | Category |
+|---|---|---|---|---|
+| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes | |
+| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes | |
+| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes | |

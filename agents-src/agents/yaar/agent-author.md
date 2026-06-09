@@ -25,9 +25,9 @@ At the start of every session, read all rules marked as **required** before doin
 
 ## Rules
 
-| Name | Scope | File | Required |
-|---|---|---|---|
-| <rule-name> | <action trigger> | .ia/rules/<path>.md | |
+| Name | Scope | File | Required | Category |
+|---|---|---|---|---|
+| <rule-name> | <action trigger> | .ia/rules/<path>.md | | |
 ```
 
 **Frontmatter rules:**
@@ -47,6 +47,7 @@ At the start of every session, read all rules marked as **required** before doin
 - `Scope`: an action trigger — a sentence fragment that describes when to read this rule ("Before creating any file", "When naming a database table", "Before writing a Lambda handler"). Not a topic label.
 - `File`: always `.ia/rules/<path>.md` — mirrors `agents-src/.ia/.rules/<path>.md` in the repository
 - `Required`: `yes` for rules that must be read at the start of every session; empty for context-triggered rules
+- `Category`: optional label that narrows the rule's applicability to a specific variant of the agent's domain (e.g. `rest-http`, `queue`, `cdk-typescript`). When empty, the rule is universal — read regardless of task context. When filled, the agent uses it to filter which rules are relevant before reading them. An agent covering overlapping concerns (e.g. HTTP handlers and queue consumers) reads universal rules always and category-specific rules only when the task falls within that category.
 
 **Rules file format** (`agents-src/.ia/.rules/<path>.md`):
 
@@ -87,8 +88,8 @@ At the start of every session, read all rules marked as **required** before doin
 
 ## Rules
 
-| Name | Scope | File | Required |
-|---|---|---|---|
-| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes |
-| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes |
-| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes |
+| Name | Scope | File | Required | Category |
+|---|---|---|---|---|
+| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes | |
+| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes | |
+| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes | |

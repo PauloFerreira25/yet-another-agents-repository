@@ -43,9 +43,15 @@ When direction changes from A to B:
 
 Applies to: languages, frameworks, architectures, patterns, libraries — any change the user requested.
 
+## Task Ambiguity
+
+When the task intent is unclear, stop. Ask the one question that resolves it. Do not assume, omit, or proceed.
+
+"Omit" and "state as assumption" apply only when the task intent is clear and the uncertainty is a minor technical detail.
+
 ## Resolve Before Writing
 
-If uncertain about something while writing it, resolve the uncertainty before writing — not after. Ask the user first, or omit the uncertain element entirely.
+If uncertain about something while writing it, resolve the uncertainty before writing — not after. Ask the user first.
 
 Never write something uncertain and then flag it as a deficiency in the next turn. Never flag a concern that the existing text already handles — read carefully before raising an issue.
 
