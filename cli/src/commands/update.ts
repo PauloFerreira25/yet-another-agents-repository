@@ -31,17 +31,20 @@ export async function update(agentName?: string): Promise<void> {
 
     const agentContent = readFileSync(resolve(process.cwd(), agentLocalPath), 'utf-8');
     const ruleFiles = parseRulesFromAgent(agentContent);
-
-    const downloadedFiles = [agentLocalPath];
+    const downloadedRules: string[] = [];
 
     for (const rulePath of ruleFiles) {
       const remoteRulePath = `agents-src/${rulePath}`;
       await downloadFile(owner, repo, ref, remoteRulePath, rulePath);
       console.log(`  ✓ ${rulePath}`);
-      downloadedFiles.push(rulePath);
+      downloadedRules.push(rulePath);
     }
 
-    config.agents[name] = { files: downloadedFiles };
+    config.agents[name] = {
+      agent: agentLocalPath,
+      rules: downloadedRules,
+      ...(config.agents[name].entrypoint && { entrypoint: true }),
+    };
   }
 
   writeConfig(config);

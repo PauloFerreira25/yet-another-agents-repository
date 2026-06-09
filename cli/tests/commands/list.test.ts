@@ -4,7 +4,7 @@ import { join } from 'path'
 import { tmpdir } from 'os'
 import { list } from '../../src/commands/list.js'
 
-const makeConfig = (agents: Record<string, { files: string[] }>) =>
+const makeConfig = (agents: Record<string, { agent: string; rules: string[] }>) =>
   JSON.stringify({ source: 'owner/repo', ref: 'main', agents }, null, 2)
 
 describe('list local', () => {
@@ -39,9 +39,10 @@ describe('list local', () => {
     writeFileSync(
       join(tmpDir, '.yaar.json'),
       makeConfig({
-        'temperament/paulo': { files: ['.claude/agents/temperament/paulo.md'] },
+        'temperament/paulo': { agent: '.claude/agents/temperament/paulo.md', rules: [] },
         'backend/aws-lambda-typescript': {
-          files: ['.claude/agents/backend/aws-lambda-typescript.md'],
+          agent: '.claude/agents/backend/aws-lambda-typescript.md',
+          rules: ['.rules/common/how-to-think.md'],
         },
       })
     )

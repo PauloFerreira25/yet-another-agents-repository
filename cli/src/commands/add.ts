@@ -23,18 +23,16 @@ export async function add(
 
   const agentContent = readFileSync(resolve(process.cwd(), agentLocalPath), 'utf-8');
   const ruleFiles = parseRulesFromAgent(agentContent);
-
-  const downloadedFiles = [agentLocalPath];
+  const downloadedRules: string[] = [];
 
   for (const rulePath of ruleFiles) {
     const remoteRulePath = `agents-src/${rulePath}`;
     await downloadFile(owner, repo, ref, remoteRulePath, rulePath);
     console.log(`  ✓ ${rulePath}`);
-    downloadedFiles.push(rulePath);
+    downloadedRules.push(rulePath);
   }
 
-  const entry: AgentEntry = { files: downloadedFiles };
-  config.agents[agentName] = entry;
+  const entry: AgentEntry = { agent: agentLocalPath, rules: downloadedRules };
 
   const frontmatter = parseFrontmatter(agentContent);
   if (frontmatter.entrypoint === true) {
@@ -48,9 +46,10 @@ export async function add(
       console.log(`  ✓ CLAUDE.md → ${reference}`);
     }
 
-    entry.entrypoint = agentLocalPath;
+    entry.entrypoint = true;
   }
 
+  config.agents[agentName] = entry;
   writeConfig(config);
 
   console.log(`Agent "${agentName}" added successfully.`);

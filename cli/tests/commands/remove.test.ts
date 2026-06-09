@@ -4,7 +4,7 @@ import { join } from 'path'
 import { tmpdir } from 'os'
 import { remove } from '../../src/commands/remove.js'
 
-const makeConfig = (agents: Record<string, { files: string[] }>) =>
+const makeConfig = (agents: Record<string, { agent: string; rules: string[]; entrypoint?: boolean }>) =>
   JSON.stringify({ source: 'owner/repo', ref: 'main', agents }, null, 2)
 
 describe('remove', () => {
@@ -32,20 +32,24 @@ describe('remove', () => {
     expect(process.exit).toHaveBeenCalledWith(1)
   })
 
-  it('deletes tracked files from filesystem', async () => {
+  it('deletes agent file and rules from filesystem', async () => {
     const agentFile = '.claude/agents/test/agent.md'
-    const fullPath = join(tmpDir, agentFile)
+    const ruleFile = '.rules/common/how-to-think.md'
+
     mkdirSync(join(tmpDir, '.claude/agents/test'), { recursive: true })
-    writeFileSync(fullPath, 'content')
+    mkdirSync(join(tmpDir, '.rules/common'), { recursive: true })
+    writeFileSync(join(tmpDir, agentFile), 'content')
+    writeFileSync(join(tmpDir, ruleFile), 'content')
 
     writeFileSync(
       join(tmpDir, '.yaar.json'),
-      makeConfig({ 'test/agent': { files: [agentFile] } })
+      makeConfig({ 'test/agent': { agent: agentFile, rules: [ruleFile] } })
     )
 
     await remove('test/agent')
 
-    expect(existsSync(fullPath)).toBe(false)
+    expect(existsSync(join(tmpDir, agentFile))).toBe(false)
+    expect(existsSync(join(tmpDir, ruleFile))).toBe(false)
   })
 
   it('removes agent entry from .yaar.json', async () => {
@@ -55,7 +59,7 @@ describe('remove', () => {
 
     writeFileSync(
       join(tmpDir, '.yaar.json'),
-      makeConfig({ 'test/agent': { files: [agentFile] } })
+      makeConfig({ 'test/agent': { agent: agentFile, rules: [] } })
     )
 
     await remove('test/agent')
@@ -64,12 +68,29 @@ describe('remove', () => {
     expect(config.agents['test/agent']).toBeUndefined()
   })
 
-  it('does not throw when tracked file is already missing', async () => {
+  it('does not throw when tracked files are already missing', async () => {
     writeFileSync(
       join(tmpDir, '.yaar.json'),
-      makeConfig({ 'test/agent': { files: ['.claude/agents/test/agent.md'] } })
+      makeConfig({ 'test/agent': { agent: '.claude/agents/test/agent.md', rules: ['.rules/common/how-to-think.md'] } })
     )
 
     await expect(remove('test/agent')).resolves.toBeUndefined()
+  })
+
+  it('removes entrypoint reference from CLAUDE.md', async () => {
+    const agentFile = '.claude/agents/core/master-of-puppets.md'
+    mkdirSync(join(tmpDir, '.claude/agents/core'), { recursive: true })
+    writeFileSync(join(tmpDir, agentFile), 'content')
+    writeFileSync(join(tmpDir, 'CLAUDE.md'), `@${agentFile}\n`)
+
+    writeFileSync(
+      join(tmpDir, '.yaar.json'),
+      makeConfig({ 'core/master-of-puppets': { agent: agentFile, rules: [], entrypoint: true } })
+    )
+
+    await remove('core/master-of-puppets')
+
+    const claudeMd = readFileSync(join(tmpDir, 'CLAUDE.md'), 'utf-8')
+    expect(claudeMd).not.toContain(`@${agentFile}`)
   })
 })

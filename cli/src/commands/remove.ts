@@ -13,7 +13,9 @@ export async function remove(agentName: string): Promise<void> {
 
   console.log(`Removing agent: ${agentName}`);
 
-  for (const filePath of config.agents[agentName].files) {
+  const entry = config.agents[agentName];
+
+  for (const filePath of [entry.agent, ...entry.rules]) {
     const fullPath = resolve(process.cwd(), filePath);
     if (existsSync(fullPath)) {
       unlinkSync(fullPath);
@@ -21,9 +23,8 @@ export async function remove(agentName: string): Promise<void> {
     }
   }
 
-  const entry = config.agents[agentName];
   if (entry.entrypoint) {
-    const reference = `@${entry.entrypoint}`;
+    const reference = `@${entry.agent}`;
     const claudeMdPath = resolve(process.cwd(), 'CLAUDE.md');
     if (existsSync(claudeMdPath)) {
       const content = readFileSync(claudeMdPath, 'utf-8');
