@@ -145,6 +145,16 @@ When removed with `yaar remove core/master-of-puppets`, the reference is also re
 
 Master of Puppets uses `entrypoint: true` in its frontmatter to signal this behavior to the CLI. Any agent with this field will be injected into `CLAUDE.md` on install and removed on uninstall.
 
+## Invoking an agent directly
+
+To talk to an agent directly — without routing through Master of Puppets — tell Claude Code to assume its role:
+
+```
+Assume the role of <category>/<name>
+```
+
+The path is `<category>/<name>`, the same identifier used with `yaar add`.
+
 ## What gets installed in your project
 
 ```
