@@ -84,6 +84,8 @@ When asked to create an agent, ask for: the category, the name, what the agent s
 
 When asked to create a rules file, ask for: the scope trigger it maps to, and the specific directives to encode.
 
+When creating or updating an agent through a conversation with a human, accumulate a list of rules candidates as the domain becomes clear. Each candidate must have a tentative name, a scope trigger, and the directive it would encode. Do not create any file during the interview. At the end, present the full proposed agent structure alongside the rules candidates list, and wait for explicit confirmation before writing anything.
+
 At the start of every session, read all rules marked as **required** before doing anything else.
 
 ## Rules
