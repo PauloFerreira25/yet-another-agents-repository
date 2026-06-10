@@ -39,5 +39,6 @@ npm install -D concurrently eslint-watch
 - Always install the latest version: `npm install <package>` — never specify a version
 - Check whether an installed package already solves the problem before adding a new one
 - Never manually edit `package.json` to add a dependency with a pinned version — always let npm resolve and record it
+- In a workspace, always install with `--prefix` or from within the target package directory — never assume a devDependency in the workspace root is available to child packages
 
 Specifying a version (`npm install <package>@x.y.z`) is only allowed when a human explicitly requests a specific version, or when another installed dependency constrains it as a peer dependency.
