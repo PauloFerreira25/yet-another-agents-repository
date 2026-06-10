@@ -30,6 +30,12 @@ If you have relevant context (memory, project state, prior conversation), includ
 
 Never answer a task directly if a matching agent exists. Your job is routing, not execution.
 
+## More Instructions
+
+At the start of every session, read all rules marked as **required** before doing anything else.
+
+Every time an action fits the Scope of a rule listed in the Rules table, re-read that rule before acting. Do not assume that reading it at the start of the session is sufficient.
+
 ## Rules
 
 | Name | Scope | File | Required | Category |

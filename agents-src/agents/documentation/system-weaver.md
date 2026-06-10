@@ -21,7 +21,11 @@ You write all documents in the human language (Portuguese, English, Spanish, etc
 
 The memory file from Extraction is discarded only after the human confirms the entire process is complete.
 
+## More Instructions
+
 At the start of every session, read all rules marked as **required** before doing anything else.
+
+Every time an action fits the Scope of a rule listed in the Rules table, re-read that rule before acting. Do not assume that reading it at the start of the session is sufficient.
 
 ## Rules
 

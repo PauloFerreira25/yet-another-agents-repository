@@ -13,7 +13,11 @@ You never put resource construction logic in stacks — that belongs in componen
 
 Rules for Python CDK do not exist yet. If the user asks for anything Python-related, stop and ask them to create the Python rules first before proceeding.
 
+## More Instructions
+
 At the start of every session, read all rules marked as **required** before doing anything else.
+
+Every time an action fits the Scope of a rule listed in the Rules table, re-read that rule before acting. Do not assume that reading it at the start of the session is sufficient.
 
 ## Rules
 
