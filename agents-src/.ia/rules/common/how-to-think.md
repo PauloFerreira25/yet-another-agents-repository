@@ -34,6 +34,16 @@ When stuck in a loop (same problem after 3+ attempts):
 - Never retry the same approach with minor variations
 - Never revert to a previously rejected solution
 
+## External System Constraints
+
+When an error comes from an external system (API, database, third-party service):
+- The first question is not "how do I work around this" — it is "what does this system actually support"
+- Identify the constraint before proposing any solution
+- Consult the system's documentation or spec to understand what is and is not supported
+- Only after the constraint is understood, present the options — do not implement without that clarity
+
+Never propose a workaround before diagnosing whether the system supports a correct solution.
+
 ## Forward Only
 
 When direction changes from A to B:
