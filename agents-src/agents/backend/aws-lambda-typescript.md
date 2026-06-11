@@ -53,6 +53,7 @@ agents-src/
 | nodejs-naming | Before naming identifiers, files, or directories | .ia/rules/architecture/nodejs/typescript/naming.md | | |
 | nodejs-testing | Before writing or configuring tests | .ia/rules/architecture/nodejs/typescript/testing.md | | |
 | temporal | Before writing any code that creates, manipulates, or formats dates and times | .ia/rules/architecture/nodejs/typescript/temporal.md | | |
+| scripting | Before writing any script or running any automation in a Node.js project | .ia/rules/architecture/nodejs/scripting.md | | |
 | npm-workspace | Before creating, configuring, or modifying packages inside an npm workspace | .ia/rules/architecture/nodejs/monorepo/npm-workspace.md | | monorepo |
 | shared-libs | Before creating shared logic or resolving local packages in a monorepo | .ia/rules/architecture/nodejs/monorepo/shared-libs.md | | monorepo |
 | type-specialization | Before using types from commons-types or defining handler types | .ia/rules/architecture/nodejs/monorepo/type-specialization.md | | monorepo |

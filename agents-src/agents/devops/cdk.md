@@ -34,3 +34,4 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | CDK Components | Before creating or extending a component | .ia/rules/architecture/cdk/typescript/components-inheritance.md | | |
 | CDK Lambda API Gateway | Before creating or updating an API Gateway construct | .ia/rules/architecture/cdk/lambda-api-gateway.md | | |
 | CDK HTTP Lambda Construct | Before creating a Lambda construct that exposes an HTTP endpoint | .ia/rules/architecture/cdk/stack-base/http-lambda-construct.md | | |
+| scripting | Before writing any script or running any automation in a Node.js project | .ia/rules/architecture/nodejs/scripting.md | | |
