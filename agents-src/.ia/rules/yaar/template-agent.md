@@ -18,3 +18,11 @@ model: sonnet
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
 | <rule-name> | <action trigger> | .ia/rules/<path>.md | | |
+
+<!-- ## Skills (optional — include only if the system prompt instructs the agent to actively invoke a Claude Code skill)
+
+## Skills
+
+- <skill-name>
+
+-->

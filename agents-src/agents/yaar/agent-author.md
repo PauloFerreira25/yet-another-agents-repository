@@ -34,6 +34,12 @@ You know the exact format required for every part of a YAAR agent: the YAML fron
 - `Required`: `yes` for rules that must be read at the start of every session; empty for context-triggered rules
 - `Category`: optional label that narrows the rule's applicability to a specific variant of the agent's domain (e.g. `rest-http`, `queue`, `cdk-typescript`). When empty, the rule is universal — read regardless of task context. When filled, the agent uses it to filter which rules are relevant before reading them. An agent covering overlapping concerns (e.g. HTTP handlers and queue consumers) reads universal rules always and category-specific rules only when the task falls within that category.
 
+**Skills section** (`## Skills`):
+- Optional. Present only when at least one rule file referenced in the Rules table declares a `skills:` field in its frontmatter.
+- Placed at the end of the file, after `## Rules`.
+- To determine the content: read every rule file in the Rules table, collect all values from their `skills:` frontmatter fields, and aggregate them into a deduplicated list.
+- Do not ask about skills during the agent creation interview.
+
 **Rules file format** (`agents-src/.ia/rules/<path>.md`):
 
 <!-- see agents-src/.ia/rules/yaar/template-rule.md -->

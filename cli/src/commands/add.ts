@@ -1,8 +1,9 @@
 import { readFileSync, existsSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
-import { parseFrontmatter } from '../lib/downloader.js';
+import { parseFrontmatter, parseSkillsFromAgent } from '../lib/downloader.js';
 import { getOrCreateConfig, writeConfig, DEFAULT_SOURCE, DEFAULT_REF, AgentEntry } from '../lib/config.js';
 import { createFetcher, installAgentFiles } from '../lib/source.js';
+import { checkRequiredSkills, missingSkillsError } from '../lib/skills.js';
 
 export async function add(
   agentName: string,
@@ -17,6 +18,9 @@ export async function add(
 
   const fetchFile = await createFetcher(source, ref);
   const { agentLocalPath, agentContent, downloadedRules } = await installAgentFiles(agentName, fetchFile);
+
+  const missingSkills = checkRequiredSkills(parseSkillsFromAgent(agentContent));
+  if (missingSkills.length > 0) throw missingSkillsError(agentName, missingSkills);
 
   const entry: AgentEntry = { source, ref, agent: agentLocalPath, rules: downloadedRules };
 

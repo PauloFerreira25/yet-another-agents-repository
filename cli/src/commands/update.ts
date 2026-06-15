@@ -1,7 +1,9 @@
 import { existsSync, unlinkSync } from 'fs';
 import { resolve } from 'path';
+import { parseSkillsFromAgent } from '../lib/downloader.js';
 import { readConfig, writeConfig } from '../lib/config.js';
 import { createFetcher as createFetcherDefault, installAgentFiles } from '../lib/source.js';
+import { checkRequiredSkills, missingSkillsError } from '../lib/skills.js';
 
 export interface UpdateDeps {
   createFetcher?: typeof createFetcherDefault;
@@ -31,7 +33,10 @@ export async function update(agentName?: string, deps: UpdateDeps = {}): Promise
     console.log(`Updating agent: ${name}`);
 
     const fetchFile = await createFetcher(source, ref);
-    const { agentLocalPath, downloadedRules } = await installAgentFiles(name, fetchFile);
+    const { agentLocalPath, agentContent, downloadedRules } = await installAgentFiles(name, fetchFile);
+
+    const missingSkills = checkRequiredSkills(parseSkillsFromAgent(agentContent));
+    if (missingSkills.length > 0) throw missingSkillsError(name, missingSkills);
 
     for (const rulePath of oldRules.filter(r => !downloadedRules.includes(r))) {
       const fullPath = resolve(process.cwd(), rulePath);
