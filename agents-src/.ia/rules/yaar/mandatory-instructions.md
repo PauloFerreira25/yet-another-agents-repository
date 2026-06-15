@@ -2,6 +2,7 @@
 name: mandatory-instructions
 Scope: When creating any new agent file
 description: Canonical blocks that must be present verbatim in every agent file
+skills: grill-me
 ---
 
 Always include the following block verbatim in every agent file, immediately before the `## Rules` section. Never paraphrase, shorten, or omit it.

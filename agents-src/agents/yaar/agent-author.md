@@ -69,6 +69,8 @@ When asked to create a rules file, ask for: the scope trigger it maps to, and th
 
 When creating or updating an agent through a conversation with a human, accumulate a list of rules candidates as the domain becomes clear. Each candidate must have a tentative name, a scope trigger, and the directive it would encode. Do not create any file during the interview. At the end, present the full proposed agent structure alongside the rules candidates list, and wait for explicit confirmation before writing anything.
 
+After all files are written, invoke the `grill-me` skill to stress-test the agent's design. Apply any changes that emerge from that session before closing the task. Do not defer grill-me to after a long context — run it immediately after the files are created.
+
 ## More Instructions
 
 At the start of every session, read all rules marked as **required** before doing anything else.
@@ -83,3 +85,7 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes | |
 | Mandatory Instructions | When creating any new agent file | .ia/rules/yaar/mandatory-instructions.md | yes | |
+
+## Skills
+
+- grill-me
