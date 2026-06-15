@@ -6,9 +6,7 @@ export async function remove(agentName: string): Promise<void> {
   const config = readConfig();
 
   if (!config.agents[agentName]) {
-    console.error(`Agent "${agentName}" is not installed.`);
-    process.exit(1);
-    return;
+    throw new Error(`Agent "${agentName}" is not installed.`);
   }
 
   console.log(`Removing agent: ${agentName}`);

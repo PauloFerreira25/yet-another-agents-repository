@@ -1,4 +1,4 @@
-import { listRemoteAgents } from '../lib/downloader.js';
+import { listSourceAgents } from '../lib/source.js';
 import { readConfig, configExists, DEFAULT_SOURCE, DEFAULT_REF } from '../lib/config.js';
 
 export async function list(scope: 'remote' | 'local' = 'remote', source?: string, ref?: string): Promise<void> {
@@ -26,10 +26,9 @@ export async function list(scope: 'remote' | 'local' = 'remote', source?: string
 
   const resolvedSource = source ?? DEFAULT_SOURCE;
   const resolvedRef = ref ?? DEFAULT_REF;
-  const [owner, repo] = resolvedSource.split('/');
 
   console.log(`Available agents (${resolvedSource}@${resolvedRef}):`);
-  const agents = await listRemoteAgents(owner, repo, resolvedRef);
+  const agents = await listSourceAgents(resolvedSource, resolvedRef);
 
   if (agents.length === 0) {
     console.log('  No agents found.');

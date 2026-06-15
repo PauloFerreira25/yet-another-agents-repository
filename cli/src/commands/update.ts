@@ -1,15 +1,14 @@
-import { readFileSync, existsSync, unlinkSync } from 'fs';
+import { existsSync, unlinkSync } from 'fs';
 import { resolve } from 'path';
-import { downloadFile as downloadFileFn, parseRulesFromAgent } from '../lib/downloader.js';
 import { readConfig, writeConfig } from '../lib/config.js';
+import { createFetcher as createFetcherDefault, installAgentFiles } from '../lib/source.js';
 
-type DownloadFile = typeof downloadFileFn;
+export interface UpdateDeps {
+  createFetcher?: typeof createFetcherDefault;
+}
 
-export async function update(
-  agentName?: string,
-  deps: { downloadFile?: DownloadFile } = {}
-): Promise<void> {
-  const { downloadFile } = { downloadFile: downloadFileFn, ...deps };
+export async function update(agentName?: string, deps: UpdateDeps = {}): Promise<void> {
+  const { createFetcher } = { createFetcher: createFetcherDefault, ...deps };
   const config = readConfig();
 
   const agentsToUpdate = agentName ? [agentName] : Object.keys(config.agents);
@@ -26,31 +25,15 @@ export async function update(
     }
 
     const entry = config.agents[name];
-    const [owner, repo] = entry.source.split('/');
-    const { ref } = entry;
+    const { source, ref } = entry;
+    const oldRules = entry.rules;
 
     console.log(`Updating agent: ${name}`);
 
-    const agentRemotePath = `agents-src/agents/${name}.md`;
-    const agentLocalPath = `.claude/agents/${name}.md`;
-    const oldRules = entry.rules;
+    const fetchFile = await createFetcher(source, ref);
+    const { agentLocalPath, downloadedRules } = await installAgentFiles(name, fetchFile);
 
-    await downloadFile(owner, repo, ref, agentRemotePath, agentLocalPath);
-    console.log(`  ✓ ${agentLocalPath}`);
-
-    const agentContent = readFileSync(resolve(process.cwd(), agentLocalPath), 'utf-8');
-    const ruleFiles = parseRulesFromAgent(agentContent);
-    const downloadedRules: string[] = [];
-
-    for (const rulePath of ruleFiles) {
-      const remoteRulePath = `agents-src/${rulePath}`;
-      await downloadFile(owner, repo, ref, remoteRulePath, rulePath);
-      console.log(`  ✓ ${rulePath}`);
-      downloadedRules.push(rulePath);
-    }
-
-    const removedRules = oldRules.filter(r => !downloadedRules.includes(r));
-    for (const rulePath of removedRules) {
+    for (const rulePath of oldRules.filter(r => !downloadedRules.includes(r))) {
       const fullPath = resolve(process.cwd(), rulePath);
       if (existsSync(fullPath)) {
         unlinkSync(fullPath);
@@ -59,8 +42,8 @@ export async function update(
     }
 
     config.agents[name] = {
-      source: entry.source,
-      ref: entry.ref,
+      source,
+      ref,
       agent: agentLocalPath,
       rules: downloadedRules,
       ...(entry.entrypoint && { entrypoint: true }),

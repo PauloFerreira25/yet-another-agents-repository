@@ -19,7 +19,6 @@ describe('remove', () => {
     vi.spyOn(process, 'cwd').mockReturnValue(tmpDir)
     vi.spyOn(console, 'log').mockImplementation(() => {})
     vi.spyOn(console, 'error').mockImplementation(() => {})
-    vi.spyOn(process, 'exit').mockImplementation((() => {}) as never)
   })
 
   afterEach(() => {
@@ -30,10 +29,7 @@ describe('remove', () => {
   it('errors when agent is not installed', async () => {
     writeFileSync(join(tmpDir, '.yaar.json'), makeConfig({}))
 
-    await remove('nonexistent/agent')
-
-    expect(console.error).toHaveBeenCalledWith('Agent "nonexistent/agent" is not installed.')
-    expect(process.exit).toHaveBeenCalledWith(1)
+    await expect(remove('nonexistent/agent')).rejects.toThrow('Agent "nonexistent/agent" is not installed.')
   })
 
   it('deletes agent file and rules from filesystem', async () => {

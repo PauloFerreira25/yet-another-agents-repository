@@ -21,7 +21,8 @@ const agentWithoutRules = () =>
 
 describe('update', () => {
   let tmpDir: string
-  let downloadFileMock: ReturnType<typeof vi.fn>
+  let fetchFileMock: ReturnType<typeof vi.fn>
+  let createFetcherMock: ReturnType<typeof vi.fn>
 
   beforeEach(() => {
     tmpDir = mkdtempSync(join(tmpdir(), 'yaar-test-'))
@@ -29,14 +30,15 @@ describe('update', () => {
     vi.spyOn(console, 'log').mockImplementation(() => {})
     vi.spyOn(console, 'error').mockImplementation(() => {})
 
-    downloadFileMock = vi.fn().mockImplementation(
-      async (_owner: string, _repo: string, _ref: string, _remotePath: string, localPath: string) => {
-        // default: write empty file so readFileSync doesn't throw
+    fetchFileMock = vi.fn().mockImplementation(
+      async (_remotePath: string, localPath: string) => {
         const fullPath = resolve(tmpDir, localPath)
         mkdirSync(dirname(fullPath), { recursive: true })
         writeFileSync(fullPath, agentWithoutRules(), 'utf-8')
       }
     )
+
+    createFetcherMock = vi.fn().mockResolvedValue(fetchFileMock)
   })
 
   afterEach(() => {
@@ -47,19 +49,19 @@ describe('update', () => {
   it('logs "No agents installed." when config is empty', async () => {
     writeFileSync(join(tmpDir, '.yaar.json'), makeConfig({}))
 
-    await update(undefined, { downloadFile: downloadFileMock })
+    await update(undefined, { createFetcher: createFetcherMock })
 
     expect(console.log).toHaveBeenCalledWith('No agents installed.')
-    expect(downloadFileMock).not.toHaveBeenCalled()
+    expect(createFetcherMock).not.toHaveBeenCalled()
   })
 
   it('logs error and continues when a named agent is not installed', async () => {
     writeFileSync(join(tmpDir, '.yaar.json'), makeConfig({}))
 
-    await update('core/missing', { downloadFile: downloadFileMock })
+    await update('core/missing', { createFetcher: createFetcherMock })
 
     expect(console.error).toHaveBeenCalledWith('Agent "core/missing" is not installed.')
-    expect(downloadFileMock).not.toHaveBeenCalled()
+    expect(createFetcherMock).not.toHaveBeenCalled()
   })
 
   it('re-downloads the agent file', async () => {
@@ -68,10 +70,10 @@ describe('update', () => {
       makeConfig({ 'core/agent': { agent: '.claude/agents/core/agent.md', rules: [] } })
     )
 
-    await update(undefined, { downloadFile: downloadFileMock })
+    await update(undefined, { createFetcher: createFetcherMock })
 
-    expect(downloadFileMock).toHaveBeenCalledWith(
-      'owner', 'repo', 'main',
+    expect(createFetcherMock).toHaveBeenCalledWith('owner/repo', 'main')
+    expect(fetchFileMock).toHaveBeenCalledWith(
       'agents-src/agents/core/agent.md',
       '.claude/agents/core/agent.md'
     )
@@ -86,8 +88,8 @@ describe('update', () => {
       makeConfig({ 'core/agent': { agent: '.claude/agents/core/agent.md', rules: [] } })
     )
 
-    downloadFileMock.mockImplementation(
-      async (_owner: string, _repo: string, _ref: string, _remotePath: string, localPath: string) => {
+    fetchFileMock.mockImplementation(
+      async (_remotePath: string, localPath: string) => {
         const fullPath = resolve(tmpDir, localPath)
         mkdirSync(dirname(fullPath), { recursive: true })
         if (localPath === '.claude/agents/core/agent.md') {
@@ -98,15 +100,13 @@ describe('update', () => {
       }
     )
 
-    await update(undefined, { downloadFile: downloadFileMock })
+    await update(undefined, { createFetcher: createFetcherMock })
 
-    expect(downloadFileMock).toHaveBeenCalledWith(
-      'owner', 'repo', 'main',
+    expect(fetchFileMock).toHaveBeenCalledWith(
       'agents-src/.ia/rules/common/rule-a.md',
       ruleA
     )
-    expect(downloadFileMock).toHaveBeenCalledWith(
-      'owner', 'repo', 'main',
+    expect(fetchFileMock).toHaveBeenCalledWith(
       'agents-src/.ia/rules/common/rule-b.md',
       ruleB
     )
@@ -127,8 +127,8 @@ describe('update', () => {
       makeConfig({ 'core/agent': { agent: '.claude/agents/core/agent.md', rules: [oldRule] } })
     )
 
-    downloadFileMock.mockImplementation(
-      async (_owner: string, _repo: string, _ref: string, _remotePath: string, localPath: string) => {
+    fetchFileMock.mockImplementation(
+      async (_remotePath: string, localPath: string) => {
         const fullPath = resolve(tmpDir, localPath)
         mkdirSync(dirname(fullPath), { recursive: true })
         if (localPath === '.claude/agents/core/agent.md') {
@@ -139,7 +139,7 @@ describe('update', () => {
       }
     )
 
-    await update(undefined, { downloadFile: downloadFileMock })
+    await update(undefined, { createFetcher: createFetcherMock })
 
     expect(existsSync(join(tmpDir, oldRule))).toBe(false)
     expect(existsSync(join(tmpDir, newRule))).toBe(true)
@@ -156,7 +156,7 @@ describe('update', () => {
       makeConfig({ 'core/agent': { agent: '.claude/agents/core/agent.md', rules: [ghostRule] } })
     )
 
-    await expect(update(undefined, { downloadFile: downloadFileMock })).resolves.toBeUndefined()
+    await expect(update(undefined, { createFetcher: createFetcherMock })).resolves.toBeUndefined()
   })
 
   it('preserves entrypoint flag after update', async () => {
@@ -165,7 +165,7 @@ describe('update', () => {
       makeConfig({ 'core/agent': { agent: '.claude/agents/core/agent.md', rules: [], entrypoint: true } })
     )
 
-    await update(undefined, { downloadFile: downloadFileMock })
+    await update(undefined, { createFetcher: createFetcherMock })
 
     const config = JSON.parse(readFileSync(join(tmpDir, '.yaar.json'), 'utf-8'))
     expect(config.agents['core/agent'].entrypoint).toBe(true)
@@ -177,7 +177,7 @@ describe('update', () => {
       makeConfig({ 'core/agent': { agent: '.claude/agents/core/agent.md', rules: [] } })
     )
 
-    await update(undefined, { downloadFile: downloadFileMock })
+    await update(undefined, { createFetcher: createFetcherMock })
 
     const config = JSON.parse(readFileSync(join(tmpDir, '.yaar.json'), 'utf-8'))
     expect(config.agents['core/agent'].entrypoint).toBeUndefined()
@@ -192,15 +192,13 @@ describe('update', () => {
       })
     )
 
-    await update('core/agent-a', { downloadFile: downloadFileMock })
+    await update('core/agent-a', { createFetcher: createFetcherMock })
 
-    expect(downloadFileMock).toHaveBeenCalledWith(
-      'owner', 'repo', 'main',
+    expect(fetchFileMock).toHaveBeenCalledWith(
       'agents-src/agents/core/agent-a.md',
       '.claude/agents/core/agent-a.md'
     )
-    expect(downloadFileMock).not.toHaveBeenCalledWith(
-      expect.anything(), expect.anything(), expect.anything(),
+    expect(fetchFileMock).not.toHaveBeenCalledWith(
       'agents-src/agents/core/agent-b.md',
       expect.anything()
     )
@@ -215,15 +213,13 @@ describe('update', () => {
       })
     )
 
-    await update(undefined, { downloadFile: downloadFileMock })
+    await update(undefined, { createFetcher: createFetcherMock })
 
-    expect(downloadFileMock).toHaveBeenCalledWith(
-      'owner', 'repo', 'main',
+    expect(fetchFileMock).toHaveBeenCalledWith(
       'agents-src/agents/core/agent-a.md',
       '.claude/agents/core/agent-a.md'
     )
-    expect(downloadFileMock).toHaveBeenCalledWith(
-      'owner', 'repo', 'main',
+    expect(fetchFileMock).toHaveBeenCalledWith(
       'agents-src/agents/core/agent-b.md',
       '.claude/agents/core/agent-b.md'
     )
