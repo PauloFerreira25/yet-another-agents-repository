@@ -80,8 +80,8 @@ describe('update', () => {
   })
 
   it('downloads rules referenced in the new agent content', async () => {
-    const ruleA = '.ia/rules/common/rule-a.md'
-    const ruleB = '.ia/rules/common/rule-b.md'
+    const ruleA = '.ai/rules/common/rule-a.md'
+    const ruleB = '.ai/rules/common/rule-b.md'
 
     writeFileSync(
       join(tmpDir, '.yaar.json'),
@@ -103,11 +103,11 @@ describe('update', () => {
     await update(undefined, { createFetcher: createFetcherMock })
 
     expect(fetchFileMock).toHaveBeenCalledWith(
-      'agents-src/.ia/rules/common/rule-a.md',
+      'agents-src/.ai/rules/common/rule-a.md',
       ruleA
     )
     expect(fetchFileMock).toHaveBeenCalledWith(
-      'agents-src/.ia/rules/common/rule-b.md',
+      'agents-src/.ai/rules/common/rule-b.md',
       ruleB
     )
 
@@ -116,10 +116,10 @@ describe('update', () => {
   })
 
   it('deletes orphaned rules no longer referenced in the new agent content', async () => {
-    const oldRule = '.ia/rules/common/old-rule.md'
-    const newRule = '.ia/rules/common/new-rule.md'
+    const oldRule = '.ai/rules/common/old-rule.md'
+    const newRule = '.ai/rules/common/new-rule.md'
 
-    mkdirSync(join(tmpDir, '.ia/rules/common'), { recursive: true })
+    mkdirSync(join(tmpDir, '.ai/rules/common'), { recursive: true })
     writeFileSync(join(tmpDir, oldRule), '# old rule')
 
     writeFileSync(
@@ -149,7 +149,7 @@ describe('update', () => {
   })
 
   it('does not throw when an orphaned rule file is already missing from disk', async () => {
-    const ghostRule = '.ia/rules/common/ghost.md'
+    const ghostRule = '.ai/rules/common/ghost.md'
 
     writeFileSync(
       join(tmpDir, '.yaar.json'),

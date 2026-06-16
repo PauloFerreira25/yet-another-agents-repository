@@ -44,7 +44,7 @@ describe('list local', () => {
           source: 'owner/repo',
           ref: 'main',
           agent: '.claude/agents/backend/aws-lambda-typescript.md',
-          rules: ['.ia/rules/common/how-to-think.md'],
+          rules: ['.ai/rules/common/how-to-think.md'],
         },
       })
     )

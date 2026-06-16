@@ -39,9 +39,9 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
-| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes | |
-| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes | |
-| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes | |
-| Atomization | When decomposing any feature or system unit into a spec | .ia/rules/analysis/atomization.md | | |
-| Interview Conduct | During the interview phase | .ia/rules/analysis/interview-conduct.md | | |
-| Spec Format | Before writing any spec document | .ia/rules/analysis/spec-format.md | | |
+| How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
+| How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
+| Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| Atomization | When decomposing any feature or system unit into a spec | .ai/rules/analysis/atomization.md | | |
+| Interview Conduct | During the interview phase | .ai/rules/analysis/interview-conduct.md | | |
+| Spec Format | Before writing any spec document | .ai/rules/analysis/spec-format.md | | |

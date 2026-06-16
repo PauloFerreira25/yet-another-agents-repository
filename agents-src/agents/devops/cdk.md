@@ -23,15 +23,15 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
-| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes | |
-| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes | |
-| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes | |
-| CDK Directory and Layers | Before creating any file in cdk/ | .ia/rules/architecture/cdk/directory-and-layers.md | | |
-| CDK Stack Naming | Before creating or naming a new stack | .ia/rules/architecture/cdk/stack-naming.md | | |
-| CDK Stack Dependencies | When sharing values between stacks | .ia/rules/architecture/cdk/stack-dependencies.md | | |
-| CDK Entrypoints | Before creating files in bin/ or deploy scripts | .ia/rules/architecture/cdk/typescript/entrypoints.md | | |
-| CDK Config Injection | Before passing config to a stack or component | .ia/rules/architecture/cdk/typescript/config-injection.md | | |
-| CDK Components | Before creating or extending a component | .ia/rules/architecture/cdk/typescript/components-inheritance.md | | |
-| CDK Lambda API Gateway | Before creating or updating an API Gateway construct | .ia/rules/architecture/cdk/lambda-api-gateway.md | | |
-| CDK HTTP Lambda Construct | Before creating a Lambda construct that exposes an HTTP endpoint | .ia/rules/architecture/cdk/stack-base/http-lambda-construct.md | | |
-| scripting | Before writing any script or running any automation in a Node.js project | .ia/rules/architecture/nodejs/scripting.md | | |
+| How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
+| How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
+| Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| CDK Directory and Layers | Before creating any file in cdk/ | .ai/rules/architecture/cdk/directory-and-layers.md | | |
+| CDK Stack Naming | Before creating or naming a new stack | .ai/rules/architecture/cdk/stack-naming.md | | |
+| CDK Stack Dependencies | When sharing values between stacks | .ai/rules/architecture/cdk/stack-dependencies.md | | |
+| CDK Entrypoints | Before creating files in bin/ or deploy scripts | .ai/rules/architecture/cdk/typescript/entrypoints.md | | |
+| CDK Config Injection | Before passing config to a stack or component | .ai/rules/architecture/cdk/typescript/config-injection.md | | |
+| CDK Components | Before creating or extending a component | .ai/rules/architecture/cdk/typescript/components-inheritance.md | | |
+| CDK Lambda API Gateway | Before creating or updating an API Gateway construct | .ai/rules/architecture/cdk/lambda-api-gateway.md | | |
+| CDK HTTP Lambda Construct | Before creating a Lambda construct that exposes an HTTP endpoint | .ai/rules/architecture/cdk/stack-base/http-lambda-construct.md | | |
+| scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/architecture/nodejs/scripting.md | | |

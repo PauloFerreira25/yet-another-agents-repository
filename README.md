@@ -10,7 +10,7 @@ Rules are separate Markdown files referenced in the agent's Rules table. The age
 
 ```
 agents-src/agents/<category>/<name>.md   ← agent file
-agents-src/.ia/rules/<category>/<name>.md   ← rule file (read on demand)
+agents-src/.ai/rules/<category>/<name>.md   ← rule file (read on demand)
 ```
 
 ### Agent file format
@@ -29,7 +29,7 @@ System prompt body.
 
 | Name        | Scope                              | File                          |
 |-------------|------------------------------------|-------------------------------|
-| <rule-name> | <action trigger>                   | .ia/rules/<category>/<name>.md   |
+| <rule-name> | <action trigger>                   | .ai/rules/<category>/<name>.md   |
 ```
 
 The `description` field is what Claude Code uses to decide when to invoke the agent — write it as a trigger sentence starting with `"Use when..."`.
@@ -111,7 +111,7 @@ agents-src/
       <name>.md          ← agent file: frontmatter + system prompt + Rules table
     yaar/
       ...                ← internal agents (excluded from yaar list remote)
-  .ia/rules/
+  .ai/rules/
     <category>/
       <name>.md          ← rule file: frontmatter + directives, read on demand
 cli/
@@ -164,7 +164,7 @@ your-project/
     agents/
       <category>/
         <name>.md
-  .ia/rules/
+  .ai/rules/
     <category>/
       <name>.md
 ```
@@ -176,7 +176,7 @@ Rules are shared across agents. If two agents reference the same rule file, it i
 To add a new agent:
 
 1. Create `agents-src/agents/<category>/<name>.md` with the frontmatter, system prompt, and Rules table
-2. Add any new rule files to `agents-src/.ia/rules/<path>.md`
+2. Add any new rule files to `agents-src/.ai/rules/<path>.md`
 3. Rule files must start with a frontmatter block: `name`, `Scope`, and `description`
 
 The `yaar/agent-author` agent knows the full format and can help write both agents and rules files.

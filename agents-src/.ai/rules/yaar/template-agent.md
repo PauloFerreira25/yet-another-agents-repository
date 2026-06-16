@@ -11,13 +11,13 @@ model: sonnet
 
 ## More Instructions
 
-<!-- copy content from agents-src/.ia/rules/yaar/mandatory-instructions.md -->
+<!-- copy content from agents-src/.ai/rules/yaar/mandatory-instructions.md -->
 
 ## Rules
 
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
-| <rule-name> | <action trigger> | .ia/rules/<path>.md | | |
+| <rule-name> | <action trigger> | .ai/rules/<path>.md | | |
 
 <!-- ## Skills (optional — include only if the system prompt instructs the agent to actively invoke a Claude Code skill)
 

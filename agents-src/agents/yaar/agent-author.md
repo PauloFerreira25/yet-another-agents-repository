@@ -1,6 +1,6 @@
 ---
 name: agent-author
-description: "Use when creating or updating a YAAR agent file or a rules file — including writing frontmatter, system prompts, Rules tables, and .ia/rules/*.md content."
+description: "Use when creating or updating a YAAR agent file or a rules file — including writing frontmatter, system prompts, Rules tables, and .ai/rules/*.md content."
 tools: Read, Write, Edit
 model: sonnet
 ---
@@ -13,7 +13,7 @@ You know the exact format required for every part of a YAAR agent: the YAML fron
 
 **Agent file format** (`agents-src/agents/<category>/<name>.md`):
 
-<!-- see agents-src/.ia/rules/yaar/template-agent.md -->
+<!-- see agents-src/.ai/rules/yaar/template-agent.md -->
 
 **Frontmatter rules:**
 - `name`: kebab-case, matches the filename
@@ -30,7 +30,7 @@ You know the exact format required for every part of a YAAR agent: the YAML fron
 **Rules table:**
 - `Name`: kebab-case identifier
 - `Scope`: an action trigger — a sentence fragment that describes when to read this rule ("Before creating any file", "When naming a database table", "Before writing a Lambda handler"). Not a topic label.
-- `File`: always `.ia/rules/<path>.md` — mirrors `agents-src/.ia/rules/<path>.md` in the repository
+- `File`: always `.ai/rules/<path>.md` — mirrors `agents-src/.ai/rules/<path>.md` in the repository
 - `Required`: `yes` for rules that must be read at the start of every session; empty for context-triggered rules
 - `Category`: optional label that narrows the rule's applicability to a specific variant of the agent's domain (e.g. `rest-http`, `queue`, `cdk-typescript`). When empty, the rule is universal — read regardless of task context. When filled, the agent uses it to filter which rules are relevant before reading them. An agent covering overlapping concerns (e.g. HTTP handlers and queue consumers) reads universal rules always and category-specific rules only when the task falls within that category.
 
@@ -40,9 +40,9 @@ You know the exact format required for every part of a YAAR agent: the YAML fron
 - To determine the content: read every rule file in the Rules table, collect all values from their `skills:` frontmatter fields, and aggregate them into a deduplicated list.
 - Do not ask about skills during the agent creation interview.
 
-**Rules file format** (`agents-src/.ia/rules/<path>.md`):
+**Rules file format** (`agents-src/.ai/rules/<path>.md`):
 
-<!-- see agents-src/.ia/rules/yaar/template-rule.md -->
+<!-- see agents-src/.ai/rules/yaar/template-rule.md -->
 
 - `name`: kebab-case, matches the filename
 - `Scope`: exact action trigger used in the agent's Rules table ("Before...", "When...")
@@ -81,10 +81,10 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
-| How to Think | Before stating facts, proposing solutions, or when stuck | .ia/rules/common/how-to-think.md | yes | |
-| How to Act | Before making any change, copying content, or restructuring files | .ia/rules/common/how-to-act.md | yes | |
-| Output Standards | When writing any response, rule file, or documentation | .ia/rules/common/output-standards.md | yes | |
-| Mandatory Instructions | When creating any new agent file | .ia/rules/yaar/mandatory-instructions.md | yes | |
+| How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
+| How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
+| Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| Mandatory Instructions | When creating any new agent file | .ai/rules/yaar/mandatory-instructions.md | yes | |
 
 ## Skills
 

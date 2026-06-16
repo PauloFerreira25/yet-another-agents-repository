@@ -34,10 +34,10 @@ describe('remove', () => {
 
   it('deletes agent file and rules from filesystem', async () => {
     const agentFile = '.claude/agents/test/agent.md'
-    const ruleFile = '.ia/rules/common/how-to-think.md'
+    const ruleFile = '.ai/rules/common/how-to-think.md'
 
     mkdirSync(join(tmpDir, '.claude/agents/test'), { recursive: true })
-    mkdirSync(join(tmpDir, '.ia/rules/common'), { recursive: true })
+    mkdirSync(join(tmpDir, '.ai/rules/common'), { recursive: true })
     writeFileSync(join(tmpDir, agentFile), 'content')
     writeFileSync(join(tmpDir, ruleFile), 'content')
 
@@ -71,7 +71,7 @@ describe('remove', () => {
   it('does not throw when tracked files are already missing', async () => {
     writeFileSync(
       join(tmpDir, '.yaar.json'),
-      makeConfig({ 'test/agent': { agent: '.claude/agents/test/agent.md', rules: ['.ia/rules/common/how-to-think.md'] } })
+      makeConfig({ 'test/agent': { agent: '.claude/agents/test/agent.md', rules: ['.ai/rules/common/how-to-think.md'] } })
     )
 
     await expect(remove('test/agent')).resolves.toBeUndefined()
