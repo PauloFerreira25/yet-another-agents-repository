@@ -4,6 +4,7 @@ import { update as updateFn } from './commands/update.js';
 import { remove as removeFn } from './commands/remove.js';
 import { list as listFn } from './commands/list.js';
 import { DEFAULT_SOURCE, DEFAULT_REF } from './lib/config.js';
+import pkg from '../package.json' with { type: 'json' };
 
 export interface ProgramDeps {
   add: typeof addFn;
@@ -26,7 +27,7 @@ export function createProgram(deps?: Partial<ProgramDeps>): Command {
   program
     .name('yaar')
     .description('Yet Another Agents Repository CLI')
-    .version('0.1.0');
+    .version(pkg.version);
 
   program
     .command('add <agents...>')
