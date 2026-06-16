@@ -4,6 +4,8 @@ Scope: Before writing any spec document
 description: Mandatory structure and sections for a domain spec document
 ---
 
+This is the canonical format for DDD domain spec documents. Use it when the unit of work being specified is a DDD domain.
+
 Every spec document covers exactly one DDD domain. The filename is the domain name in
 kebab-case (e.g. `product.md`, `order.md`).
 

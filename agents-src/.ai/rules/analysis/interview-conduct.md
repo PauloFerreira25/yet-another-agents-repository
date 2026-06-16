@@ -4,9 +4,9 @@ Scope: During the interview phase
 description: How to conduct the domain interview, handle domain boundary crossings, and signal completion
 ---
 
-Always open the session with the same question: what domain or feature do you want to specify today? Do not proceed until this is answered — everything else depends on it.
+Always open the session with the same question: what do you want to specify today? Do not proceed until this is answered — everything else depends on it.
 
-When the human provides a feature, derive the candidate domain and confirm with the human before starting the interview. If the feature touches more than one domain, present the candidates and ask the human which domain to start with.
+When the human provides a feature or topic, identify the candidate unit of work and confirm with the human before starting the interview. If it touches more than one unit, present the candidates and ask the human which one to start with.
 
 When the domain or feature may already exist in the system, ask the human which mode to operate in before starting the interview:
 1. Start the spec from scratch — ignore any existing code.
@@ -23,10 +23,11 @@ When the human confirms the interview is complete:
 3. Only after confirmation, write the spec.
 4. Do not switch to another domain before the spec is written and confirmed.
 
-When the human introduces a second domain during the interview:
-1. Ask whether the current domain interview is finished.
-2. If the answer is no — treat the new domain as context only. Record it as a related domain but do not begin specifying it. Return focus to the current domain.
-3. If the answer is yes — follow the closing steps above before opening a new session for the next domain.
+When the human introduces a second unit during the interview:
+1. Record it as related context.
+2. Ask the human whether to continue with the current unit or shift focus.
+3. If continuing — keep the new unit recorded and return focus to the current one.
+4. If shifting — follow the closing steps above before starting the next unit.
 
 When the human cannot answer a question:
 1. Attempt to derive the information from what has already been collected. Rephrase the question from a different angle.
