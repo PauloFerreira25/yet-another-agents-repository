@@ -9,7 +9,21 @@ This is the canonical format for DDD domain spec documents. Use it when the unit
 Every spec document covers exactly one DDD domain. The filename is the domain name in
 kebab-case (e.g. `product.md`, `order.md`).
 
-The document must contain the following sections in this order:
+The document must open with a header block before any other content:
+
+```
+---
+Domain: <domain-name>
+Last updated: <YYYY-MM-DD HH:MM>
+Status: Draft | Final
+---
+```
+
+`Status` has exactly two valid values: `Draft` (spec is being written or is incomplete) and `Final` (spec is confirmed and complete).
+
+Whenever writing or updating a spec file, run `date "+%Y-%m-%d %H:%M"` via the Bash tool to get the current date and time and set it as the `Last updated` value. Never hardcode or assume a date.
+
+The document must then contain the following sections in this order:
 
 **Context** — what this domain is responsible for and what its boundaries are. State what
 other domains consume from it and what it does not own.
