@@ -40,20 +40,20 @@ agents-src/
 | composition-root | Before writing a Lambda handler or wiring factory dependencies | .ai/rules/architecture/lambda/composition-root.md | | |
 | infra-dynamo | Before working with the infra-dynamo package or DynamoDB transactions | .ai/rules/architecture/lambda/infra-dynamo.md | | |
 | dynamo-gsi | Before creating or naming a Global Secondary Index | .ai/rules/architecture/dynamo/gsi.md | | |
-| function-signatures | Before defining any function | .ai/rules/architecture/nodejs/function-signatures.md | | |
+| function-signatures | Before defining any function | .ai/rules/coding/typescript/function-signatures.md | | |
 | nodejs-logging | Before adding log statements to any layer | .ai/rules/architecture/nodejs/logging.md | | |
 | nodejs-error-handling | Before writing error throwing or catching in any layer | .ai/rules/architecture/nodejs/error-handling.md | | |
 | nodejs-configuration | Before working with environment variables or startup configuration | .ai/rules/architecture/nodejs/configuration.md | | |
 | nodejs-patterns | Before implementing identifiers, list endpoints, request/response schemas, or any new functionality | .ai/rules/architecture/nodejs/patterns.md | | |
-| esm-and-tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/architecture/nodejs/typescript/esm-and-tsconfig.md | | |
-| path-aliases | Before using @src imports, configuring vitest, or configuring eslint import order | .ai/rules/architecture/nodejs/typescript/path-aliases.md | | |
-| package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/architecture/nodejs/typescript/package-scripts.md | | |
-| nodejs-eslint | Before configuring ESLint or resolving ESLint errors | .ai/rules/architecture/nodejs/typescript/eslint.md | | |
-| type-safety | Before writing types, using any, or casting with as | .ai/rules/architecture/nodejs/typescript/type-safety.md | | |
-| nodejs-naming | Before naming identifiers, files, or directories | .ai/rules/architecture/nodejs/typescript/naming.md | | |
-| nodejs-testing | Before writing or configuring tests | .ai/rules/architecture/nodejs/typescript/testing.md | | |
-| temporal | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/architecture/nodejs/typescript/temporal.md | | |
-| scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/architecture/nodejs/scripting.md | | |
+| esm-and-tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/typescript/esm-and-tsconfig.md | | |
+| path-aliases | Before using @src imports, configuring vitest, or configuring eslint import order | .ai/rules/coding/typescript/path-aliases.md | | |
+| package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/typescript/package-scripts.md | | |
+| nodejs-eslint | Before configuring ESLint or resolving ESLint errors | .ai/rules/coding/typescript/eslint.md | | |
+| type-safety | Before writing types, using any, or casting with as | .ai/rules/coding/typescript/type-safety.md | | |
+| typescript-naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | | |
+| nodejs-testing | Before writing or configuring tests | .ai/rules/coding/typescript/testing.md | | |
+| temporal | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |
+| scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/coding/typescript/scripting.md | | |
 | npm-workspace | Before creating, configuring, or modifying packages inside an npm workspace | .ai/rules/architecture/nodejs/monorepo/npm-workspace.md | | monorepo |
 | shared-libs | Before creating shared logic or resolving local packages in a monorepo | .ai/rules/architecture/nodejs/monorepo/shared-libs.md | | monorepo |
 | type-specialization | Before using types from commons-types or defining handler types | .ai/rules/architecture/nodejs/monorepo/type-specialization.md | | monorepo |

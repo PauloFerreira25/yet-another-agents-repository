@@ -16,7 +16,7 @@ When introducing any of the following — persistent state, public or cross-boun
 
 Each function does one thing. Keep functions under 50 lines. Extract complex logic into separate, well-named functions. Functions should operate at a single level of abstraction.
 
-Use 0–2 parameters per function. When a function requires 3 or more parameters, group related ones into an object or struct.
+Use 0–2 parameters per function. When a function requires 3 or more parameters, group related ones into a dedicated structure (object, struct, record, or equivalent in the language).
 
 Prefer pure functions — no side effects. Separate data transformation from side effects.
 

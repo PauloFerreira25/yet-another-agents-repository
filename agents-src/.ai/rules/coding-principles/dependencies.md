@@ -8,7 +8,7 @@ description: Dependency injection and pattern representativeness rules
 
 ## Injection
 
-Inject external dependencies as parameters — constructor injection for classes, function parameters for procedural or functional code.
+Inject external dependencies as parameters — initialization injection for types that encapsulate state (constructor, factory function, or equivalent in the language), function parameters for procedural or functional code.
 
 Depend on abstractions, not concrete implementations. Minimize inter-module dependencies.
 
