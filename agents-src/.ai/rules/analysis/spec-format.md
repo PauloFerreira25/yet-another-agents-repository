@@ -14,14 +14,14 @@ The document must open with a header block before any other content:
 ```
 ---
 Domain: <domain-name>
-Last updated: <YYYY-MM-DD HH:MM>
+Last updated: <ISO 8601>
 Status: Draft | Final
 ---
 ```
 
 `Status` has exactly two valid values: `Draft` (spec is being written or is incomplete) and `Final` (spec is confirmed and complete).
 
-Whenever writing or updating a spec file, run `date "+%Y-%m-%d %H:%M"` via the Bash tool to get the current date and time and set it as the `Last updated` value. Never hardcode or assume a date.
+Whenever writing or updating a spec file, run `date -u +"%Y-%m-%dT%H:%M:%SZ"` via the Bash tool to get the current datetime in ISO 8601 UTC format (e.g. `2026-06-18T18:15:00Z`) and set it as the `Last updated` value. Never hardcode or assume a date.
 
 The document must then contain the following sections in this order:
 
