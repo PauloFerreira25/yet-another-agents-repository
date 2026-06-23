@@ -6,9 +6,9 @@ description: Scaffold with Vite directly in the workspace, then install the full
 
 ## Step 1 — Confirm project name with the human
 
-Before running any command, ask the human to confirm the project name. Never infer it from context alone.
+Before running any command, infer the project name from context — conversation history, existing folder names, or any explicit mention. Present your understanding and ask the human to confirm or correct it:
 
-Present it explicitly: "The project will be created at `/workspace/<project-name>-react`. Confirm?"
+"Based on our conversation, I'll create the project at `/workspace/<inferred-name>-react`. Confirm, or tell me a different name."
 
 Only proceed after receiving explicit confirmation.
 
