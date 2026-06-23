@@ -86,7 +86,7 @@ src/component/layout/appLayout.tsx        ← sidebar + header
 
 Router files import layouts from `src/component/layout/` — layouts are never defined inside router files.
 
-## Aggregation in `src/router.tsx`
+## Aggregation in `src/router/router.tsx`
 
 ```ts
 import { createRootRoute, createRouter } from '@tanstack/react-router'
@@ -122,8 +122,8 @@ export function createPrivateRouter(parentRoute: AnyRoute) {
     beforeLoad: () => {
       const { isAuthenticated } = useAuthStore.getState()
       if (!isAuthenticated) throw redirect({ to: '/login' })
-      // Note: tryRefreshToken() runs on mount in main.tsx — by the time beforeLoad
-      // executes, isAuthenticated is already set if the session cookie was valid.
+      // Note: tryRefreshToken() is called by bootstrap() during app initialization —
+      // by the time beforeLoad executes, isAuthenticated is already set.
     },
   })
 }

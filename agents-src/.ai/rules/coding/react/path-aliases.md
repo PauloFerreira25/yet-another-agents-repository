@@ -1,6 +1,6 @@
 ---
 name: react-path-aliases
-Scope: Before using @/ imports or configuring Vite, tsconfig, or eslint import order in a React project
+Scope: Before using @/ imports or configuring Vite or tsconfig in a React project
 description: @/ alias setup for React Vite projects — extends the TypeScript baseline with Vite-specific resolution
 ---
 
@@ -14,15 +14,17 @@ import { produtoService } from '../../../../service/produto/produto.service'
 import { produtoService } from '@/service/produto/produto.service'
 ```
 
-For `tsconfig.json` and ESLint configuration, follow `.ai/rules/coding/typescript/path-aliases.md` — the setup is identical, only the alias name differs (`@/*` instead of `@src/*`).
+For the TypeScript baseline configuration, follow `.ai/rules/coding/typescript/path-aliases.md` — the setup is identical, only the alias name differs (`@/*` instead of `@src/*`).
 
-## tsconfig.json
+## tsconfig.app.json
+
+Add to `tsconfig.app.json` (not the root `tsconfig.json`, which the scaffold leaves as a project-references file with no `compilerOptions`):
 
 ```json
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] }
+    "paths": { "@/*": ["./src/*"] }
   }
 }
 ```
@@ -42,12 +44,3 @@ export default defineConfig({
 })
 ```
 
-## ESLint
-
-```js
-'import/order': ['error', {
-  'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-  'pathGroups': [{ pattern: '@/**', group: 'internal' }],
-  'newlines-between': 'always',
-}],
-```

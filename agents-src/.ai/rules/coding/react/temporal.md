@@ -6,9 +6,11 @@ description: React browser Temporal setup — extends the TypeScript baseline wi
 
 For the Temporal directive and common patterns, follow `.ai/rules/coding/typescript/temporal.md`.
 
-## Browser compatibility
+## Browser compatibility and TypeScript
 
-Temporal is available natively in modern browsers (Chrome 129+, Firefox 139+, Safari 17.4+). For projects that need to support older browsers, install the polyfill:
+The scaffold's `lib: ["ES2023", "DOM"]` does not include `Temporal` — TypeScript will fail with `Cannot find name 'Temporal'` if you use the native global directly.
+
+Always install and import from `temporal-polyfill`, which ships its own types:
 
 ```bash
 npm install temporal-polyfill
@@ -18,4 +20,4 @@ npm install temporal-polyfill
 import { Temporal } from 'temporal-polyfill'
 ```
 
-When your browser support matrix no longer requires the polyfill, remove the package and use the native global directly.
+`temporal-polyfill` works in all browsers and gives TypeScript the types it needs. When native `Temporal` is stable across your browser support matrix and TypeScript adds it to the DOM lib, remove the package and switch to the native global.

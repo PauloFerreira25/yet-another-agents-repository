@@ -12,10 +12,10 @@ React/Vite-specific scripts:
 {
   "scripts": {
     "dev":        "vite",
-    "build":      "tsc --noEmit && vite build",
+    "build":      "tsc -b && vite build",
     "preview":    "vite preview",
-    "lint":       "eslint src",
-    "lint:fix":   "eslint src --fix",
+    "lint":       "oxlint",
+    "lint:fix":   "oxlint --fix",
     "test":       "vitest run",
     "test:watch": "vitest",
     "coverage":   "vitest run --coverage",

@@ -100,7 +100,7 @@ Always add `aria-hidden="true"` to decorative SVGs inside labeled interactive el
 
 ## Testing
 
-`jsx-a11y` in ESLint catches static issues. For runtime verification:
+For verification:
 
 - Keyboard only: Tab through every interactive element, verify focus order and visible focus ring
 - Screen reader: test critical flows with VoiceOver (macOS) or NVDA (Windows)

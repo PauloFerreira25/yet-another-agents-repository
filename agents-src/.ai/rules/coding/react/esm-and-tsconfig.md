@@ -11,15 +11,17 @@ React/Vite-specific additions:
 - Never use `.js` extension in local imports — Vite's bundler resolves modules without extensions
 - Never set `rootDir` or `outDir` — Vite owns the build output
 
-## tsconfig.json (React/Vite additions)
+## tsconfig.app.json (React/Vite additions)
+
+These options belong in `tsconfig.app.json` — the scaffold's root `tsconfig.json` is a project-references file with no `compilerOptions`.
 
 ```json
 {
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM"],
     "jsx": "react-jsx",
     "noEmit": true
   }

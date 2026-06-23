@@ -34,20 +34,12 @@ vi.mock('@/service/produto/produto.service', () => ({
 
 Never query by class name, component name, or internal state.
 
-**i18n in tests**: initialize i18n before tests so `t()` resolves keys correctly. Add a `test/setup.ts` that imports the i18n config:
+**i18n in tests**: initialize i18n before tests so `t()` resolves keys correctly. Add the i18n import to `src/test/setup.ts` (the setup file configured in `vite.config.ts`):
 
 ```ts
-// test/setup.ts
+// src/test/setup.ts
+import '@testing-library/jest-dom'
 import '@/lib/i18n'
-```
-
-```ts
-// vitest.config.ts
-export default defineConfig({
-  test: {
-    setupFiles: ['./test/setup.ts'],
-  },
-})
 ```
 
 With this setup, `t('common.save')` resolves to the actual string from `public/locale/pt-BR/translation.json` in tests. Query by the resolved text, not by translation keys.

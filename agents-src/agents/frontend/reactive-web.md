@@ -51,7 +51,7 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | Naming and Readability | Before naming variables, functions, files, or writing comments | .ai/rules/coding-principles/naming.md | yes | |
 | Type Safety | Before writing types, using any, or casting with as | .ai/rules/coding/typescript/type-safety.md | yes | |
 | ESM and Tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/react/esm-and-tsconfig.md | yes | |
-| Path Aliases | Before using @/ imports or configuring Vite, tsconfig, or eslint import order | .ai/rules/coding/react/path-aliases.md | yes | |
+| Path Aliases | Before using @/ imports or configuring Vite or tsconfig in a React project | .ai/rules/coding/react/path-aliases.md | yes | |
 | Design | Before making design decisions, introducing abstractions, or structuring code | .ai/rules/coding-principles/design.md | yes | |
 | Dependencies | Before introducing or adopting a dependency or pattern from existing code | .ai/rules/coding-principles/dependencies.md | | |
 | Error Handling Principles | Before writing error handling, propagation, or logging code | .ai/rules/coding-principles/error-handling.md | | |
@@ -83,8 +83,9 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | SSE | When receiving real-time updates from the server (notifications, chat, live status) | .ai/rules/coding/react/sse.md | | |
 | Performance | When considering useMemo, useCallback, React.memo, or other performance optimizations | .ai/rules/coding/react/performance.md | | |
 | Testing | When writing tests for React components, hooks, or services | .ai/rules/coding/react/testing.md | | |
-| ESLint | Before configuring ESLint or resolving ESLint errors in a React project | .ai/rules/coding/react/eslint.md | | |
+| OXLint | Before configuring OXLint or resolving lint errors in a React project | .ai/rules/coding/react/oxlint.md | | |
 | Env Vars | Before reading environment variables or configuring .env files in a React Vite project | .ai/rules/coding/react/env-vars.md | | |
 | Package Scripts | Before setting up or modifying package.json scripts, or installing dependencies in a React project | .ai/rules/coding/react/package-scripts.md | | |
+| Project Scaffold | When initializing a new React TypeScript project from scratch | .ai/rules/coding/react/project-scaffold.md | | |
 | Function Signatures | Before defining any function | .ai/rules/coding/typescript/function-signatures.md | yes | |
 | Temporal | Before writing any code that creates, manipulates, or formats dates and times in a React project | .ai/rules/coding/react/temporal.md | | |

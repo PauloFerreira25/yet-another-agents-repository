@@ -26,9 +26,8 @@ project root
     main.tsx
   index.html
   vite.config.ts
-  tailwind.config.ts
   tsconfig.json
-  eslint.config.js
+  .oxlintrc.json
   .env
   .env.local
   .env.production
