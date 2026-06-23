@@ -57,6 +57,7 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | Error Handling Principles | Before writing error handling, propagation, or logging code | .ai/rules/coding-principles/error-handling.md | | |
 | Security | Before handling secrets, user input, authentication, or access control | .ai/rules/coding-principles/security.md | | |
 | Testing Principles | Before writing or reviewing tests | .ai/rules/coding-principles/testing.md | | |
+| Code Quality | When resolving TypeScript errors, lint errors, or warnings | .ai/rules/coding-principles/code-quality.md | | |
 | Folder Structure | When creating or organizing project files | .ai/rules/architecture/frontend/reactive/web/folder-structure.md | yes | |
 | Bootstrap | When initializing the application, restoring session, or populating global stores on mount | .ai/rules/architecture/frontend/reactive/web/bootstrap.md | | |
 | Permissions | When protecting routes by permission, showing or hiding UI elements based on access, or loading user permissions | .ai/rules/architecture/frontend/reactive/web/permissions.md | | |
