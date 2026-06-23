@@ -1,5 +1,5 @@
 ---
-name: reactive-web
+name: react-web
 description: "Use when building or modifying a React TypeScript SPA — including components, state management, routing, API integration, forms, styling, or tests."
 tools: Read, Write, Edit, Bash, WebFetch, WebSearch
 model: sonnet
