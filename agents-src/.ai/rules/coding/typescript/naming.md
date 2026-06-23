@@ -10,7 +10,7 @@ The Google TypeScript Style Guide (https://google.github.io/styleguide/tsguide.h
 
 | Identifier type | Style |
 |---|---|
-| Classes, interfaces, types, enums, decorators, type parameters | `UpperCamelCase` |
+| Classes, types, enums, decorators, type parameters | `UpperCamelCase` |
 | Variables, parameters, functions, methods, properties, module aliases | `lowerCamelCase` |
 | Global constants and enum values | `CONSTANT_CASE` |
 | Environment variable names and error codes | `UPPER_SNAKE_CASE` |
@@ -18,7 +18,7 @@ The Google TypeScript Style Guide (https://google.github.io/styleguide/tsguide.h
 ```typescript
 const entityId = params.id                           // lowerCamelCase
 async function findById(params: IdParams): ...       // lowerCamelCase
-interface FindEntityParams { ... }                   // UpperCamelCase
+type FindEntityParams = { ... }                      // UpperCamelCase
 type EntityStatus = 'draft' | 'valid' | 'invalid'   // UpperCamelCase
 const DATABASE_URL = config.DATABASE_URL             // UPPER_SNAKE_CASE
 throw new NotFoundError('ENTITY_NOT_FOUND', ...)     // UPPER_SNAKE_CASE
@@ -28,11 +28,54 @@ Treat abbreviations as whole words: `loadHttpUrl`, not `loadHTTPURL`. This appli
 
 Never use `_` as a prefix or suffix on identifiers.
 
-Never prefix interfaces with `I` (e.g. `UserService`, not `IUserService`).
+## type vs interface
+
+Always use `type`. Never use `interface`.
+
+```typescript
+// correct
+type FindEntityParams = { id: string }
+type UserRepository = { findById(params: IdParams): Promise<UserModel> }
+
+// wrong
+interface FindEntityParams { id: string }
+interface UserRepository { findById(params: IdParams): Promise<UserModel> }
+```
+
+The only exception is global declaration merging (e.g. augmenting `Window` or third-party module types) — which requires `interface`. Never use `interface` for application-defined types.
 
 Never use abbreviations. Names must be descriptive (`user`, not `usr`; `request`, not `req`; `manager`, not `mgr`).
 
 Never use single-letter names except for loop counters or well-known conventions (`i`, `j`, `x`, `y`).
+
+## Singular and suffixes
+
+Always use singular for directories, files, and identifiers. Never use plural forms (`services/`, `tests/`, `users`).
+
+The name alone identifies the unit. When an identifier represents multiple units or a specific data structure, append a suffix that makes the shape explicit:
+
+| Shape | Suffix | Example |
+|---|---|---|
+| Single unit | none | `user` |
+| Array | `List` | `userList` |
+| Map | `Map` | `userMap` |
+| Set | `Set` | `userSet` |
+| Enum | `Enum` | `UserStatusEnum` |
+
+Types must always carry a suffix that describes their role. Never use a bare entity name as a type.
+
+```typescript
+// correct
+type UserModel = { ... }
+type UserRepository = { ... }
+type UserDto = { ... }
+type UserConfig = { ... }
+const userList: UserModel[] = []
+
+// wrong
+type User = { ... }             // no suffix
+const users: UserModel[] = []   // plural variable
+```
 
 ## Domain vocabulary
 
@@ -52,10 +95,10 @@ UserDto     ← what the HTTP handler receives or returns
 
 ## Files and directories
 
-Use `camelCase` for all file and directory names:
+Use `camelCase` for all file and directory names. Always singular:
 
 ```
-src/domain/orderItem/orderItem.route.ts
+src/domain/orderItem/orderItem.route.ts    // singular directory, singular file
 src/domain/orderItem/orderItem.handler.ts
 src/shared/config.ts
 ```
@@ -78,7 +121,7 @@ Remove spaces, dots, and non-identifier characters. Capitalize each word after t
 
 ## Language
 
-All code identifiers — variables, functions, type names, interfaces, file names, field names, log messages, error codes, queue names, and event types — must be in English.
+All code identifiers — variables, functions, type names, file names, field names, log messages, error codes, queue names, and event types — must be in English.
 
 ```typescript
 // correct

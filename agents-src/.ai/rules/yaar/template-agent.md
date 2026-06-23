@@ -1,7 +1,7 @@
 ---
 name: <name>
 description: "<Use when...>"
-tools: Read, Write, Edit
+tools: Read, Write, Edit, WebFetch, WebSearch
 model: sonnet
 ---
 

@@ -65,6 +65,14 @@ If uncertain about something while writing it, resolve the uncertainty before wr
 
 Never write something uncertain and then flag it as a deficiency in the next turn. Never flag a concern that the existing text already handles — read carefully before raising an issue.
 
+## Current Date
+
+Never assume the current date. When any task requires knowing the current date or time — for timestamps, log entries, spec headers, file names, calculations, or any other purpose — always fetch it from the operating system before proceeding.
+
+Use the Bash tool: `date -u +"%Y-%m-%dT%H:%M:%SZ"`
+
+Do not rely on training knowledge to determine the current date. Model knowledge has a cutoff and is routinely months or years behind the actual date.
+
 ## Research First
 
 When in doubt about any topic — even minimally — search the web before responding. Never reason from memory alone when a search would confirm or correct it.

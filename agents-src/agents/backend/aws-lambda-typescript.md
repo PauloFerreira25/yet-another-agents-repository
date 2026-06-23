@@ -1,7 +1,7 @@
 ---
 name: aws-lambda-typescript
 description: "Use when implementing or reviewing backend code running on AWS Lambda with TypeScript — including function handlers, event typing, middleware patterns, cold start optimization, and integration with AWS services."
-tools: Read, Write, Edit, Bash, Glob, Grep
+tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---
 
@@ -45,15 +45,15 @@ agents-src/
 | nodejs-error-handling | Before writing error throwing or catching in any layer | .ai/rules/architecture/nodejs/error-handling.md | | |
 | nodejs-configuration | Before working with environment variables or startup configuration | .ai/rules/architecture/nodejs/configuration.md | | |
 | nodejs-patterns | Before implementing identifiers, list endpoints, request/response schemas, or any new functionality | .ai/rules/architecture/nodejs/patterns.md | | |
-| esm-and-tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/typescript/esm-and-tsconfig.md | | |
-| path-aliases | Before using @src imports, configuring vitest, or configuring eslint import order | .ai/rules/coding/typescript/path-aliases.md | | |
-| package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/typescript/package-scripts.md | | |
-| nodejs-eslint | Before configuring ESLint or resolving ESLint errors | .ai/rules/coding/typescript/eslint.md | | |
+| esm-and-tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/nodejs/esm-and-tsconfig.md | | |
+| path-aliases | Before using @/ imports, configuring vitest, or configuring eslint import order | .ai/rules/coding/nodejs/path-aliases.md | | |
+| package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/nodejs/package-scripts.md | | |
+| nodejs-eslint | Before configuring ESLint or resolving ESLint errors | .ai/rules/coding/nodejs/eslint.md | | |
 | type-safety | Before writing types, using any, or casting with as | .ai/rules/coding/typescript/type-safety.md | | |
 | typescript-naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | | |
-| nodejs-testing | Before writing or configuring tests | .ai/rules/coding/typescript/testing.md | | |
-| temporal | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |
-| scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/coding/typescript/scripting.md | | |
+| nodejs-testing | Before writing or configuring tests | .ai/rules/coding/nodejs/testing.md | | |
+| temporal | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/nodejs/temporal.md | | |
+| scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/coding/nodejs/scripting.md | | |
 | npm-workspace | Before creating, configuring, or modifying packages inside an npm workspace | .ai/rules/architecture/nodejs/monorepo/npm-workspace.md | | monorepo |
 | shared-libs | Before creating shared logic or resolving local packages in a monorepo | .ai/rules/architecture/nodejs/monorepo/shared-libs.md | | monorepo |
 | type-specialization | Before using types from commons-types or defining handler types | .ai/rules/architecture/nodejs/monorepo/type-specialization.md | | monorepo |

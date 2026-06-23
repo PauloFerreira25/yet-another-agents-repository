@@ -3,7 +3,25 @@
     "allow": [
       "Bash(npm run *)",
       "Bash(npm test *)",
-      "WebFetch(domain:*)"
+      "WebFetch(domain:*)",
+      "WebSearch",
+      "Read(//home/dev-user/.claude/**)",
+      "Skill(deep-research)",
+      "Skill(deep-research:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "WebFetch|WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"decision\":\"allow\"}'",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }

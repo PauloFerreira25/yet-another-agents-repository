@@ -1,29 +1,12 @@
 ---
-name: nodejs-temporal
+name: temporal
 Scope: Before writing any code that creates, manipulates, or formats dates and times
-description: Always use Temporal for date and time operations — never use Date, Date.now(), or numeric timestamp arithmetic.
+description: Always use Temporal for date and time operations — never use Date, Date.now(), or numeric timestamp arithmetic
 ---
-
-## Use Temporal for all date and time operations
 
 Never use `new Date()`, `Date.now()`, or manual timestamp arithmetic (`* 24 * 60 * 60 * 1000`). Use the TC39 Temporal API.
 
-### Node version compatibility
-
-- **Node 26+**: Temporal is available natively — no package needed
-- **Node 24 (AWS Lambda runtime)**: Temporal requires the `temporal-polyfill` package — native support is behind a flag and not usable in production
-
-While AWS Lambda does not support Node 26, always install `temporal-polyfill`:
-
-```bash
-npm install temporal-polyfill
-```
-
-```typescript
-import { Temporal } from 'temporal-polyfill'
-```
-
-When AWS Lambda adds Node 26 support, remove the package and import from the native global.
+Runtime-specific setup (Node version compatibility, polyfill for AWS Lambda, browser polyfill) is handled by the respective tooling rule.
 
 ## Common patterns
 
@@ -64,5 +47,5 @@ Temporal.Instant.compare(a, b) // -1 | 0 | 1
 
 - `Date` has no timezone-aware arithmetic — results vary by system locale
 - Manual ms arithmetic (`n * 864e5`) is error-prone and unreadable
-- `Date` has no concept of calendar, plain date, or duration — operations require manual conversion
-- Temporal is the TC39 standard replacement, stable in Node 24+
+- `Date` has no concept of calendar, plain date, or duration
+- Temporal is the TC39 standard replacement

@@ -1,7 +1,7 @@
 ---
 name: spec-domain-interviewer
 description: "Use when defining development specs — conducting a structured interview to capture requirements, business rules, use cases, and boundaries before any implementation begins."
-tools: Read, Write, Bash, WebFetch
+tools: Read, Write, Bash, WebFetch, WebSearch
 model: sonnet
 ---
 

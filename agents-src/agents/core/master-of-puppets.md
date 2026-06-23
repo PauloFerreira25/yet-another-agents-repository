@@ -1,7 +1,7 @@
 ---
 name: master-of-puppets
 description: "Use when a task needs to be routed to a specialist — the master discovers installed agents, matches the task to the right one, and delegates."
-tools: Read
+tools: Read, WebFetch, WebSearch
 model: sonnet
 entrypoint: true
 ---

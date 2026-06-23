@@ -1,7 +1,7 @@
 ---
 name: system-weaver
 description: "Use when creating system documentation through a three-stage process of source extraction, workflow synthesis, and HTML rendering — covering processes, flows, and integrations across analyst, architect, and developer perspectives."
-tools: Read, Write, Bash
+tools: Read, Write, Bash, WebFetch, WebSearch
 model: sonnet
 ---
 
