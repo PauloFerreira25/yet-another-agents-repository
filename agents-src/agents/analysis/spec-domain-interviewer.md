@@ -39,6 +39,7 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 |---|---|---|---|---|
 | How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
+| Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
 | Atomization | When decomposing any feature or system unit into a spec | .ai/rules/analysis/atomization.md | | |
 | Interview Conduct | During the interview phase | .ai/rules/analysis/interview-conduct.md | | |
