@@ -1,22 +1,10 @@
 ---
 name: nodejs-shared-libs
 Scope: Before creating shared logic or resolving local packages in a monorepo
-description: Monorepo resolution via file: references, shared-libs structure, and scoping conventions.
+description: shared-libs structure, TypeScript compilation requirements, and scoping conventions. Package resolution is covered by npm-workspace.md.
 ---
 
-## Package resolution
-
-Never use the `workspaces` field in `package.json`. Resolve local packages via `file:` references:
-
-```json
-{
-  "dependencies": {
-    "@<scope>/commons-errors": "file:../../shared-libs/commons-errors"
-  }
-}
-```
-
-Each package remains independent with its own `node_modules`.
+For workspace configuration and package resolution, follow `npm-workspace.md`.
 
 ## shared-libs structure
 
@@ -34,7 +22,7 @@ shared-libs/
 Requirements for every shared-lib:
 - Must have a proper `name` (scoped), `version`, and `exports` field in `package.json`
 - Must compile to `dist/` with `declaration: true` — consumers depend on the compiled output
-- Must be referenceable via `file:` in development and publishable to npm without changes
+- Must be publishable to npm without changes
 
 Never create shared logic (error classes, utilities, types) directly in a project — extract to a shared-lib.
 
