@@ -46,6 +46,7 @@ agents-src/
 | nodejs-error-handling | Before writing error throwing or catching in any layer | .ai/rules/architecture/nodejs/error-handling.md | | |
 | nodejs-configuration | Before working with environment variables or startup configuration | .ai/rules/architecture/nodejs/configuration.md | | |
 | nodejs-patterns | Before implementing identifiers, list endpoints, request/response schemas, or any new functionality | .ai/rules/architecture/nodejs/patterns.md | | |
+| nodejs-entry-point | Before creating a new package or setting up compilation in a Node.js project | .ai/rules/coding/nodejs/entry-point.md | | |
 | esm-and-tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/nodejs/esm-and-tsconfig.md | | |
 | path-aliases | Before using @/ imports, configuring vitest, or configuring eslint import order | .ai/rules/coding/nodejs/path-aliases.md | | |
 | package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/nodejs/package-scripts.md | | |
