@@ -27,6 +27,7 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |
 | typescript-naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | | |
 | CDK Directory and Layers | Before creating any file in cdk/ | .ai/rules/architecture/cdk/directory-and-layers.md | | |
 | CDK Stack Naming | Before creating or naming a new stack | .ai/rules/architecture/cdk/stack-naming.md | | |

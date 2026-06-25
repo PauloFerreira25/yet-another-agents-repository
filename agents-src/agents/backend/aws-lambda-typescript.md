@@ -42,6 +42,7 @@ agents-src/
 | infra-dynamo | Before working with the infra-dynamo package or DynamoDB transactions | .ai/rules/architecture/lambda/infra-dynamo.md | | |
 | dynamo-gsi | Before creating or naming a Global Secondary Index | .ai/rules/architecture/dynamo/gsi.md | | |
 | function-signatures | Before defining any function | .ai/rules/coding/typescript/function-signatures.md | | |
+| logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |
 | nodejs-logging | Before adding log statements to any layer | .ai/rules/architecture/nodejs/logging.md | | |
 | nodejs-error-handling | Before writing error throwing or catching in any layer | .ai/rules/architecture/nodejs/error-handling.md | | |
 | nodejs-configuration | Before working with environment variables or startup configuration | .ai/rules/architecture/nodejs/configuration.md | | |
