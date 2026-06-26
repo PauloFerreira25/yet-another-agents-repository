@@ -26,6 +26,8 @@ agents-src/
 
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
+| Context Recovery | At the start of any session that follows a context compression | .ai/rules/common/context-recovery.md | yes | |
+| Deep Research | Before invoking the deep-research skill for any query | .ai/rules/common/deep-research.md | yes | |
 | How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |

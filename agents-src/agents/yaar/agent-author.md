@@ -81,6 +81,8 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
+| Context Recovery | At the start of any session that follows a context compression | .ai/rules/common/context-recovery.md | yes | |
+| Deep Research | Before invoking the deep-research skill for any query | .ai/rules/common/deep-research.md | yes | |
 | How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
