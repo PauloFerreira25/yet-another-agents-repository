@@ -117,3 +117,36 @@ Create `src/test/setup.ts`:
 ```ts
 import '@testing-library/jest-dom'
 ```
+
+## Step 7 — Configure for devcontainer (if applicable)
+
+Check whether the project is running inside a devcontainer:
+
+```bash
+ls .devcontainer/devcontainer.json 2>/dev/null || ls .devcontainer.json 2>/dev/null
+```
+
+If a `devcontainer.json` is found:
+
+**1. Make Vite listen on all interfaces** — add `server.host: true` to `vite.config.ts`:
+
+```ts
+export default defineConfig({
+  plugins: [tailwindcss(), react()],
+  server: {
+    host: true,
+  },
+  resolve: { ... },
+  test: { ... },
+})
+```
+
+**2. Forward the Vite port** — open `devcontainer.json` and check the `forwardPorts` array. If the Vite port (`5173` by default, or the custom port set in `vite.config.ts`) is not listed, add it:
+
+```json
+{
+  "forwardPorts": [5173]
+}
+```
+
+If the devcontainer already declares a different port for this project, use that port in `vite.config.ts` via `server.port`.
