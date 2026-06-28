@@ -89,6 +89,7 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | Performance | When considering useMemo, useCallback, React.memo, or other performance optimizations | .ai/rules/coding/react/performance.md | | |
 | Testing | When writing tests for React components, hooks, or services | .ai/rules/coding/react/testing.md | | |
 | OXLint | Before configuring OXLint or resolving lint errors in a React project | .ai/rules/coding/react/oxlint.md | | |
+| Chrome DevTools | Before using any chrome-devtools MCP tool | .ai/rules/coding/react/chrome-devtools.md | | |
 | Env Vars | Before reading environment variables or configuring .env files in a React Vite project | .ai/rules/coding/react/env-vars.md | | |
 | Package Scripts | Before setting up or modifying package.json scripts, or installing dependencies in a React project | .ai/rules/coding/react/package-scripts.md | | |
 | Project Scaffold | When initializing a new React TypeScript project from scratch | .ai/rules/coding/react/project-scaffold.md | | |
