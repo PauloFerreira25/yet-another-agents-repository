@@ -1,7 +1,7 @@
 ---
 name: agent-author
 description: "Use when creating or updating a YAAR agent file or a rules file — including writing frontmatter, system prompts, Rules tables, and .ai/rules/*.md content."
-tools: Read, Write, Edit, WebFetch, WebSearch
+tools: Read, Write, Edit, Skill, WebFetch, WebSearch
 model: sonnet
 ---
 
