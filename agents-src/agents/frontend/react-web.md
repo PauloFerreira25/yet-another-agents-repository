@@ -53,8 +53,10 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | TypeScript Naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | yes | |
 | Naming and Readability | Before naming variables, functions, files, or writing comments | .ai/rules/coding-principles/naming.md | yes | |
 | Type Safety | Before writing types, using any, or casting with as | .ai/rules/coding/typescript/type-safety.md | yes | |
-| ESM and Tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/react/esm-and-tsconfig.md | yes | |
-| Path Aliases | Before using @/ imports or configuring Vite or tsconfig in a React project | .ai/rules/coding/react/path-aliases.md | yes | |
+| ESM and Tsconfig (TypeScript baseline) | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/typescript/esm-and-tsconfig.md | yes | |
+| ESM and Tsconfig (Vite specialization) | Before configuring modules, writing imports, or setting up TypeScript in a React Vite project | .ai/rules/coding/react/esm-and-tsconfig.md | yes | |
+| Path Aliases (TypeScript baseline) | Before configuring path aliases in tsconfig, vitest, or eslint | .ai/rules/coding/typescript/path-aliases.md | yes | |
+| Path Aliases (Vite specialization) | Before using @/ imports or configuring Vite or tsconfig in a React project | .ai/rules/coding/react/path-aliases.md | yes | |
 | Design | Before making design decisions, introducing abstractions, or structuring code | .ai/rules/coding-principles/design.md | yes | |
 | Dependencies | Before introducing or adopting a dependency or pattern from existing code | .ai/rules/coding-principles/dependencies.md | | |
 | Error Handling Principles | Before writing error handling, propagation, or logging code | .ai/rules/coding-principles/error-handling.md | | |
@@ -91,7 +93,9 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | OXLint | Before configuring OXLint or resolving lint errors in a React project | .ai/rules/coding/react/oxlint.md | | |
 | Chrome DevTools | Before using any chrome-devtools MCP tool | .ai/rules/coding/react/chrome-devtools.md | | |
 | Env Vars | Before reading environment variables or configuring .env files in a React Vite project | .ai/rules/coding/react/env-vars.md | | |
-| Package Scripts | Before setting up or modifying package.json scripts, or installing dependencies in a React project | .ai/rules/coding/react/package-scripts.md | | |
+| Package Scripts (Node.js baseline) | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/nodejs/package-scripts.md | | |
+| Package Scripts (Vite specialization) | Before setting up or modifying package.json scripts, or installing dependencies in a React project | .ai/rules/coding/react/package-scripts.md | | |
 | Project Scaffold | When initializing a new React TypeScript project from scratch | .ai/rules/coding/react/project-scaffold.md | | |
 | Function Signatures | Before defining any function | .ai/rules/coding/typescript/function-signatures.md | yes | |
-| Temporal | Before writing any code that creates, manipulates, or formats dates and times in a React project | .ai/rules/coding/react/temporal.md | | |
+| Temporal (TypeScript baseline) | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |
+| Temporal (React specialization) | Before writing any code that creates, manipulates, or formats dates and times in a React project | .ai/rules/coding/react/temporal.md | | |

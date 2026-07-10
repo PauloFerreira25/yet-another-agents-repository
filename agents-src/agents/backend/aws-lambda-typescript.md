@@ -51,14 +51,18 @@ Every time an action fits the Scope of a rule listed in the Rules table, re-read
 | nodejs-configuration | Before working with environment variables or startup configuration | .ai/rules/architecture/nodejs/configuration.md | | |
 | nodejs-patterns | Before implementing identifiers, list endpoints, request/response schemas, or any new functionality | .ai/rules/architecture/nodejs/patterns.md | | |
 | nodejs-entry-point | Before creating a new package or setting up compilation in a Node.js project | .ai/rules/coding/nodejs/entry-point.md | | |
-| esm-and-tsconfig | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/nodejs/esm-and-tsconfig.md | | |
-| path-aliases | Before using @/ imports, configuring vitest, or configuring eslint import order | .ai/rules/coding/nodejs/path-aliases.md | | |
+| esm-and-tsconfig (typescript baseline) | Before configuring modules, writing imports, or setting up TypeScript | .ai/rules/coding/typescript/esm-and-tsconfig.md | | |
+| esm-and-tsconfig (node.js specialization) | Before configuring modules, writing imports, or setting up TypeScript in a Node.js project | .ai/rules/coding/nodejs/esm-and-tsconfig.md | | |
+| path-aliases (typescript baseline) | Before configuring path aliases in tsconfig, vitest, or eslint | .ai/rules/coding/typescript/path-aliases.md | | |
+| path-aliases (node.js specialization) | Before using @/ imports, configuring vitest, or configuring eslint import order in a Node.js project | .ai/rules/coding/nodejs/path-aliases.md | | |
 | package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/nodejs/package-scripts.md | | |
-| nodejs-eslint | Before configuring ESLint or resolving ESLint errors | .ai/rules/coding/nodejs/eslint.md | | |
+| eslint (typescript baseline) | Before configuring ESLint or resolving ESLint errors | .ai/rules/coding/typescript/eslint.md | | |
+| nodejs-eslint (node.js specialization) | Before configuring ESLint or resolving ESLint errors in a Node.js project | .ai/rules/coding/nodejs/eslint.md | | |
 | type-safety | Before writing types, using any, or casting with as | .ai/rules/coding/typescript/type-safety.md | | |
 | typescript-naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | | |
 | nodejs-testing | Before writing or configuring tests | .ai/rules/coding/nodejs/testing.md | | |
-| temporal | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/nodejs/temporal.md | | |
+| temporal (typescript baseline) | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |
+| temporal (node.js specialization) | Before writing any code that creates, manipulates, or formats dates and times in a Node.js project | .ai/rules/coding/nodejs/temporal.md | | |
 | scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/coding/nodejs/scripting.md | | |
 | npm-workspace | Before creating, configuring, or modifying packages inside an npm workspace | .ai/rules/architecture/nodejs/monorepo/npm-workspace.md | | monorepo |
 | shared-libs | Before creating shared logic or resolving local packages in a monorepo | .ai/rules/architecture/nodejs/monorepo/shared-libs.md | | monorepo |
