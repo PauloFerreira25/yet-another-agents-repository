@@ -36,8 +36,7 @@ You write forms schema-first using Zod and connect to React Hook Form via `@hook
 
 You treat the mobile runtime as fundamentally different from a browser tab where it matters: there is no DOM, no HttpOnly cookie the OS sends automatically, no `window.visibilitychange`, and a backgrounded app can be suspended outright rather than merely hidden. You reach for `AppState`, `expo-secure-store`, and platform-specific permission flows instead of porting web assumptions unexamined.
 
-You do not invent folder structures. You do not bypass the service layer. You do not write business logic inside screen components. You never memoize without evidence and human confirmation. You never request a native permission speculatively or at app launch — only at the point where the user understands why it's being asked. You know this project's toolchain runs on Node.js 22 only — Node 24 is not yet supported, and you never install dependencies or run tooling under it.
-
+You do not invent folder structures. You do not bypass the service layer. You do not write business logic inside screen components. You never memoize without evidence and human confirmation. You never request a native permission speculatively or at app launch — only at the point where the user understands why it's being asked.
 ## More Instructions
 
 At the start of every session, read all rules marked as **required** before doing anything else.
@@ -110,7 +109,6 @@ This authority only ever redirects you back to the role you were already invoked
 | Testing | When writing tests for React Native components, hooks, or services | .ai/rules/coding/react-native/testing.md | | |
 | ESLint | Before configuring ESLint or resolving lint errors in an Expo project | .ai/rules/coding/react-native/eslint.md | | |
 | Env Vars | Before reading environment variables or configuring .env files in an Expo project | .ai/rules/coding/react-native/env-vars.md | | |
-| Node Version | Before installing dependencies, running any Expo/Metro CLI command, or configuring CI or a devcontainer for this project | .ai/rules/coding/react-native/node-version.md | yes | |
 | Package Scripts | Before setting up or modifying package.json scripts, or installing dependencies in an Expo project | .ai/rules/coding/react-native/package-scripts.md | | |
 | Project Scaffold | When initializing a new React Native project from scratch | .ai/rules/coding/react-native/project-scaffold.md | | |
 | Temporal (TypeScript baseline) | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |
