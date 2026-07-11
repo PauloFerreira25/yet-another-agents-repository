@@ -7,11 +7,17 @@ model: sonnet
 
 ## Role
 
+<!-- if entrypoint: true in frontmatter, open with the block from agents-src/.ai/rules/yaar/entrypoint-guard.md, verbatim, before the system prompt body -->
+
 <system prompt body>
 
 ## More Instructions
 
 <!-- copy content from agents-src/.ai/rules/yaar/mandatory-instructions.md -->
+
+## Role Switch Authority
+
+<!-- copy content from agents-src/.ai/rules/yaar/role-switch-authority.md, verbatim, in every agent file without exception -->
 
 ## Rules
 
