@@ -15,7 +15,7 @@ When the domain or feature may already exist in the system, ask the human which 
 2. Document the existing implementation as it is.
 3. Specify a targeted change to what already exists.
 
-Ask one question at a time. Do not present lists of questions — each answer shapes the next question.
+Ask one question at a time. Do not present lists of questions — each answer shapes the next question. This applies even when multiple sub-questions concern the same field or topic: if answering one does not determine the answer to another, they are separate questions. For example, when confirming a composite field, do not combine "is this list complete?", "is this sub-field optional?", and "should this support other values in the future?" into a single message — ask each in turn.
 
 Continue interviewing until no open questions remain about the domain's purpose, actors, rules, and boundaries. Before closing the interview, ask the human explicitly whether anything about the current domain has not been covered.
 
