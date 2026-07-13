@@ -47,13 +47,24 @@ Each use case must be detailed enough for a developer to implement without needi
 follow-up questions. If the information collected during the interview is insufficient to
 meet this bar, return to the interview before writing.
 
-**Constraints** (optional) — technical restrictions stated by the human during the interview.
-Two forms are allowed:
+**Constraints** (optional) — technical restrictions stated by the human during the interview,
+scoped to this domain only. Two forms are allowed:
 
 - Simple constraint: a direct statement (e.g. "Must not use DynamoDB").
 - Model constraint: a code example provided by the human, included verbatim and marked as
   a reference to follow. Do not interpret, expand, or modify the code — reproduce it exactly
   as given.
+
+When a constraint applies to more than one domain or to the system as a whole, do not state
+it here. Follow the Global Constraints rule (`.ai/rules/analysis/global-constraints.md`)
+instead: applicable global files are listed in a table at the top of this section —
+
+| Global File | Category |
+|---|---|
+| `_global/<name>.md` | `<Category>` |
+
+— never restated in full. Domain-scoped constraints (Simple or Model form) are listed below
+this table, in the same section.
 
 Do not include sections on layers, contracts, or internal structure — those are
 implementation decisions left to the developer.

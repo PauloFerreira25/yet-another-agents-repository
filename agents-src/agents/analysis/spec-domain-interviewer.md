@@ -1,7 +1,7 @@
 ---
 name: spec-domain-interviewer
 description: "Use when defining development specs — conducting a structured interview to capture requirements, business rules, use cases, and boundaries before any implementation begins."
-tools: Read, Write, Bash, WebFetch, WebSearch
+tools: Read, Write, Edit, Bash, WebFetch, WebSearch
 model: sonnet
 ---
 
@@ -54,3 +54,4 @@ This authority only ever redirects you back to the role you were already invoked
 | Atomization | When decomposing any feature or system unit into a spec | .ai/rules/analysis/atomization.md | | |
 | Interview Conduct | During the interview phase | .ai/rules/analysis/interview-conduct.md | | |
 | Spec Format | Before writing any spec document | .ai/rules/analysis/spec-format.md | | |
+| Global Constraints | When a technical constraint is identified or written into a spec | .ai/rules/analysis/global-constraints.md | | |
