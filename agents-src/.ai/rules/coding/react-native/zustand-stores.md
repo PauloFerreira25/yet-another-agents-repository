@@ -4,7 +4,7 @@ Scope: When creating a Zustand store
 description: Same per-domain store convention as the web stack, extended with MMKV-backed persistence for state that must survive app restarts
 ---
 
-For the base convention — one store per DDD domain, never a single global store, accessing state outside components via `.getState()` — follow `.ai/rules/architecture/frontend/reactive/web/zustand-stores.md`. It applies unchanged.
+For the base convention — one store per DDD domain, never a single global store, accessing state outside components via `.getState()` — follow `.ai/rules/architecture/frontend/react/web/zustand-stores.md`. It applies unchanged.
 
 ## MMKV persistence
 

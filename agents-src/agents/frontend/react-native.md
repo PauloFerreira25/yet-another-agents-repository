@@ -76,16 +76,16 @@ This authority only ever redirects you back to the role you were already invoked
 | Tsconfig and Metro (Expo/Metro specialization) | Before configuring modules, writing imports, or setting up TypeScript in an Expo project | .ai/rules/coding/react-native/tsconfig-and-metro.md | yes | |
 | Path Aliases (TypeScript baseline) | Before configuring path aliases in tsconfig, vitest, or eslint | .ai/rules/coding/typescript/path-aliases.md | yes | |
 | Path Aliases (Metro specialization) | Before using @/ imports or configuring Babel or tsconfig in an Expo project | .ai/rules/coding/react-native/path-aliases.md | yes | |
-| Folder Structure | When creating or organizing project files | .ai/rules/architecture/frontend/reactive/mobile/folder-structure.md | yes | |
-| Bootstrap | When initializing the application, restoring session, or populating global stores on mount | .ai/rules/architecture/frontend/reactive/mobile/bootstrap.md | | |
-| Permissions | When protecting routes by permission, showing or hiding UI elements based on access, or loading user permissions | .ai/rules/architecture/frontend/reactive/mobile/permissions.md | | |
-| Type Organization | When creating or locating TypeScript types | .ai/rules/architecture/frontend/reactive/web/type-organization.md | yes | |
-| Component Structure | When creating or classifying a React Native component | .ai/rules/architecture/frontend/reactive/mobile/component-structure.md | yes | |
-| Routing | When creating or organizing route files | .ai/rules/architecture/frontend/reactive/mobile/routing.md | | |
-| State Selection | When deciding where to store application state | .ai/rules/architecture/frontend/reactive/web/state-selection.md | yes | |
-| Zustand Stores (shared baseline) | When creating a Zustand store | .ai/rules/architecture/frontend/reactive/web/zustand-stores.md | | |
+| Folder Structure | When creating or organizing project files | .ai/rules/architecture/frontend/react/mobile/folder-structure.md | yes | |
+| Bootstrap | When initializing the application, restoring session, or populating global stores on mount | .ai/rules/architecture/frontend/react/mobile/bootstrap.md | | |
+| Permissions | When protecting routes by permission, showing or hiding UI elements based on access, or loading user permissions | .ai/rules/architecture/frontend/react/mobile/permissions.md | | |
+| Type Organization | When creating or locating TypeScript types | .ai/rules/architecture/frontend/react/web/type-organization.md | yes | |
+| Component Structure | When creating or classifying a React Native component | .ai/rules/architecture/frontend/react/mobile/component-structure.md | yes | |
+| Routing | When creating or organizing route files | .ai/rules/architecture/frontend/react/mobile/routing.md | | |
+| State Selection | When deciding where to store application state | .ai/rules/architecture/frontend/react/web/state-selection.md | yes | |
+| Zustand Stores (shared baseline) | When creating a Zustand store | .ai/rules/architecture/frontend/react/web/zustand-stores.md | | |
 | Zustand Stores (MMKV specialization) | When creating a Zustand store | .ai/rules/coding/react-native/zustand-stores.md | | |
-| Service Layer | When creating API integration code | .ai/rules/architecture/frontend/reactive/mobile/service-layer.md | | |
+| Service Layer | When creating API integration code | .ai/rules/architecture/frontend/react/mobile/service-layer.md | | |
 | Dev Mock Data | When simulating backend data or building UI without a real backend endpoint | .ai/rules/coding/react/dev-mock-data.md | | |
 | Screen Responsibilities | When writing logic inside a screen component | .ai/rules/coding/react-native/screen-responsibilities.md | | |
 | Query Patterns (shared baseline) | When writing a TanStack Query hook | .ai/rules/coding/react/query-patterns.md | | |
@@ -113,7 +113,7 @@ This authority only ever redirects you back to the role you were already invoked
 | Project Scaffold | When initializing a new React Native project from scratch | .ai/rules/coding/react-native/project-scaffold.md | | |
 | Temporal (TypeScript baseline) | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |
 | Temporal (Hermes specialization) | Before writing any code that creates, manipulates, or formats dates and times in a React Native project | .ai/rules/coding/react-native/temporal.md | | |
-| Build and Release | Before configuring a build profile, publishing an OTA update, or preparing a store submission | .ai/rules/architecture/frontend/reactive/mobile/build-and-release.md | | |
+| Build and Release | Before configuring a build profile, publishing an OTA update, or preparing a store submission | .ai/rules/architecture/frontend/react/mobile/build-and-release.md | | |
 | Native Permissions | Before requesting camera, location, notifications, or any other OS-level device permission | .ai/rules/coding/react-native/native-permissions.md | | |
 | Safe Area | When laying out a screen's root container, a header, or any full-bleed content | .ai/rules/coding/react-native/safe-area.md | | |
 | Platform-Specific Code | When behavior, styling, or a native API must differ between iOS and Android | .ai/rules/coding/react-native/platform-specific-code.md | | |

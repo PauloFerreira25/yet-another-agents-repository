@@ -72,15 +72,15 @@ This authority only ever redirects you back to the role you were already invoked
 | Security | Before handling secrets, user input, authentication, or access control | .ai/rules/coding-principles/security.md | | |
 | Testing Principles | Before writing or reviewing tests | .ai/rules/coding-principles/testing.md | | |
 | Code Quality | When resolving TypeScript errors, lint errors, or warnings | .ai/rules/coding-principles/code-quality.md | | |
-| Folder Structure | When creating or organizing project files | .ai/rules/architecture/frontend/reactive/web/folder-structure.md | yes | |
-| Bootstrap | When initializing the application, restoring session, or populating global stores on mount | .ai/rules/architecture/frontend/reactive/web/bootstrap.md | | |
-| Permissions | When protecting routes by permission, showing or hiding UI elements based on access, or loading user permissions | .ai/rules/architecture/frontend/reactive/web/permissions.md | | |
-| Type Organization | When creating or locating TypeScript types | .ai/rules/architecture/frontend/reactive/web/type-organization.md | yes | |
-| Component Structure | When creating or classifying a React component | .ai/rules/architecture/frontend/reactive/web/component-structure.md | yes | |
-| Routing | When creating or organizing route files | .ai/rules/architecture/frontend/reactive/web/routing.md | | |
-| State Selection | When deciding where to store application state | .ai/rules/architecture/frontend/reactive/web/state-selection.md | yes | |
-| Zustand Stores | When creating a Zustand store | .ai/rules/architecture/frontend/reactive/web/zustand-stores.md | | |
-| Service Layer | When creating or modifying a service, HTTP client, or any code that calls the backend | .ai/rules/architecture/frontend/reactive/web/service-layer.md | | |
+| Folder Structure | When creating or organizing project files | .ai/rules/architecture/frontend/react/web/folder-structure.md | yes | |
+| Bootstrap | When initializing the application, restoring session, or populating global stores on mount | .ai/rules/architecture/frontend/react/web/bootstrap.md | | |
+| Permissions | When protecting routes by permission, showing or hiding UI elements based on access, or loading user permissions | .ai/rules/architecture/frontend/react/web/permissions.md | | |
+| Type Organization | When creating or locating TypeScript types | .ai/rules/architecture/frontend/react/web/type-organization.md | yes | |
+| Component Structure | When creating or classifying a React component | .ai/rules/architecture/frontend/react/web/component-structure.md | yes | |
+| Routing | When creating or organizing route files | .ai/rules/architecture/frontend/react/web/routing.md | | |
+| State Selection | When deciding where to store application state | .ai/rules/architecture/frontend/react/web/state-selection.md | yes | |
+| Zustand Stores | When creating a Zustand store | .ai/rules/architecture/frontend/react/web/zustand-stores.md | | |
+| Service Layer | When creating or modifying a service, HTTP client, or any code that calls the backend | .ai/rules/architecture/frontend/react/web/service-layer.md | | |
 | Dev Mock Data | When simulating backend data or building UI without a real backend endpoint | .ai/rules/coding/react/dev-mock-data.md | | |
 | Page Responsibilities | When writing logic inside a page component | .ai/rules/coding/react/page-responsibilities.md | | |
 | Query Patterns | When writing a TanStack Query hook | .ai/rules/coding/react/query-patterns.md | | |
