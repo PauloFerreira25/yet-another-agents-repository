@@ -25,6 +25,10 @@ public class OrderService {          // PascalCase
 }
 ```
 
+## Entity classes
+
+Every class annotated with `@Entity` must carry the `Entity` suffix: `UserAccountEntity`, not `UserAccount`.
+
 ## Packages (directories)
 
 Checkstyle default regex: `^[a-z]+(\.[a-z][a-z0-9]*)*$`
