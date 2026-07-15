@@ -55,3 +55,4 @@ This authority only ever redirects you back to the role you were already invoked
 | spring-boot-ports | Before configuring server.port or any port-related property in a Spring Boot project | .ai/rules/architecture/spring-boot/ports.md | | |
 | spring-boot-rest-objects | Before creating or naming a Request or Response class for a REST controller | .ai/rules/architecture/spring-boot/rest-objects.md | | |
 | spring-boot-exception-objects | Before creating or naming an exception class for a feature | .ai/rules/architecture/spring-boot/exception-objects.md | | |
+| spring-boot-rest-validation | Before writing or reviewing validation for a REST request body in a Spring Boot project | .ai/rules/architecture/spring-boot/rest-validation.md | | |

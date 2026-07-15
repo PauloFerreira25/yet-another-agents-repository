@@ -31,3 +31,7 @@ Never use try/catch in a `@Controller` or `@RestController` to produce error res
 Services and repositories throw domain exceptions. They do not produce HTTP status codes or error response bodies.
 
 Return only the information necessary for the caller in error responses. Log detailed diagnostics server-side (see [[coding-principles/error-handling]]).
+
+## Before mapping a specific exception type
+
+This file covers only the centralization pattern — one `@ControllerAdvice`, no try/catch in controllers. It does not define how a given exception type should be named, packaged, or structured. Before adding or reviewing an `@ExceptionHandler` for a specific exception type, check whether a more specific rule already documents that type or category, and apply its guidance instead of improvising.

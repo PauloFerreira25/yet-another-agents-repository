@@ -17,9 +17,26 @@ Every class name follows `<Domain><Reason>Exception`:
 
 Never a shared, generic `<Domain>Exception` reused across multiple failure conditions — each distinct failure gets its own exception class.
 
+## Cross-cutting exceptions
+
+A genuinely cross-cutting exception — used by two or more features, with no business logic specific to a single feature (e.g. a generic "resource not found" or "invalid argument" condition) — does not belong in any `<feature-package>.exception`. It lives outside the feature structure instead:
+
+- Check first whether the organization already maintains a shared library for this purpose (common across services) — reuse it rather than duplicating the convention inside this project.
+- Only if no such library exists, place it in a shared package of this project (e.g. `<shared-package>.exception`).
+
+This is the only case where a generic exception name is acceptable, since the exception is not tied to a single domain.
+
+Before treating an exception as cross-cutting, confirm it is genuinely free of feature-specific logic. An exception that happens to share a name across two features but represents a different business rule in each is not cross-cutting — it stays per-feature, named per the convention above.
+
 ## Base class
 
-Before creating a new exception class, check whether the project already has a common base exception (e.g., `DomainException`, `BusinessException`) that domain exceptions extend. Only if the project has no such base class, extend `RuntimeException` directly. Never invent a new shared base class without first confirming none already exists.
+Before creating a new exception class, determine the project's existing convention by searching the codebase for other exception classes already in use (e.g. search for files or classes named `*Exception`), in this order:
+
+1. Inspect what those existing exceptions extend. If they already extend a class imported from a shared or external library (a package outside this project's own source tree), reuse that same base class — do not introduce a second, competing base class.
+2. If no shared-lib base is in use, search for a project-local abstract exception class extending `RuntimeException` (or `Exception`) that lives outside any feature's `exception` sub-package — typically in a `common`/`shared` package (e.g. `DomainException`, `BusinessException`). That is this project's base exception, if one exists — extend it.
+3. Only if neither a shared-lib base nor a project-local base exception is found anywhere in the codebase, extend `RuntimeException` directly.
+
+Never invent a new shared base class without completing this search first. A base class already used by other exceptions in the project — whether from a shared library or defined locally — always takes precedence over creating a new one.
 
 See [[architecture/spring-boot/error-handling]] for how these exceptions are mapped to HTTP responses in the `@ControllerAdvice`.
 
