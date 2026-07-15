@@ -52,6 +52,7 @@ This authority only ever redirects you back to the role you were already invoked
 | java-logging | Before adding log statements to any Java layer | .ai/rules/coding/java/logging.md | | |
 | java-code-quality | When resolving compiler warnings, Checkstyle errors, or static analysis findings in Java | .ai/rules/coding/java/code-quality.md | | |
 | java-date-time | Before choosing a Java type for a date/time field, or serializing one to JSON | .ai/rules/coding/java/date-time.md | | |
+| java-jackson | Before adding a JSON library dependency, configuring an ObjectMapper, or handling REST payload naming/null/unknown-property behavior | .ai/rules/coding/java/jackson.md | | |
 | spring-boot-error-handling | Before writing error handling, exception mapping, or HTTP error responses in a Spring Boot project | .ai/rules/architecture/spring-boot/error-handling.md | | |
 | spring-boot-ports | Before configuring server.port or any port-related property in a Spring Boot project | .ai/rules/architecture/spring-boot/ports.md | | |
 | spring-boot-rest-objects | Before creating or naming a Request or Response class for a REST controller | .ai/rules/architecture/spring-boot/rest-objects.md | | |
