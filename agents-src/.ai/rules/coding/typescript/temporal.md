@@ -49,3 +49,33 @@ Temporal.Instant.compare(a, b) // -1 | 0 | 1
 - Manual ms arithmetic (`n * 864e5`) is error-prone and unreadable
 - `Date` has no concept of calendar, plain date, or duration
 - Temporal is the TC39 standard replacement
+
+## Receiving dates from the API
+
+The backend always sends instants as ISO-8601 UTC with a `Z` suffix, and civil dates (birth date, due date — no time, no zone) as plain ISO-8601 dates — see [[coding-principles/date-time]] for the full contract. Never assume a different format, and never hand-roll a parser (regex, string slicing) for an API date string.
+
+Parse an instant field with `Temporal.Instant.from(value)`. Parse a civil date field with `Temporal.PlainDate.from(value)`.
+
+```typescript
+const createdAt = Temporal.Instant.from(response.createdAt)   // "2026-06-10T01:00:00Z" -> Instant
+const birthDate = Temporal.PlainDate.from(response.birthDate) // "2026-06-10" -> PlainDate
+```
+
+## Sending dates to the API
+
+Serialize a `Temporal.Instant` or `Temporal.PlainDate` back with `.toString()` — it always produces the exact wire format the backend expects. Never build the string manually (concatenation, template literals, custom padding).
+
+```typescript
+body: JSON.stringify({ scheduledFor: instant.toString() }) // "2026-06-10T01:00:00Z"
+```
+
+## Displaying dates to the user
+
+An instant from the API is UTC. Never display it to the user without first converting it to their local time zone — a raw `Instant.toString()` or its unconverted clock time is not what the user should see. Convert with `toZonedDateTimeISO`, using the runtime's own detected zone, before formatting:
+
+```typescript
+const zone = Temporal.Now.timeZoneId()          // e.g. "America/Sao_Paulo"
+const local = createdAt.toZonedDateTimeISO(zone)
+```
+
+Which locale string to pass to `toLocaleString` is runtime-specific — see the React or React Native specialization of this rule.

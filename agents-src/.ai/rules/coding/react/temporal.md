@@ -21,3 +21,16 @@ import { Temporal } from 'temporal-polyfill'
 ```
 
 `temporal-polyfill` works in all browsers and gives TypeScript the types it needs. When native `Temporal` is stable across your browser support matrix and TypeScript adds it to the DOM lib, remove the package and switch to the native global.
+
+## Locale-aware formatting
+
+When formatting a date for display, pass the current i18next locale (see `i18n`) rather than hardcoding a locale string:
+
+```tsx
+import { useTranslation } from 'react-i18next'
+
+const { i18n } = useTranslation()
+local.toLocaleString(i18n.language, { dateStyle: 'medium' })
+```
+
+Never hardcode a locale string (`'pt-BR'`, `'en-US'`) in a component — the user's active locale can change at runtime via the language switcher, and the date format must follow it.
