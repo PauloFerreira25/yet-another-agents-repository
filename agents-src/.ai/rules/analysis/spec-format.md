@@ -23,6 +23,8 @@ Status: Draft | Final
 
 Whenever writing or updating a spec file, run `date -u +"%Y-%m-%dT%H:%M:%SZ"` via the Bash tool to get the current datetime in ISO 8601 UTC format (e.g. `2026-06-18T18:15:00Z`) and set it as the `Last updated` value. Never hardcode or assume a date.
 
+When editing an existing header — for example, updating `Status` from `Draft` to `Final`, or refreshing `Last updated` — preserve any `<agent-name>-implemented: ...` line already present. Those lines are added by consuming agents per the Spec Implementation Marker rule (`.ai/rules/common/spec-implementation-marker.md`) and must never be removed or altered when this agent updates the header. Only modify the `Domain`, `Last updated`, and `Status` lines.
+
 The document must then contain the following sections in this order:
 
 **Context** — what this domain is responsible for and what its boundaries are. State what

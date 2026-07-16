@@ -58,6 +58,7 @@ This authority only ever redirects you back to the role you were already invoked
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| Spec Implementation Marker | After finishing implementation work driven by a spec document | .ai/rules/common/spec-implementation-marker.md | | |
 | TypeScript Naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | yes | |
 | Naming and Readability | Before naming variables, functions, files, or writing comments | .ai/rules/coding-principles/naming.md | yes | |
 | Type Safety | Before writing types, using any, or casting with as | .ai/rules/coding/typescript/type-safety.md | yes | |

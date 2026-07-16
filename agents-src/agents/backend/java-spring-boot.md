@@ -41,6 +41,7 @@ This authority only ever redirects you back to the role you were already invoked
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
+| Spec Implementation Marker | After finishing implementation work driven by a spec document | .ai/rules/common/spec-implementation-marker.md | | |
 | design | Before making design decisions, introducing abstractions, or structuring code | .ai/rules/coding-principles/design.md | | |
 | naming | Before naming variables, functions, files, or writing comments | .ai/rules/coding-principles/naming.md | | |
 | dependencies | Before introducing or adopting a dependency or pattern from existing code | .ai/rules/coding-principles/dependencies.md | | |

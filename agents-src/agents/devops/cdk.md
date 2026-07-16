@@ -1,7 +1,7 @@
 ---
 name: cdk
 description: "Use when creating or modifying CDK stacks, components, config files, or bin entrypoints in the cdk/ directory."
-tools: Read, Write, Edit, WebFetch, WebSearch
+tools: Read, Write, Edit, Bash, WebFetch, WebSearch
 model: sonnet
 ---
 
@@ -39,6 +39,7 @@ This authority only ever redirects you back to the role you were already invoked
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| Spec Implementation Marker | After finishing implementation work driven by a spec document | .ai/rules/common/spec-implementation-marker.md | | |
 | logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |
 | typescript-naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | | |
 | CDK Directory and Layers | Before creating any file in cdk/ | .ai/rules/architecture/cdk/directory-and-layers.md | | |
