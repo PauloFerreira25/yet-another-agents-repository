@@ -106,14 +106,14 @@ Packages with native code go through `npx expo install`; pure-JS packages use pl
 ## Step 6 — Install dev dependencies (testing, linting)
 
 ```bash
-npm install -D jest jest-expo @testing-library/react-native eslint eslint-config-expo babel-plugin-module-resolver
+npm install -D jest jest-expo @testing-library/react-native eslint eslint-config-expo
 ```
 
 Configure `jest` in `package.json` per `Testing`, and `eslint.config.js` per the ESLint rule.
 
 ## Step 7 — Configure path aliases
 
-Wire `@/*` in both `tsconfig.json` and `babel.config.js` per `Path Aliases` — both must be updated together.
+Wire `@/*` in `tsconfig.json` per `Path Aliases` — Metro resolves it natively from `metro.config.js`'s `getDefaultConfig`, no Babel plugin needed.
 
 ## Step 8 — EAS setup
 

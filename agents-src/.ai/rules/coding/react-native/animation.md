@@ -15,7 +15,7 @@ Never use the legacy `Animated` API (`react-native`'s built-in) in new code — 
 npx expo install react-native-reanimated moti
 ```
 
-Reanimated requires its Babel plugin as the **last** plugin in `babel.config.js`:
+Reanimated requires its Babel plugin, which must be listed **last** whenever other plugins are present in `babel.config.js`:
 
 ```js
 module.exports = function (api) {
@@ -23,7 +23,6 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      ['module-resolver', { root: ['./src'], alias: { '@': './src' } }],
       'react-native-reanimated/plugin', // must be listed last
     ],
   }

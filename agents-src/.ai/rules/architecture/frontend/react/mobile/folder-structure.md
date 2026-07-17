@@ -4,10 +4,10 @@ Scope: When creating or organizing project files
 description: Expo Router folder structure with DDD subdivision for domain-specific artifacts
 ---
 
-## Project root
+## App root
 
 ```
-project root
+app root
   app/
     _layout.tsx
     (public)/
@@ -35,6 +35,8 @@ project root
   .env
   .env.local
 ```
+
+This is the React Native app's own root — the directory containing its `package.json`, `app.config.ts`, and Expo tooling. In a single-app repository this is also the repository root. In a monorepo with multiple systems, it is the app's package directory (e.g. `apps/mobile/`) — never assume it is the repository's top-level root.
 
 `app/` is owned by Expo Router — every file inside it is a route. Everything else (components, hooks, services, stores, types) lives under `src/`, exactly like the web stack, so the domain layers stay agnostic of the routing mechanism.
 

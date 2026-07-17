@@ -30,6 +30,6 @@ Expo/Metro-specific additions:
 
 ## Metro, not Vite
 
-Metro is the bundler; there is no `vite.config.ts` equivalent to configure module resolution. Path aliases are wired through `babel.config.js`, not `metro.config.js` — see `Path Aliases`.
+Metro is the bundler; there is no `vite.config.ts` equivalent to configure module resolution. Since Expo SDK 50, path aliases declared in `tsconfig.json` are resolved natively by `@expo/metro-config` — no separate wiring file is needed, as long as `metro.config.js` builds its config from `getDefaultConfig` (see `Path Aliases`).
 
 Type-checking is a separate step from bundling, exactly like the web stack: `tsc --noEmit` runs in CI/`package-scripts`, Metro never type-checks.

@@ -4,10 +4,10 @@ Scope: When creating or organizing project files
 description: Centralized layer-based folder structure with DDD subdivision for domain-specific artifacts
 ---
 
-## Project root
+## App root
 
 ```
-project root
+app root
   public/
     locale/
       pt-BR/
@@ -32,6 +32,8 @@ project root
   .env.local
   .env.production
 ```
+
+This is the React web app's own root — the directory containing its `package.json`, `vite.config.ts`, and build tooling. In a single-app repository this is also the repository root. In a monorepo with multiple systems, it is the app's package directory (e.g. `apps/web/`) — never assume it is the repository's top-level root.
 
 Translation files live in `public/locale/` so Vite serves them statically and `i18next-http-backend` loads them on demand without bundling.
 
