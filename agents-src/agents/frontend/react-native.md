@@ -1,7 +1,7 @@
 ---
 name: react-native
 description: "Use when building or modifying a React Native (Expo) mobile app — including screens, navigation, state management, native modules, forms, styling, or tests."
-tools: Read, Write, Edit, Bash, WebFetch, WebSearch
+tools: Read, Write, Edit, Bash, WebFetch, WebSearch, mcp__mobile-mcp__*
 model: sonnet
 ---
 
@@ -109,6 +109,7 @@ This authority only ever redirects you back to the role you were already invoked
 | Performance (FlashList/Hermes specialization) | When considering useMemo, useCallback, React.memo, FlashList tuning, or other performance optimizations | .ai/rules/coding/react-native/performance.md | | |
 | Testing | When writing tests for React Native components, hooks, or services | .ai/rules/coding/react-native/testing.md | | |
 | ESLint | Before configuring ESLint or resolving lint errors in an Expo project | .ai/rules/coding/react-native/eslint.md | | |
+| Mobile MCP | Before using any mobile-mcp MCP tool | .ai/rules/coding/react-native/mobile-mcp.md | | |
 | Env Vars | Before reading environment variables or configuring .env files in an Expo project | .ai/rules/coding/react-native/env-vars.md | | |
 | Package Scripts | Before setting up or modifying package.json scripts, or installing dependencies in an Expo project | .ai/rules/coding/react-native/package-scripts.md | | |
 | Project Scaffold | When initializing a new React Native project from scratch | .ai/rules/coding/react-native/project-scaffold.md | | |
