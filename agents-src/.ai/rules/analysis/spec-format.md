@@ -53,9 +53,11 @@ meet this bar, return to the interview before writing.
 scoped to this domain only. Two forms are allowed:
 
 - Simple constraint: a direct statement (e.g. "Must not use DynamoDB").
-- Model constraint: a code example provided by the human, included verbatim and marked as
-  a reference to follow. Do not interpret, expand, or modify the code — reproduce it exactly
-  as given.
+- Model constraint: a concrete technical specification provided by the human — a code example,
+  a configuration snippet, or a described process/pipeline (e.g. an ordered sequence of stages) —
+  included verbatim and marked as a reference to follow. Do not interpret, expand, rephrase, or
+  add detail beyond what the human stated — reproduce it exactly as given, in the human's own
+  words or format.
 
 When a constraint applies to more than one domain or to the system as a whole, do not state
 it here. Follow the Global Constraints rule (`.ai/rules/analysis/global-constraints.md`)
