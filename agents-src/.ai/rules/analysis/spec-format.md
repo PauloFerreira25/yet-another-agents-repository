@@ -54,10 +54,14 @@ scoped to this domain only. Two forms are allowed:
 
 - Simple constraint: a direct statement (e.g. "Must not use DynamoDB").
 - Model constraint: a concrete technical specification provided by the human — a code example,
-  a configuration snippet, or a described process/pipeline (e.g. an ordered sequence of stages) —
-  included verbatim and marked as a reference to follow. Do not interpret, expand, rephrase, or
-  add detail beyond what the human stated — reproduce it exactly as given, in the human's own
-  words or format.
+  a configuration snippet, or a described process/pipeline (e.g. an ordered sequence of stages).
+  Preserve every technical decision exactly as given — never add, remove, reorder, or infer a
+  stage, condition, or detail the human did not state. Two different fidelity rules apply
+  depending on the form:
+  - Code or configuration: reproduce it verbatim, byte for byte — never rephrase or reformat it.
+  - A described process/pipeline in natural language: rewrite the wording into clear
+    documentation prose for readability, but do not change what it says. Only preserve the
+    human's exact wording when they explicitly ask for it (e.g. "use estas palavras").
 
 When a constraint applies to more than one domain or to the system as a whole, do not state
 it here. Follow the Global Constraints rule (`.ai/rules/analysis/global-constraints.md`)
