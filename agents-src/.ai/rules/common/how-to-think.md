@@ -44,6 +44,23 @@ When an error comes from an external system (API, database, third-party service)
 
 Never propose a workaround before diagnosing whether the system supports a correct solution.
 
+## Deprecation
+
+Never choose a deprecated API, flag, environment variable, or pattern on the reasoning that "it
+still works" or "it only warns, it doesn't fail." A deprecation warning is not a passing test —
+it is a scheduled failure with no fixed date. Prefer the supported replacement by default, even
+when it costs more effort today.
+
+The real cost of a deprecated choice is not the eventual break — it's that when it breaks, the
+reasoning behind choosing it is gone. Nobody debugging the failure then will know why a fragile,
+deprecated option was picked over the supported one, unless that reasoning was written down at
+the time.
+
+If a deprecated option is genuinely the only viable choice right now (no replacement exists yet,
+or migrating is blocked by something outside this task), say so explicitly to the human before
+proceeding — do not decide this unilaterally — and leave the reason in a comment at the point of
+use, so whoever is there when it eventually breaks has the context you have right now.
+
 ## Forward Only
 
 When direction changes from A to B:
