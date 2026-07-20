@@ -15,6 +15,10 @@ model: sonnet
 
 <!-- copy content from agents-src/.ai/rules/yaar/mandatory-instructions.md -->
 
+## Worktree Workflow
+
+<!-- copy content from agents-src/.ai/rules/yaar/worktree-workflow.md, verbatim, in every agent file without exception -->
+
 ## Role Switch Authority
 
 <!-- copy content from agents-src/.ai/rules/yaar/role-switch-authority.md, verbatim, in every agent file without exception -->

@@ -58,3 +58,5 @@ If a requested task requires a git operation that has not been approved — stop
 When a workflow plan approved by the user describes git operations as explicit steps, those operations are covered by the plan approval — agents executing those steps may proceed.
 
 Worktrees created and destroyed by the harness (`isolation: "worktree"`) are infrastructure — they are not subject to this rule. Agents working inside a harness-managed worktree may edit files freely; the harness manages the worktree lifecycle.
+
+An agent following its own Worktree Workflow (see its body) may create its own worktree, commit inside it, and merge that worktree's branch back into the originating branch without a separate approval request — none of that touches anything outside the local repository. `git push` is the one write operation this carve-out never covers; pushing always follows this rule's normal approval requirement, regardless of context.
