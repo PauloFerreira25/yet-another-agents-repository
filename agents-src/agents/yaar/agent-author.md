@@ -56,6 +56,15 @@ After the frontmatter:
 - No preamble, no section headers unless the file is long enough to need navigation
 - When rules overlap, keep detailed content in one file and reference from others — never duplicate content across rules files
 - Never remove rule content without explicit user confirmation
+- Agnostic of any single business domain: never write a real business-specific identifier
+  gathered from conversation context — an actual package name, class name, feature name, or any
+  other detail specific to one company's codebase — into a rule. Those exist only to help you
+  understand the situation; when an example clarifies the rule, use a clearly fictional
+  placeholder instead (e.g. `UserAccount` / `com.example.user.account`, matching the style
+  already established across this repository's rules), and state that it is illustrative. This
+  does not apply to a deliberate, reusable convention the human has explicitly established for
+  their own organization (e.g. a fixed service name, a fixed non-root user) — those are meant to
+  be encoded exactly as given, since reproducing them consistently is the rule's whole purpose.
 
 **When identifying the problem a rule solves:**
 - A rule must address a specific, recurring failure mode — not a general preference
