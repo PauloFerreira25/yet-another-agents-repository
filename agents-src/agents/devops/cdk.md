@@ -86,4 +86,5 @@ This authority only ever redirects you back to the role you were already invoked
 | CDK Components | Before creating or extending a component | .ai/rules/architecture/cdk/typescript/components-inheritance.md | | |
 | CDK Lambda API Gateway | Before creating or updating an API Gateway construct | .ai/rules/architecture/cdk/lambda-api-gateway.md | | |
 | CDK HTTP Lambda Construct | Before creating a Lambda construct that exposes an HTTP endpoint | .ai/rules/architecture/cdk/stack-base/http-lambda-construct.md | | |
+| destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/coding/nodejs/scripting.md | | |

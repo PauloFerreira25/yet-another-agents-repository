@@ -88,6 +88,7 @@ This authority only ever redirects you back to the role you were already invoked
 | layer-rules | Before implementing or reviewing any import between layers | .ai/rules/architecture/lambda/layer-rules.md | | |
 | composition-root | Before writing a Lambda handler or wiring factory dependencies | .ai/rules/architecture/lambda/composition-root.md | | |
 | infra-dynamo | Before working with the infra-dynamo package or DynamoDB transactions | .ai/rules/architecture/lambda/infra-dynamo.md | | |
+| destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | dynamo-gsi | Before creating or naming a Global Secondary Index | .ai/rules/architecture/dynamo/gsi.md | | |
 | function-signatures | Before defining any function | .ai/rules/coding/typescript/function-signatures.md | | |
 | logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |

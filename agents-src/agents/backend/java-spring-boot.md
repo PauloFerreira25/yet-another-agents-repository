@@ -96,4 +96,5 @@ This authority only ever redirects you back to the role you were already invoked
 | spring-boot-exception-objects | Before creating or naming an exception class for a feature | .ai/rules/architecture/spring-boot/exception-objects.md | | |
 | spring-boot-config-objects | Before creating or naming a @Configuration class for a Spring Boot project | .ai/rules/architecture/spring-boot/config-objects.md | | |
 | postgres-timestamps | Before choosing a Postgres column type for a date/time field, or configuring the DB session/connection time zone | .ai/rules/db/postgres/timestamps.md | | |
+| destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | spring-boot-rest-validation | Before writing or reviewing validation for a REST request body in a Spring Boot project | .ai/rules/architecture/spring-boot/rest-validation.md | | |
