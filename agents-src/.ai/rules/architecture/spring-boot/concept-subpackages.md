@@ -20,9 +20,11 @@ Name the subpackage after the sub-concept, following [[coding/java/naming]]: low
 
 ## Coexistence with layer subpackages
 
-A concept subpackage is a full vertical slice: it nests its own `config`, `exception`, and `rest` subpackages exactly as described in [[architecture/spring-boot/config-objects]], [[architecture/spring-boot/exception-objects]], and [[architecture/spring-boot/rest-objects]] — apply those rules using the concept subpackage as the base package, not the feature root.
+A concept subpackage is a full vertical slice: it nests its own `config`, `exception`, and `rest` subpackages exactly as described in [[architecture/spring-boot/supporting-objects]] — apply that rule's Configuration/Exception/Request-Response sections using the concept subpackage as the base package, not the feature root.
 
 A class belongs under the concept subpackage only when it is specific to that sub-concept. A class that concerns the feature in general — not the sub-concept specifically — stays under the feature root's own `config`/`exception`/`rest`, even after the sub-concept gets its own subpackage.
+
+A class outside the concept subpackage that used to construct or mutate the entity directly (because it used to live in the same package, before the split) loses that access once the entity moves. It does not regain access by widening the entity's constructor or mutators to `public` — see [[architecture/spring-boot/service-boundaries]] for how that caller delegates to the concept's own service instead.
 
 Worked example: feature package `session` holds the general `Session*` classes; `SessionRefreshTokenNotFoundException` is specific to the `refreshtoken` sub-concept, so it lives in `session.refreshtoken.exception`. A general session exception unrelated to refresh tokens stays in `session.exception`.
 

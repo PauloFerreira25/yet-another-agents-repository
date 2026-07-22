@@ -93,10 +93,9 @@ This authority only ever redirects you back to the role you were already invoked
 | java-jackson | Before adding a JSON library dependency, configuring an ObjectMapper, or handling REST payload naming/null/unknown-property behavior | .ai/rules/coding/java/jackson.md | | |
 | spring-boot-error-handling | Before writing error handling, exception mapping, or HTTP error responses in a Spring Boot project | .ai/rules/architecture/spring-boot/error-handling.md | | |
 | spring-boot-ports | Before configuring server.port or any port-related property in a Spring Boot project | .ai/rules/architecture/spring-boot/ports.md | | |
-| spring-boot-rest-objects | Before creating or naming a Request or Response class for a REST controller | .ai/rules/architecture/spring-boot/rest-objects.md | | |
-| spring-boot-exception-objects | Before creating or naming an exception class for a feature | .ai/rules/architecture/spring-boot/exception-objects.md | | |
-| spring-boot-config-objects | Before creating or naming a @Configuration class for a Spring Boot project | .ai/rules/architecture/spring-boot/config-objects.md | | |
+| spring-boot-supporting-objects | Before creating or naming a @Configuration class, an exception class, or a Request/Response class for a Spring Boot feature | .ai/rules/architecture/spring-boot/supporting-objects.md | | |
 | spring-boot-concept-subpackages | Before creating a package or adding a class to an existing feature package | .ai/rules/architecture/spring-boot/concept-subpackages.md | | |
+| spring-boot-service-boundaries | Before a @Service injects a @Repository, or constructs/mutates an @Entity, that belongs to a different package | .ai/rules/architecture/spring-boot/service-boundaries.md | | |
 | postgres-timestamps | Before choosing a Postgres column type for a date/time field, or configuring the DB session/connection time zone | .ai/rules/db/postgres/timestamps.md | | |
 | destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | spring-boot-rest-validation | Before writing or reviewing validation for a REST request body in a Spring Boot project | .ai/rules/architecture/spring-boot/rest-validation.md | | |

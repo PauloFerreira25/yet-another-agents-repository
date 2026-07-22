@@ -28,6 +28,6 @@ Rely on Spring Boot's default of `FAIL_ON_UNKNOWN_PROPERTIES` disabled — this 
 
 ## Request/Response DTOs
 
-Request and Response classes are `record`s (see [[architecture/spring-boot/rest-objects]]). Jackson (2.12+) deserializes records natively from their canonical constructor — never add Lombok annotations or a custom `@JsonCreator` to a record DTO just to make Jackson accept it.
+Request and Response classes are `record`s (see [[architecture/spring-boot/supporting-objects]]). Jackson (2.12+) deserializes records natively from their canonical constructor — never add Lombok annotations or a custom `@JsonCreator` to a record DTO just to make Jackson accept it.
 
 Date/time field types and their serialization behavior are covered separately — see [[coding/java/date-time]]; this file governs JSON handling in general, not date-specific rules.

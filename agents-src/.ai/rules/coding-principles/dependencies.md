@@ -12,6 +12,8 @@ Inject external dependencies as parameters — initialization injection for type
 
 Depend on abstractions, not concrete implementations. Minimize inter-module dependencies.
 
+In a Spring Boot service, this includes never reaching into another concept's persistence layer directly — see [[architecture/spring-boot/service-boundaries]] for the concrete rule: depend on that concept's own `@Service`, not its `@Repository` or `@Entity`.
+
 Never hardcode external dependencies inside a function or class body when they can be injected.
 
 ## Reference Representativeness
