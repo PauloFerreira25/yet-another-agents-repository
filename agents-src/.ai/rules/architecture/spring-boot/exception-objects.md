@@ -8,6 +8,8 @@ description: Package placement and naming convention for domain exception classe
 
 Exception classes live in an `exception` sub-package of the feature package that owns them — never alongside the domain, service, or controller classes themselves, never in the feature's root package: `<feature-package>.exception`.
 
+Before applying this, check whether the feature package has been split by concept — see [[architecture/spring-boot/concept-subpackages]]. When it has, `<feature-package>` above means the concept subpackage that owns this exception, not necessarily the feature root.
+
 ## Naming
 
 Every class name follows `<Domain><Reason>Exception`:

@@ -76,6 +76,7 @@ This authority only ever redirects you back to the role you were already invoked
 | How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| No Structured Forms | Before using AskUserQuestion, or any other structured multiple-choice tool, to gather input from the user | .ai/rules/common/no-structured-forms.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Spec Implementation Marker | After finishing implementation work driven by a spec document | .ai/rules/common/spec-implementation-marker.md | | |
 | design | Before making design decisions, introducing abstractions, or structuring code | .ai/rules/coding-principles/design.md | | |
@@ -95,6 +96,7 @@ This authority only ever redirects you back to the role you were already invoked
 | spring-boot-rest-objects | Before creating or naming a Request or Response class for a REST controller | .ai/rules/architecture/spring-boot/rest-objects.md | | |
 | spring-boot-exception-objects | Before creating or naming an exception class for a feature | .ai/rules/architecture/spring-boot/exception-objects.md | | |
 | spring-boot-config-objects | Before creating or naming a @Configuration class for a Spring Boot project | .ai/rules/architecture/spring-boot/config-objects.md | | |
+| spring-boot-concept-subpackages | Before creating a package or adding a class to an existing feature package | .ai/rules/architecture/spring-boot/concept-subpackages.md | | |
 | postgres-timestamps | Before choosing a Postgres column type for a date/time field, or configuring the DB session/connection time zone | .ai/rules/db/postgres/timestamps.md | | |
 | destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | spring-boot-rest-validation | Before writing or reviewing validation for a REST request body in a Spring Boot project | .ai/rules/architecture/spring-boot/rest-validation.md | | |

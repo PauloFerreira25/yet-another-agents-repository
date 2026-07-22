@@ -87,6 +87,7 @@ This authority only ever redirects you back to the role you were already invoked
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| No Structured Forms | Before using AskUserQuestion, or any other structured multiple-choice tool, to gather input from the user | .ai/rules/common/no-structured-forms.md | yes | |
 | Atomization | When decomposing any feature or system unit into a spec | .ai/rules/analysis/atomization.md | | |
 | Interview Conduct | During the interview phase | .ai/rules/analysis/interview-conduct.md | | |
 | Spec Format | Before writing any spec document | .ai/rules/analysis/spec-format.md | | |

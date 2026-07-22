@@ -8,6 +8,8 @@ description: Package placement and naming convention for controller Request/Resp
 
 Request and Response classes live in a `rest` sub-package of the feature package that owns the controller — never alongside the controller itself, never in the feature's root package: `<feature-package>.rest`.
 
+Before applying this, check whether the feature package has been split by concept — see [[architecture/spring-boot/concept-subpackages]]. When it has, `<feature-package>` above means the concept subpackage that owns this Request/Response pair, not necessarily the feature root.
+
 ## Naming
 
 Every class name follows `<Domain><Operation><Request|Response>`:

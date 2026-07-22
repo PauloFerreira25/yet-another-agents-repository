@@ -81,6 +81,7 @@ This authority only ever redirects you back to the role you were already invoked
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| No Structured Forms | Before using AskUserQuestion, or any other structured multiple-choice tool, to gather input from the user | .ai/rules/common/no-structured-forms.md | yes | |
 | workspace-structure | Before creating any file or directory | .ai/rules/documentation/workspace-structure.md | yes | |
 | reading-directives | Before and during Extraction | .ai/rules/documentation/reading-directives.md | yes | |
 | synthesis-format | Before and during Synthesis | .ai/rules/documentation/synthesis-format.md | yes | |

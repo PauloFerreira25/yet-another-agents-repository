@@ -140,6 +140,7 @@ This authority only ever redirects you back to the role you were already invoked
 | How to Think | Before stating facts, proposing solutions, or when stuck | .ai/rules/common/how-to-think.md | yes | |
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
+| No Structured Forms | Before using AskUserQuestion, or any other structured multiple-choice tool, to gather input from the user | .ai/rules/common/no-structured-forms.md | yes | |
 | Mandatory Instructions | When creating any new agent file | .ai/rules/yaar/mandatory-instructions.md | yes | |
 | Worktree Workflow | When creating any new agent file | .ai/rules/yaar/worktree-workflow.md | yes | |
 | Entrypoint Guard | When creating any agent with `entrypoint: true` in frontmatter | .ai/rules/yaar/entrypoint-guard.md | yes | |

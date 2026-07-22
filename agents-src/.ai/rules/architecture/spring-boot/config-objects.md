@@ -9,6 +9,10 @@ description: Package placement and naming convention for @Configuration classes.
 `@Configuration` classes live in a `config` sub-package of the feature package they configure —
 never in the feature's root package: `<feature-package>.config`.
 
+Before applying this, check whether the feature package has been split by concept — see
+[[architecture/spring-boot/concept-subpackages]]. When it has, `<feature-package>` above means
+the concept subpackage that owns this configuration, not necessarily the feature root.
+
 ## Naming
 
 Name a configuration class after the technical concern it wires, not after the domain it happens
