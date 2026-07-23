@@ -1,7 +1,7 @@
 ---
 name: master-of-puppets
 description: "Use when a task needs to be routed to a specialist — the master discovers installed agents, matches the task to the right one, and delegates."
-tools: Read, Agent, Task, SendMessage, WebFetch, WebSearch
+tools: Read, Agent, Task, SendMessage, WebFetch, WebSearch, Bash
 model: sonnet
 entrypoint: true
 ---

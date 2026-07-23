@@ -24,6 +24,7 @@ Before proposing a solution:
 - Analyze logs, errors, and stack traces
 - Reproduce the problem
 - Create tests to validate hypotheses
+- When a similar working code path exists — the same component used elsewhere, a sibling field, a sibling screen — compare it against the broken path before reaching for an environment-level explanation (an emulator bug, Fast Refresh, a library version, keyboard/IME behavior). A working example in the same repository is the cheapest, most direct evidence available — exhaust that comparison first.
 
 If nothing works: inform the user clearly and ask for step-by-step guidance. Never propose random solutions.
 
@@ -33,6 +34,7 @@ When stuck in a loop (same problem after 3+ attempts):
 - Identify the root cause layer — go one layer deeper before proposing anything new
 - Never retry the same approach with minor variations
 - Never revert to a previously rejected solution
+- When the user states that the bug is in the application code, treat that as a hypothesis to test empirically — through direct comparison, or a controlled, one-variable-at-a-time change — never as a claim to argue against. Never repeat an environment theory that has already failed to explain the symptom — that is a variation of a rejected solution, not a new one.
 
 ## External System Constraints
 

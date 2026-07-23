@@ -14,7 +14,11 @@ Use full words. Abbreviations are acceptable only when widely recognized in the 
 
 Never use single-letter names except for loop counters or well-known conventions (i, j, x, y).
 
-Extract magic numbers and strings into named constants.
+Extract magic numbers, strings, and any other literal value into named constants — never limit this to numbers.
+
+Before hardcoding a literal value, search the codebase for whether that value already exists as a named constant, a configuration value, or a variable already exposed at runtime. If it does, reuse that source — never introduce a second, independent literal for the same value. Two literals that represent the same value are a duplication risk: change one, forget the other, and they silently diverge.
+
+Do not promote every duplicated literal into a new environment variable by default. An environment variable is only for a value that genuinely needs to differ between environments. When the value is fixed and already available as a single source of truth elsewhere in the codebase, reuse that source instead of adding a new one.
 
 ## Comments
 
