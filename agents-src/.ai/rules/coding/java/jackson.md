@@ -1,6 +1,6 @@
 ---
 name: java-jackson
-Scope: Before adding a JSON library dependency, configuring an ObjectMapper, or handling REST payload naming/null/unknown-property behavior
+Scope: Before adding a JSON library dependency, configuring an ObjectMapper, handling REST payload naming/null/unknown-property behavior, or designing a partial-update (PATCH) Request DTO
 description: Jackson is the only JSON library for this stack; configure it through Spring Boot's autoconfiguration, never a hand-built ObjectMapper
 ---
 
@@ -31,3 +31,40 @@ Rely on Spring Boot's default of `FAIL_ON_UNKNOWN_PROPERTIES` disabled — this 
 Request and Response classes are `record`s (see [[architecture/spring-boot/supporting-objects]]). Jackson (2.12+) deserializes records natively from their canonical constructor — never add Lombok annotations or a custom `@JsonCreator` to a record DTO just to make Jackson accept it.
 
 Date/time field types and their serialization behavior are covered separately — see [[coding/java/date-time]]; this file governs JSON handling in general, not date-specific rules.
+
+## Partial update (PATCH) fields — absent vs. explicit null
+
+Jackson maps an absent JSON key and an explicit `null` to the same Java `null` — a plain field cannot tell them apart.
+
+Apply `JsonNullable<T>` (`org.openapitools:jackson-databind-nullable`) to a Request DTO field only when both are true:
+1. The endpoint is a genuine partial update (PATCH): the field is optional, and "omitted" and "explicit null" are two different, intentional instructions the contract must support.
+2. The underlying entity's mutator needs to tell those two instructions apart — "clear this field" is a real, reachable state in the domain model.
+
+Never apply it to a full-replacement (PUT) endpoint — a plain `T` is correct there.
+
+```java
+public record UserAccountEditRequest(
+    JsonNullable<String> nickname, JsonNullable<String> bio) {
+}
+```
+
+Never use `Optional<T>` instead — it is designed for method return values, not bean fields.
+
+Register `JsonNullableModule` with the application's `ObjectMapper` — confirm whether this project's Jackson setup auto-discovers it via SPI or needs an explicit `@Bean`.
+
+Replace `!= null` checks with `.isPresent()`; call `.get()` only when present — the unwrapped value may itself be `null`:
+
+```java
+void edit(JsonNullable<String> nickname, JsonNullable<String> bio) {
+    if (nickname.isPresent()) {
+        this.nickname = nickname.get();
+    }
+    if (bio.isPresent()) {
+        this.bio = bio.get();
+    }
+}
+```
+
+This backend runs on Jackson 3 (`tools.jackson.*`), not Jackson 2. `jackson-databind-nullable` added Jackson 3 support only recently — write a dedicated round-trip test (absent, `null`, and a real value, against this project's actual `ObjectMapper`) before depending on it.
+
+For more detail: [github.com/OpenAPITools/jackson-databind-nullable](https://github.com/OpenAPITools/jackson-databind-nullable/blob/master/README.md).

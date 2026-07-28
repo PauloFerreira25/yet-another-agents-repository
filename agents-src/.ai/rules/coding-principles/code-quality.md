@@ -15,7 +15,7 @@ Never suppress TypeScript errors or lint warnings with comments. The following a
 // eslint-disable-next-line
 ```
 
-Always fix the root cause. A suppression comment hides a problem without solving it — the next engineer will not know why the warning exists or whether it is still valid.
+Always fix the root cause.
 
 ## When the fix is not obvious
 

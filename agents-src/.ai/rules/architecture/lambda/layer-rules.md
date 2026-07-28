@@ -29,9 +29,7 @@ Never allow an orchestrator service to import a repository — only service port
 
 Never instantiate factories inside the handler function — only at module level.
 
-## Why Ports Import TransactWriteItem Directly from the AWS SDK
-
-`TransactWriteItem` is used as-is without transformation. Re-exporting it via `infra-dynamo` creates indirection without abstraction. When an infrastructure type is not encapsulated, import it from its source directly.
+## Ports Import TransactWriteItem Directly from the AWS SDK
 
 See [infra-dynamo.md](infra-dynamo.md) for the full rule and for the intentional exception where orchestrator services import `Transact` from `infra-dynamo`.
 

@@ -15,7 +15,7 @@ Never suppress Java diagnostics with annotations or comments. The following are 
 // CHECKSTYLE:ON
 ```
 
-Always fix the root cause. A suppression hides a problem without solving it — the next engineer will not know why the warning exists or whether it is still valid.
+Always fix the root cause.
 
 ## When the fix is not obvious
 

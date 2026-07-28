@@ -23,7 +23,7 @@ public record UserAccountCreateRequest(
 
 ## Where constraints live
 
-Constraint annotations go on the Request DTO (see [[architecture/spring-boot/supporting-objects]]: `<feature-package>.rest`, `<Domain><Operation>Request`) — never on the domain/entity class. The domain entity enforces its own invariants independently of HTTP; the Request DTO enforces what a caller may send over the wire. Coupling them makes a domain-model change silently alter API validation, or vice versa.
+Constraint annotations go on the Request DTO (see [[architecture/spring-boot/supporting-objects]]: `<feature-package>.rest`, `<Domain><Operation>Request`) — never on the domain/entity class.
 
 ## One DTO per operation, not validation groups
 
@@ -38,7 +38,7 @@ Two layers, never blurred:
 - Structural validation (Bean Validation, on the DTO): is the payload well-formed? Runs before the controller method body executes.
 - Business-rule validation (service layer, via domain exceptions): does a well-formed payload violate a business rule (e.g. "this email is already registered")? Requires a repository lookup or domain logic — not expressible as a constraint annotation. Belongs in the `@Service` layer, reported via a domain exception (see [[architecture/spring-boot/supporting-objects]]: `<Domain><Reason>Exception`), mapped to an HTTP response by the `@ControllerAdvice` (see [[architecture/spring-boot/error-handling]]).
 
-Never implement a business rule as a custom `@ConstraintValidator` that performs I/O (database lookups, calls to another service). That couples validation to persistence, makes the constraint untestable without a database/mock, and hides a business rule where nobody expects to find one.
+Never implement a business rule as a custom `@ConstraintValidator` that performs I/O (database lookups, calls to another service).
 
 ## Custom validators: allowed only when pure
 

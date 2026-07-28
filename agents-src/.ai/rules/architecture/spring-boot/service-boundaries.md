@@ -14,8 +14,6 @@ A `@Service` may only inject and use the `@Repository` that lives in its own pac
 
 When a `@Service` needs to read or change state owned by an entity in a different package, it must inject that package's own `@Service` and call it. Never inject another package's `@Repository` directly. Never construct or call a mutator on another package's `@Entity` directly, even when the compiler would allow it (e.g. the mutator happens to be `public`, or both classes currently sit in the same package).
 
-This is the mechanism that keeps a business rule from being duplicated across services: if two services would otherwise both need to implement "how to create or mutate this entity," only one of them is allowed to — the entity's owning service — and every other caller goes through it instead of reimplementing the rule.
-
 ## Where the owning service lives
 
 The owning service lives in the same package as the `@Entity` and `@Repository` it owns — see [[architecture/spring-boot/concept-subpackages]] for how that package is chosen when the entity belongs to a sub-concept split out of a feature package. A companion `@Service` introduced solely to satisfy this rule is itself a class specific to that sub-concept, and belongs in its subpackage the same way its `@Entity`, `@Repository`, exceptions, and REST DTOs do.
