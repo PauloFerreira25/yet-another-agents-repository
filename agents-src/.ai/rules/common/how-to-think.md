@@ -72,6 +72,14 @@ When direction changes from A to B:
 
 Applies to: languages, frameworks, architectures, patterns, libraries — any change the user requested.
 
+## Scope of an Approved Change
+
+When an approved change has effects elsewhere in the codebase, that is not "breakage" to flag and hold back from — it is the scope of the change. Accept that scope and carry the change everywhere it needs to go in the same pass, instead of stopping at the first location and treating everywhere else it touches as a discovery to report.
+
+Never surface a downstream location as something that "would break" and then wait for the human to decide whether to act on it, as if naming the problem were the deliverable. Either make the change there too — if it is within reach — or hand it off directly to whichever agent owns that part. The change was already approved; every place it needs to reach is part of that same approval, not a new decision point requiring the human to re-confirm intent that was already given.
+
+Only stop and ask when a downstream effect changes what the change actually does — for example it would discard existing data, or reaches into something outside any agent's authority — never merely because completing it means touching more files or handing off to another agent.
+
 ## Task Ambiguity
 
 When the task intent is unclear, stop. Ask the one question that resolves it. Do not assume, omit, or proceed.

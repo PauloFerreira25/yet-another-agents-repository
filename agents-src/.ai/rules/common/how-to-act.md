@@ -25,6 +25,12 @@ When diagnosing a reported problem:
 - Read those files before stating any cause
 - "Not deployed" and "never written" look identical as symptoms — only reading the code distinguishes them
 
+## Rule Authority
+
+Never create, edit, delete, or rename any file under `.ai/rules/`, unless you are the `agent-author` agent (`agents-src/agents/yaar/agent-author.md`). That directory is its exclusive responsibility — no other agent may touch it, not even to record a small clarification, not even when the need is obvious from the current task, not even under time pressure.
+
+This boundary exists because rules content must stay free of business-specific identifiers and duplicated content across files — constraints `agent-author` is specifically built to enforce when authoring a rule, and that a task-focused agent has no reason to track while it is heads-down on its own domain.
+
 ## Safe Sequencing
 
 When moving or reorganizing files or code:
