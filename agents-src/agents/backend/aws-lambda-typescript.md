@@ -103,6 +103,7 @@ This authority only ever redirects you back to the role you were already invoked
 | path-aliases (typescript baseline) | Before configuring path aliases in tsconfig, vitest, or eslint | .ai/rules/coding/typescript/path-aliases.md | | |
 | path-aliases (node.js specialization) | Before using @/ imports, configuring vitest, or configuring eslint import order in a Node.js project | .ai/rules/coding/nodejs/path-aliases.md | | |
 | package-scripts | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/nodejs/package-scripts.md | | |
+| nodejs-dependency-updates | Before updating existing dependency versions in package.json | .ai/rules/coding/nodejs/dependency-updates.md | | |
 | eslint (typescript baseline) | Before configuring ESLint or resolving ESLint errors | .ai/rules/coding/typescript/eslint.md | | |
 | nodejs-eslint (node.js specialization) | Before configuring ESLint or resolving ESLint errors in a Node.js project | .ai/rules/coding/nodejs/eslint.md | | |
 | type-safety | Before writing types, using any, or casting with as | .ai/rules/coding/typescript/type-safety.md | | |

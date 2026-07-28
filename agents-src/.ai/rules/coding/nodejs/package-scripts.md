@@ -42,3 +42,7 @@ npm install -D concurrently eslint-watch
 - In a workspace, always install with `--prefix` or from within the target package directory — never assume a devDependency in the workspace root is available to child packages
 
 Specifying a version (`npm install <package>@x.y.z`) is only allowed when a human explicitly requests a specific version, or when another installed dependency constrains it as a peer dependency.
+
+## Updating existing packages
+
+To bump the version of a dependency already in `package.json`, see [[coding/nodejs/dependency-updates]] — use `ncu` rather than checking each package individually online.

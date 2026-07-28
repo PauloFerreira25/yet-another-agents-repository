@@ -149,6 +149,7 @@ This authority only ever redirects you back to the role you were already invoked
 | Mobile MCP | Before using any mobile-mcp MCP tool | .ai/rules/coding/react-native/mobile-mcp.md | | |
 | Env Vars | Before reading environment variables or configuring .env files in an Expo project | .ai/rules/coding/react-native/env-vars.md | | |
 | Package Scripts | Before setting up or modifying package.json scripts, or installing dependencies in an Expo project | .ai/rules/coding/react-native/package-scripts.md | | |
+| Dependency Updates | Before updating existing dependency versions in package.json | .ai/rules/coding/nodejs/dependency-updates.md | | |
 | Project Scaffold | When initializing a new React Native project from scratch | .ai/rules/coding/react-native/project-scaffold.md | | |
 | Temporal (TypeScript baseline) | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |
 | Temporal (Hermes specialization) | Before writing any code that creates, manipulates, or formats dates and times in a React Native project | .ai/rules/coding/react-native/temporal.md | | |

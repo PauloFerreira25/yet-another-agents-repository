@@ -141,6 +141,7 @@ This authority only ever redirects you back to the role you were already invoked
 | Env Vars | Before reading environment variables or configuring .env files in a React Vite project | .ai/rules/coding/react/env-vars.md | | |
 | Package Scripts (Node.js baseline) | Before setting up or modifying package.json scripts, or installing dependencies | .ai/rules/coding/nodejs/package-scripts.md | | |
 | Package Scripts (Vite specialization) | Before setting up or modifying package.json scripts, or installing dependencies in a React project | .ai/rules/coding/react/package-scripts.md | | |
+| Dependency Updates | Before updating existing dependency versions in package.json | .ai/rules/coding/nodejs/dependency-updates.md | | |
 | Project Scaffold | When initializing a new React TypeScript project from scratch | .ai/rules/coding/react/project-scaffold.md | | |
 | Function Signatures | Before defining any function | .ai/rules/coding/typescript/function-signatures.md | yes | |
 | Temporal (TypeScript baseline) | Before writing any code that creates, manipulates, or formats dates and times | .ai/rules/coding/typescript/temporal.md | | |

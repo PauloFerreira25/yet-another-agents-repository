@@ -89,3 +89,4 @@ This authority only ever redirects you back to the role you were already invoked
 | CDK HTTP Lambda Construct | Before creating a Lambda construct that exposes an HTTP endpoint | .ai/rules/architecture/cdk/stack-base/http-lambda-construct.md | | |
 | destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/coding/nodejs/scripting.md | | |
+| nodejs-dependency-updates | Before updating existing dependency versions in package.json | .ai/rules/coding/nodejs/dependency-updates.md | | |
