@@ -25,6 +25,8 @@ model: sonnet
 
 ## Rules
 
+<!-- copy content from agents-src/.ai/rules/yaar/rules-table-preamble.md, verbatim, in every agent file without exception -->
+
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
 | <rule-name> | <action trigger> | .ai/rules/<path>.md | | |

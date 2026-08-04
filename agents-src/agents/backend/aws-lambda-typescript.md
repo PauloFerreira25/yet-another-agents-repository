@@ -69,6 +69,8 @@ This authority only ever redirects you back to the role you were already invoked
 
 ## Rules
 
+The table below lists every rule that applies to this agent. Read every rule marked **required** before doing anything else. Read any other rule the moment the current action matches its Scope.
+
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
 | Context Recovery | At the start of any session that follows a context compression | .ai/rules/common/context-recovery.md | yes | |

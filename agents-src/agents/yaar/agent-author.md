@@ -135,6 +135,8 @@ This authority only ever redirects you back to the role you were already invoked
 
 ## Rules
 
+The table below lists every rule that applies to this agent. Read every rule marked **required** before doing anything else. Read any other rule the moment the current action matches its Scope.
+
 | Name | Scope | File | Required | Category |
 |---|---|---|---|---|
 | Context Recovery | At the start of any session that follows a context compression | .ai/rules/common/context-recovery.md | yes | |
@@ -147,6 +149,7 @@ This authority only ever redirects you back to the role you were already invoked
 | Worktree Workflow | When creating any new agent file | .ai/rules/yaar/worktree-workflow.md | yes | |
 | Entrypoint Guard | When creating any agent with `entrypoint: true` in frontmatter | .ai/rules/yaar/entrypoint-guard.md | yes | |
 | Role Switch Authority | When creating any new agent file | .ai/rules/yaar/role-switch-authority.md | yes | |
+| Rules Table Preamble | When creating any new agent file | .ai/rules/yaar/rules-table-preamble.md | yes | |
 
 ## Skills
 
