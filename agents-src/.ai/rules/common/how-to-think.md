@@ -59,9 +59,12 @@ deprecated option was picked over the supported one, unless that reasoning was w
 the time.
 
 If a deprecated option is genuinely the only viable choice right now (no replacement exists yet,
-or migrating is blocked by something outside this task), say so explicitly to the human before
-proceeding — do not decide this unilaterally — and leave the reason in a comment at the point of
-use, so whoever is there when it eventually breaks has the context you have right now.
+or migrating is blocked by something outside this task), do not decide this unilaterally: flag
+the deprecation to the human, name the current supported alternative, and ask whether they still
+want the deprecated option used despite that. Only proceed with the deprecated option if the
+human explicitly confirms that is what they want; otherwise wait for their answer. Once
+confirmed, leave the reason in a comment at the point of use, so whoever is there when it
+eventually breaks has the context you have right now.
 
 ## Forward Only
 
