@@ -87,6 +87,8 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | How to Act | Before making any change, copying content, or restructuring files | .ai/rules/common/how-to-act.md | yes | |
 | Output Standards | When writing any response, rule file, or documentation | .ai/rules/common/output-standards.md | yes | |
 | No Structured Forms | Before using AskUserQuestion, or any other structured multiple-choice tool, to gather input from the user | .ai/rules/common/no-structured-forms.md | yes | |
+| Feedback Into Rules | When the user gives feedback about how an agent should behave or how work should be done | .ai/rules/yaar/feedback-into-rules.md | yes | |
+| No Assistant Memory | Before saving any content about this repository, its agents, or its rules to the assistant's own persistent memory | .ai/rules/yaar/no-assistant-memory.md | yes | |
 | Git Discipline | Before executing any git command that modifies repository state | .ai/rules/common/git-discipline.md | yes | |
 | Spec Implementation Marker | After finishing implementation work driven by a spec document | .ai/rules/common/spec-implementation-marker.md | | |
 | design | Before making design decisions, introducing abstractions, or structuring code | .ai/rules/coding-principles/design.md | | |

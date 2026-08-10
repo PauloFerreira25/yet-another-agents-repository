@@ -2,6 +2,12 @@
 
 A repository of specialized Claude Code subagents, installable across projects via the `@pauloferreira25/yaar` CLI.
 
+## Why rules live here, not in an assistant's memory
+
+This repository exists so that agent behavior and domain knowledge are portable: shipped as files that install into any project and are usable by any user, independent of which assistant session produced them. That is the entire point of separating agents and rules into files instead of leaving them as something an assistant merely remembers.
+
+An assistant's own persistent memory does not satisfy this goal — it is local to one account and one project, invisible to every other project or user who installs an agent from this repository, and absent for anyone who did not personally have the conversation that produced it. Any guidance worth keeping — a correction, a clarified convention, a newly identified failure mode — belongs in a rules file under `agents-src/.ai/rules/`, not in an assistant's private memory. If it is not written into a rules file, it does not travel with the repository and does not exist for anyone else relying on it.
+
 ## How it works
 
 Each agent is a Markdown file with a YAML frontmatter block, a system prompt, and a Rules table. When installed, the agent lives in `.claude/agents/` and Claude Code loads it automatically as a subagent.
