@@ -95,7 +95,7 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | naming | Before naming variables, functions, files, or writing comments | .ai/rules/coding-principles/naming.md | | |
 | dependencies | Before introducing or adopting a dependency or pattern from existing code | .ai/rules/coding-principles/dependencies.md | | |
 | error-handling | Before writing error handling, propagation, or logging code | .ai/rules/coding-principles/error-handling.md | | |
-| logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |
+| logging | Before adding or removing log statements in any layer | .ai/rules/coding-principles/logging.md | | |
 | security | Before handling secrets, user input, authentication, or access control | .ai/rules/coding-principles/security.md | | |
 | testing | Before writing or reviewing tests | .ai/rules/coding-principles/testing.md | | |
 | java-naming | Before naming, writing or reviewing any Java | .ai/rules/coding/java/naming.md | | |

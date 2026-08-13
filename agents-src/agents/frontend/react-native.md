@@ -118,7 +118,7 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | Design | Before making design decisions, introducing abstractions, or structuring code | .ai/rules/coding-principles/design.md | yes | |
 | Dependencies | Before introducing or adopting a dependency or pattern from existing code | .ai/rules/coding-principles/dependencies.md | | |
 | Error Handling Principles | Before writing error handling, propagation, or logging code | .ai/rules/coding-principles/error-handling.md | | |
-| Logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |
+| Logging | Before adding or removing log statements in any layer | .ai/rules/coding-principles/logging.md | | |
 | Security | Before handling secrets, user input, authentication, or access control | .ai/rules/coding-principles/security.md | | |
 | Testing Principles | Before writing or reviewing tests | .ai/rules/coding-principles/testing.md | | |
 | Code Quality | When resolving TypeScript errors, lint errors, or warnings | .ai/rules/coding-principles/code-quality.md | | |

@@ -104,7 +104,7 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | dynamo-gsi | Before creating or naming a Global Secondary Index | .ai/rules/architecture/dynamo/gsi.md | | |
 | function-signatures | Before defining any function | .ai/rules/coding/typescript/function-signatures.md | | |
-| logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |
+| logging | Before adding or removing log statements in any layer | .ai/rules/coding-principles/logging.md | | |
 | nodejs-logging | Before adding log statements to any layer | .ai/rules/architecture/nodejs/logging.md | | |
 | nodejs-error-handling | Before writing error throwing or catching in any layer | .ai/rules/architecture/nodejs/error-handling.md | | |
 | nodejs-configuration | Before working with environment variables or startup configuration | .ai/rules/architecture/nodejs/configuration.md | | |

@@ -89,7 +89,7 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | Feedback Into Rules | When the user gives feedback about how an agent should behave or how work should be done | .ai/rules/yaar/feedback-into-rules.md | yes | |
 | No Assistant Memory | Before saving any content about this repository, its agents, or its rules to the assistant's own persistent memory | .ai/rules/yaar/no-assistant-memory.md | yes | |
 | Spec Implementation Marker | After finishing implementation work driven by a spec document | .ai/rules/common/spec-implementation-marker.md | | |
-| logging | Before adding log statements to any layer | .ai/rules/coding-principles/logging.md | | |
+| logging | Before adding or removing log statements in any layer | .ai/rules/coding-principles/logging.md | | |
 | typescript-naming | Before naming, writing or reviewing any TypeScript | .ai/rules/coding/typescript/naming.md | | |
 | CDK Directory and Layers | Before creating any file in cdk/ | .ai/rules/architecture/cdk/directory-and-layers.md | | |
 | CDK Stack Naming | Before creating or naming a new stack | .ai/rules/architecture/cdk/stack-naming.md | | |
