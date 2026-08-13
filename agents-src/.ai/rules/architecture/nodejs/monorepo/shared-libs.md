@@ -24,7 +24,7 @@ Requirements for every shared-lib:
 - Must compile to `dist/` with `declaration: true` — consumers depend on the compiled output
 - Must be publishable to npm without changes
 
-Never create shared logic (error classes, utilities, types) directly in a project — extract to a shared-lib.
+Never create shared logic (error classes, utilities, types) directly in a project — extract to a shared-lib. For an AWS Lambda project, use `app/shared/` instead (see `architecture/lambda/domain-structure.md`).
 
 ## Scoping conventions
 

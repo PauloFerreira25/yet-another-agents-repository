@@ -1,7 +1,7 @@
 ---
 name: infra-dynamo
 Scope: Before working with the infra-dynamo package or DynamoDB transactions
-description: What belongs in infra-dynamo, import boundaries, and the Transact exception
+description: What belongs in infra-dynamo, import boundaries, TransactWriteItem, and interpreting CancellationReasons
 ---
 
 # infra-dynamo
@@ -10,28 +10,41 @@ description: What belongs in infra-dynamo, import boundaries, and the Transact e
 
 Always put `DynamoConfig` in this package — it is the type that binds a `DynamoDBDocumentClient` to a `tableName`, and it is the reason the package exists.
 
-Always put `Transact` here as a named type. It is the execution contract used by orchestrator services for atomic operations.
-
-Never put `makeTransact` here. It is three lines with no logic — it belongs inline in the handler that needs it.
-
 ## Import Rules
 
 `infra-dynamo` may import from the AWS SDK.
 
-Never import from schema, port, repository, service, or lambda packages. `infra-dynamo` has no knowledge of any domain.
+Never import from schema, repository, service, or lambda packages. `infra-dynamo` has no knowledge of any domain.
 
-## The Intentional Exception: Orchestrators Import `Transact`
+## TransactWriteItem in Repositories
 
-Orchestrator services import `Transact` from `@<project>/infra-dynamo`. This violates the general rule that services do not know infrastructure — and the violation is accepted consciously.
+`TransactWriteItem` is not exported as a standalone type by either AWS SDK package. Never import it directly from `@aws-sdk/client-dynamodb` or `@aws-sdk/lib-dynamodb` — both are wrong:
 
-**Why:** DynamoDB's `TransactWriteCommand` requires all items to be sent in a single API call. There is no `BEGIN TRANSACTION` / `COMMIT` sequence as in SQL databases. The coordinator must collect all items and know how to send them together. Making the orchestrator completely infrastructure-agnostic without an external transaction manager — which does not exist in the Lambda/DynamoDB ecosystem — is not possible.
+- `@aws-sdk/client-dynamodb` does export a type named `TransactWriteItem`, but it belongs to the low-level client. Its `Put.Item` / `Update.Key` / `ExpressionAttributeValues` require raw, manually-marshalled `AttributeValue` shapes (`{ S: 'value' }`), not plain JS values.
+- The code that actually sends the transaction uses `TransactWriteCommand` from `@aws-sdk/lib-dynamodb` — the Document Client — which auto-marshals plain JS values, the same convention every other command in the project already follows (`PutCommand`, `UpdateCommand`, etc.). Passing the low-level client's `TransactWriteItem` shape into `TransactWriteCommand` fails to compile: its plain-value `Item`/`Key` are not assignable to `Record<string, AttributeValue>`.
 
-**What the orchestrator is allowed to import:** only `Transact`.
+Always derive the Document Client's transact item type instead of importing a name — the Document Client's transact item type is a computed type with no exported name of its own:
 
-Never allow the orchestrator to import `DynamoDBClient`, `TransactWriteCommand`, or `tableName`. The internals of each domain remain opaque. The coupling is to the atomic execution contract, not to the DynamoDB implementation.
+```typescript
+import type { TransactWriteCommandInput } from '@aws-sdk/lib-dynamodb'
 
-## TransactWriteItem in Ports
+export type TransactWriteItem = NonNullable<TransactWriteCommandInput['TransactItems']>[number]
+```
 
-When an infrastructure type is not abstracted — used as-is without transformation — import it directly from its source.
+Define this in `infra-dynamo` and import it in repository files that need it. Leave a comment at the point of use explaining why it is derived rather than imported directly, so it doesn't get "simplified" back into a plain SDK import later.
 
-`TransactWriteItem` is not wrapped or transformed anywhere in the project. Re-exporting it via `infra-dynamo` would create indirection without abstraction. Import it from `@aws-sdk/lib-dynamodb` directly in port files that need it.
+## Interpreting CancellationReasons
+
+Never treat `CancellationReason.Code` as a boolean or truthy check when interpreting `TransactionCanceledException.CancellationReasons` to find out which transact item caused a cancellation. DynamoDB sets `Code` to the literal string `"None"` for every item that did **not** cause the cancellation — never `null` or `undefined` — despite the AWS SDK's own type declaration doc comment implying otherwise ("If no error occurred... an error with a Null code... will be present"). A bare truthy check (`reason?.Code`) passes exactly as much for `"None"` as for a real failure code, so the first item in the array always "wins," regardless of which one actually failed.
+
+Always check explicitly:
+
+```typescript
+import type { CancellationReason } from '@aws-sdk/client-dynamodb'
+
+export type DidItemFailParams = { reason?: CancellationReason }
+
+export function didItemFail(params: DidItemFailParams): boolean {
+  return params.reason?.Code !== undefined && params.reason.Code !== 'None'
+}
+```

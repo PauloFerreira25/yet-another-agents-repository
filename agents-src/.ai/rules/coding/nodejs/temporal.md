@@ -22,3 +22,5 @@ import { Temporal } from 'temporal-polyfill'
 ```
 
 When AWS Lambda adds Node 26 support, remove the package and import from the native global.
+
+This is also the Node version `@types/node` must be pinned to in an AWS Lambda project — see `coding/nodejs/package-scripts.md`'s `@types/node` exception.

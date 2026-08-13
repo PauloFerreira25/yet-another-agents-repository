@@ -4,6 +4,8 @@ Scope: Before creating files or directories in src/
 description: DDD folder structure, layer responsibilities, handler file splitting, and repository isolation.
 ---
 
+This rule applies to a long-running Node.js service — a single deployable process (an HTTP server, a queue consumer, or both) running from one codebase. For an AWS Lambda project, where each domain layer and each handler is its own independently deployed npm package, follow `architecture/lambda/domain-structure.md` (with `layer-rules.md` and `composition-root.md`) instead — the two layering models are not interchangeable.
+
 ## Folder structure
 
 ```

@@ -15,6 +15,34 @@ import { config } from './config.js'
 export const log = pino({ level: config.LOG_LEVEL })
 ```
 
+## AWS Lambda
+
+Never use `pino` on AWS Lambda. Its default transport (`thread-stream`) runs a worker thread — a poor fit for Lambda's execution model: the environment can be frozen or torn down between invocations, risking lost log writes or shutdown-latency surprises that don't exist in a long-running process. CloudWatch Logs already captures stdout directly, so the worker thread buys nothing here beyond added cold-start cost.
+
+Use a plain `console.log` JSON-line logger instead. Keep the same logging principles (first-line log, outcome logs, sensitive-data omission) — only the transport changes:
+
+```typescript
+export type LoggerParams = { level: string }
+export type LogParams    = { context?: Record<string, unknown>; message: string }
+export type Logger       = { debug: (params: LogParams) => void }
+
+export function makeLogger(params: LoggerParams): Logger {
+  return {
+    debug: ({ context, message }) => {
+      if (params.level !== 'debug') return
+      console.log(JSON.stringify({ level: 'debug', message, ...context }))
+    },
+  }
+}
+```
+
+```typescript
+const log = makeLogger({ level: config.LOG_LEVEL })
+log.debug({ context: { params }, message: 'findById' })
+```
+
+The examples below use `pino`'s own two-argument call shape (`log.debug(mergingObject, message)`) — that shape belongs to `pino`'s API, not ours, so it stays as-is for the general Node.js case. On AWS Lambda, apply the same principle through the logger above instead: `log.debug({ context, message })`.
+
 ## First-line log
 
 ```typescript

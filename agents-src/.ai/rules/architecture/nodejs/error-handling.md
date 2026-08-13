@@ -21,7 +21,7 @@ async function findById(params: IdParams): Promise<Entity | null> {
 // service — understands the domain, throws when needed
 async function findById(params: IdParams): Promise<Entity> {
   const entity = await entityRepository.findById(params)
-  if (!entity) throw new NotFoundError('ENTITY_NOT_FOUND', `Entity ${params.id} not found`)
+  if (!entity) throw new NotFoundError({ code: 'ENTITY_NOT_FOUND', message: `Entity ${params.id} not found` })
   return entity
 }
 
@@ -36,24 +36,41 @@ async function findById(params: IdParams): Promise<Entity> {
 Define `AppError` as the base class in the project's shared error lib:
 
 ```typescript
-export class AppError extends Error {
-  constructor(
-    public readonly statusCode: number,
-    public readonly code:       string,
-    message:                    string
-  ) { super(message) }
+export type AppErrorParams = {
+  statusCode: number
+  code:       string
+  message:    string
 }
 
-export class NotFoundError   extends AppError { constructor(code: string, msg: string) { super(404, code, msg) } }
-export class ValidationError extends AppError { constructor(code: string, msg: string) { super(422, code, msg) } }
-export class ConflictError   extends AppError { constructor(code: string, msg: string) { super(409, code, msg) } }
+export class AppError extends Error {
+  public readonly statusCode: number
+  public readonly code:       string
+
+  constructor(params: AppErrorParams) {
+    super(params.message)
+    this.statusCode = params.statusCode
+    this.code       = params.code
+  }
+}
+
+export type NotFoundErrorParams   = { code: string; message: string }
+export type ValidationErrorParams = { code: string; message: string }
+export type ConflictErrorParams   = { code: string; message: string }
+
+export class NotFoundError   extends AppError { constructor(params: NotFoundErrorParams)   { super({ statusCode: 404, ...params }) } }
+export class ValidationError extends AppError { constructor(params: ValidationErrorParams) { super({ statusCode: 422, ...params }) } }
+export class ConflictError   extends AppError { constructor(params: ConflictErrorParams)   { super({ statusCode: 409, ...params }) } }
 ```
 
 Define project-specific errors by extending `AppError`:
 
 ```typescript
+export type BusinessRuleErrorParams = { message: string }
+
 export class BusinessRuleError extends AppError {
-  constructor(message: string) { super(422, 'BUSINESS_RULE_ERROR', message) }
+  constructor(params: BusinessRuleErrorParams) {
+    super({ statusCode: 422, code: 'BUSINESS_RULE_ERROR', message: params.message })
+  }
 }
 ```
 

@@ -30,3 +30,5 @@ export type { PaginationParams, PaginationResponse } from './types.js'
 ```
 
 Never add sub-path exports unless the package explicitly requires them. The default is a single `.` export pointing to `dist/index.js`.
+
+A Lambda domain package (see `architecture/lambda/domain-structure.md`) is the explicit-requirement case: one package exposes several independently-addressable layers — `schema`, `repository`, `service` — each as its own subpath, because each layer is consumed separately by different callers. That is not a violation of this rule; it is the case this rule's exception exists for.
