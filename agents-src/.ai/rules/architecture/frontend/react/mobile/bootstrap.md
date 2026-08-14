@@ -1,12 +1,14 @@
 ---
 name: mobile-bootstrap
 Scope: When initializing the application, restoring session, or populating global stores on mount
-description: A dedicated bootstrap phase runs before the first screen renders, gated by a native splash screen instead of a DOM loading spinner
+description: A dedicated bootstrap phase runs before the first screen renders; a JS-owned bootstrap screen with a real loading indicator covers the phase once mounted, not the static native splash
 ---
 
 ## Overview
 
-The application has a bootstrap phase that runs once on mount, before any screen is rendered. During this phase, stores are populated, the session is restored, and any data required globally is loaded. The native splash screen stays visible for the duration — there is no in-DOM loading spinner, because nothing has mounted yet.
+The application has a bootstrap phase that runs once on mount, before any screen is rendered. During this phase, stores are populated, the session is restored, and any data required globally is loaded.
+
+The native splash screen only covers the brief window before any JavaScript has mounted. It is a static image with no way to show progress, so it is never used to gate the whole bootstrap phase — doing that leaves the user staring at a screen with no indication anything is happening, indistinguishable from a frozen app. As soon as the root layout mounts, the native splash is hidden and a JS-owned bootstrap screen with a real loading indicator takes over until the phase completes.
 
 ## App store
 
@@ -42,14 +44,15 @@ export const useAppStore = create<AppState>((set) => ({
 
 ## Root layout and the native splash screen
 
-Expo's splash screen is a native view shown before any JavaScript runs. Keep it visible until `bootstrap()` resolves, then hide it — never render a JS loading screen underneath it, and never hide it before fonts and the session are ready.
+Expo's splash screen is a native view shown before any JavaScript runs. Hide it as soon as the root layout has something to paint — never keep it up until `bootstrap()` resolves; it cannot show a spinner, a percentage, or any other feedback, so leaving it up for the whole phase is exactly the failure this rule exists to prevent.
 
 ```tsx
 // app/_layout.tsx
-import { useEffect, useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Slot } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { useAppStore } from '@/store/app/app.store'
+import { BootstrapScreen } from '@/screen/bootstrap/bootstrapScreen'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -60,23 +63,43 @@ export default function RootLayout() {
     if (bootstrapStatus === 'idle') bootstrap()
   }, [])
 
-  const onLayout = useCallback(async () => {
-    if (bootstrapStatus === 'ready' || bootstrapStatus === 'error') {
-      await SplashScreen.hideAsync()
-    }
-  }, [bootstrapStatus])
+  const onLayout = useCallback(() => {
+    SplashScreen.hideAsync()
+  }, [])
 
-  if (bootstrapStatus === 'idle' || bootstrapStatus === 'loading') return null
+  if (bootstrapStatus === 'idle' || bootstrapStatus === 'loading') {
+    return <BootstrapScreen onLayout={onLayout} />
+  }
 
-  return (
-    <Slot onLayout={onLayout} />
-  )
+  return <Slot onLayout={onLayout} />
 }
 ```
 
-When `bootstrapStatus === 'error'`, the tree still renders so the `(private)` group's redirect guard can send the user to `/login` — same relationship as the web auth guard (see `Permissions`).
+`onLayout` fires on whichever tree paints first — `BootstrapScreen` or `Slot` — so the native splash is hidden the instant JS has anything to show, regardless of `bootstrapStatus`. From that point on, `BootstrapScreen` is what the user sees until the phase completes, not a static native image.
+
+When `bootstrapStatus === 'error'`, `Slot` still renders so the `(private)` group's redirect guard can send the user to `/login` — same relationship as the web auth guard (see `Permissions`).
 
 Never call `bootstrap()` more than once. The `'idle'` check ensures it runs exactly once per app launch.
+
+## Bootstrap screen
+
+`src/screen/bootstrap/bootstrapScreen.tsx` is the screen shown between the native splash hiding and the bootstrap phase completing. It has no routing logic — it is a pure visual component with a real loading indicator, not a static image standing in for the splash:
+
+```tsx
+import { View, ActivityIndicator } from 'react-native'
+
+type Props = {
+  onLayout?: () => void
+}
+
+export function BootstrapScreen({ onLayout }: Props) {
+  return (
+    <View onLayout={onLayout} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <ActivityIndicator />
+    </View>
+  )
+}
+```
 
 ## Provider order
 
