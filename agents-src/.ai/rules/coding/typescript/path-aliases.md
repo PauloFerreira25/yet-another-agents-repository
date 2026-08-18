@@ -16,11 +16,12 @@ import { config } from '@/shared/config.js'
 
 ## tsconfig.json
 
+`baseUrl` is deprecated as of TypeScript 6.0 (TS5101) and stops working entirely in TypeScript 7.0. Do not set it — `paths` entries resolve relative to the `tsconfig.json` location without it:
+
 ```json
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] }
+    "paths": { "@/*": ["./src/*"] }
   }
 }
 ```

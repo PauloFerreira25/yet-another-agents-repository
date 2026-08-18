@@ -18,12 +18,11 @@ For the TypeScript baseline configuration, follow `.ai/rules/coding/typescript/p
 
 ## tsconfig.app.json
 
-Add to `tsconfig.app.json` (not the root `tsconfig.json`, which the scaffold leaves as a project-references file with no `compilerOptions`):
+Add to `tsconfig.app.json` (not the root `tsconfig.json`, which the scaffold leaves as a project-references file with no `compilerOptions`). Do not set `baseUrl` — it is deprecated since TypeScript 6.0 and stops working in TypeScript 7.0; `paths` resolves relative to the `tsconfig.json` location on its own:
 
 ```json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": { "@/*": ["./src/*"] }
   }
 }

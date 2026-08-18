@@ -16,12 +16,12 @@ import { produtoService } from '@/service/produto/produto.service'
 
 For the TypeScript baseline, follow `.ai/rules/coding/typescript/path-aliases.md` — the `paths` entry in `tsconfig.json` is identical.
 
-Since Expo SDK 50, `@expo/metro-config` resolves `compilerOptions.baseUrl` and `compilerOptions.paths` from `tsconfig.json` natively, at bundle time. Never add `babel-plugin-module-resolver` or a `module-resolver` Babel plugin entry for this — it is redundant on SDK 50+ and must not be introduced.
+Since Expo SDK 50, `@expo/metro-config` resolves `compilerOptions.paths` from `tsconfig.json` natively, at bundle time. Never add `babel-plugin-module-resolver` or a `module-resolver` Babel plugin entry for this — it is redundant on SDK 50+ and must not be introduced.
 
 ## Requirements for native resolution to work
 
 - `metro.config.js` must build its config from `getDefaultConfig` in `expo/metro-config` — this is what wires `tsconfigPaths` resolution in. Never replace it with a hand-rolled resolver.
-- `tsconfig.json` must declare `baseUrl` and `paths`, exactly as in the TypeScript baseline rule.
+- `tsconfig.json` must declare `paths`, exactly as in the TypeScript baseline rule. Do not add `baseUrl` — it is deprecated since TypeScript 6.0 and stops working in TypeScript 7.0.
 - After adding or changing a `paths` entry, restart the Expo CLI with the cache cleared (`npx expo start -c`) — Metro does not pick up `tsconfig.json` changes on a plain hot reload.
 
 ## metro.config.js
