@@ -98,6 +98,7 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | CDK Config Injection | Before passing config to a stack or component | .ai/rules/architecture/cdk/typescript/config-injection.md | | |
 | CDK Components | Before creating or extending a component | .ai/rules/architecture/cdk/typescript/components-inheritance.md | | |
 | CDK Lambda API Gateway | Before creating or updating an API Gateway construct | .ai/rules/architecture/cdk/lambda-api-gateway.md | | |
+| CDK Secrets Dynamic References | Before adding a Secrets Manager value to a Lambda's environment, or when a deployed Lambda needs to pick up a changed secret value | .ai/rules/architecture/cdk/secrets-dynamic-references.md | | |
 | CDK HTTP Lambda Construct | Before creating a Lambda construct that exposes an HTTP endpoint | .ai/rules/architecture/cdk/stack-base/http-lambda-construct.md | | |
 | destructive-operations | Before running any command that drops, truncates, or irreversibly deletes data, schema, or infrastructure | .ai/rules/db/destructive-operations.md | | |
 | scripting | Before writing any script or running any automation in a Node.js project | .ai/rules/coding/nodejs/scripting.md | | |
