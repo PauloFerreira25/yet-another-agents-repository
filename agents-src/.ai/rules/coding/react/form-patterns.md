@@ -38,7 +38,27 @@ const onSubmit = form.handleSubmit(async (data) => {
 })
 ```
 
-When using shadcn/ui, use `<Form>`, `<FormField>`, `<FormItem>`, and `<FormMessage>` from `@/component/ui/form` — these components integrate with React Hook Form context automatically.
+When using shadcn/ui, build each field with the `Field` primitives — `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, `FieldGroup` from `@/component/ui/field` (install with `npx shadcn@latest add field`) — wrapping the control in a React Hook Form `Controller`. This is the current shadcn/ui pattern for the Base UI style; it replaces the older `Form`/`FormField`/`FormItem`/`FormMessage` API from the retired Radix-based style, which the shadcn registry no longer ships.
+
+```tsx
+import { Controller } from 'react-hook-form'
+import { Field, FieldLabel, FieldError } from '@/component/ui/field'
+import { Input } from '@/component/ui/input'
+
+<Controller
+  name="nome"
+  control={form.control}
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel htmlFor={field.name}>Nome</FieldLabel>
+      <Input {...field} id={field.name} aria-invalid={fieldState.invalid} />
+      {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+    </Field>
+  )}
+/>
+```
+
+Each field in the form gets its own `Controller` — never bind `Field` directly to `register()`. Use `FieldGroup` to wrap multiple fields when spacing between them needs to stay consistent, and `FieldDescription` for helper text that is not a validation error.
 
 ## API validation errors (422)
 
