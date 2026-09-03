@@ -37,8 +37,12 @@ interface ImportMeta {
 
 | File | Purpose |
 |---|---|
-| `.env` | Default values, committed to git |
-| `.env.local` | Local overrides, never committed |
-| `.env.production` | Production values, committed |
+| `.env.example` | Documents every expected key with placeholder values, committed to git |
+| `.env.local` | Real local values, never committed (gitignored) |
+| `.env.production` | Real production values, never committed (gitignored) |
 
-Never commit secrets to any `.env` file tracked by git. Secrets belong in `.env.local` or in the deployment environment directly.
+Never commit a `.env*` file that holds a real value — local or production. The only `.env*` file allowed in git is `.env.example`, and every value in it must be a placeholder, never a real credential or endpoint. Real values live in `.env.local` for local development, or are injected directly by the deployment environment (CI/CD, hosting platform) for every other stage — never read from a file tracked by git.
+
+When adding a new variable, add its key with a placeholder value to `.env.example` in the same change, so the file stays a complete, current reference of what the project expects.
+
+If the host repository's root `.gitignore` already blocks committing any `.env*` file — common in a monorepo, where it applies to every package, not just this one — that is not an obstacle to work around. It already matches this rule; do not edit a shared `.gitignore` outside this project's own directory to carve out an exception.
