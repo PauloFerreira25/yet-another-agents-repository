@@ -4,7 +4,7 @@ Scope: When creating or organizing route files
 description: Code-based routing with constructor functions receiving parent route; directory structure mirrors URL except for organizational groupers
 ---
 
-Routes are defined using constructor functions that receive the parent route. Each `.router.tsx` file exports a function, not a static route object. `src/router.tsx` is the only file that mounts the full route tree.
+Routes are defined using constructor functions that receive the parent route. Each `.router.tsx` file exports a function, not a static route object. `src/router/router.tsx` is the only file that mounts the full route tree.
 
 ## Path-based routes
 
@@ -90,16 +90,19 @@ Router files import layouts from `src/component/layout/` — layouts are never d
 
 ```ts
 import { createRootRoute, createRouter } from '@tanstack/react-router'
+import { RootComponent } from '@/router/rootComponent'
 import { createPublicRouter } from '@/router/public/public.router'
 import { createPrivateRouter } from '@/router/private/private.router'
 
-const rootRoute = createRootRoute()
+const rootRoute = createRootRoute({ component: RootComponent })
 const publicRoute = createPublicRouter(rootRoute)
 const privateRoute = createPrivateRouter(rootRoute)
 
 const routeTree = rootRoute.addChildren([publicRoute, privateRoute])
 export const router = createRouter({ routeTree })
 ```
+
+`RootComponent` is defined separately in `src/router/rootComponent.tsx` (see the Bootstrap rule) — keeping the component export out of this file means `router.tsx` only ever exports `router`, satisfying `only-export-components`.
 
 Each router file only knows its own segment and its direct children. Never reference sibling or parent router files from within a router file.
 

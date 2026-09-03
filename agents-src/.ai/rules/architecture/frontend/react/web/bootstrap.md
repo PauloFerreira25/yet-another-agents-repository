@@ -44,16 +44,16 @@ The `bootstrap()` function is the single orchestration point. What it calls is d
 
 ## Root route component
 
-The root route component checks `bootstrapStatus` and renders accordingly:
+The root route component checks `bootstrapStatus` and renders accordingly. It lives in its own file, `src/router/rootComponent.tsx`, exporting only the component — this keeps `src/router/router.tsx` free of component exports, which the `only-export-components` lint rule requires (see the OXLint rule).
 
 ```tsx
-// src/router/router.tsx
-import { createRootRoute, Outlet } from '@tanstack/react-router'
+// src/router/rootComponent.tsx
+import { Outlet } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { useAppStore } from '@/store/app/app.store'
 import { BootstrapPage } from '@/page/bootstrap/bootstrapPage'
 
-function RootComponent() {
+export function RootComponent() {
   const { bootstrapStatus, bootstrap } = useAppStore()
 
   useEffect(() => {
@@ -71,9 +71,9 @@ function RootComponent() {
 
   return <Outlet />
 }
-
-export const rootRoute = createRootRoute({ component: RootComponent })
 ```
+
+`src/router/router.tsx` imports `RootComponent` and passes it to `createRootRoute` — see the Routing rule's Aggregation section for the full wiring.
 
 When `bootstrapStatus === 'error'`, the tree still renders so TanStack Router can evaluate the `beforeLoad` guard on the private grouper, which will redirect to `/login`.
 
