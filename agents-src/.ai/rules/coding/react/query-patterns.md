@@ -85,9 +85,9 @@ getAll: async (): Promise<Produto[]> => {
   const result: Produto[] = []
   let cursor: string | null = null
   do {
-    const page = await mainClient.get<{ data: Produto[]; nextCursor: string | null }>(
-      `/produtos${cursor ? `?cursor=${cursor}` : ''}`
-    )
+    const page = await mainClient.get<{ data: Produto[]; nextCursor: string | null }>({
+      path: `/produtos${cursor ? `?cursor=${cursor}` : ''}`,
+    })
     result.push(...page.data.map(toProduto))
     cursor = page.nextCursor
   } while (cursor)

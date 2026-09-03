@@ -36,11 +36,15 @@ export class ServerError extends Error {
 }
 
 type RequestOptions = RequestInit & { skipAuth?: boolean }
+type RequestParams = { path: string; retry?: boolean } & RequestOptions
+type GetParams = { path: string } & RequestOptions
+type BodyParams = { path: string; body: unknown } & RequestOptions
+type DeleteParams = { path: string } & RequestOptions
 
 const BASE_URL = import.meta.env.VITE_API_URL
 
-async function request<T>(path: string, opts: RequestOptions = {}, retry = true): Promise<T> {
-  const { skipAuth, ...init } = opts
+async function request<T>(params: RequestParams): Promise<T> {
+  const { path, skipAuth, retry = true, ...init } = params
 
   const headers: Record<string, string> = { 'Content-Type': 'application/json' }
 
@@ -56,7 +60,7 @@ async function request<T>(path: string, opts: RequestOptions = {}, retry = true)
   if (res.status === 401 && !skipAuth && retry) {
     const { useAuthStore } = await import('@/store/auth/auth.store')
     const refreshed = await useAuthStore.getState().tryRefreshToken()
-    if (refreshed) return request<T>(path, opts, false)
+    if (refreshed) return request<T>({ ...params, retry: false })
     throw new UnauthenticatedError()
   }
 
@@ -70,12 +74,25 @@ async function request<T>(path: string, opts: RequestOptions = {}, retry = true)
 }
 
 export const mainClient = {
-  get:    <T>(path: string, opts?: RequestOptions) => request<T>(path, opts),
-  post:   <T>(path: string, body: unknown, opts?: RequestOptions) => request<T>(path, { method: 'POST', body: JSON.stringify(body), ...opts }),
-  put:    <T>(path: string, body: unknown, opts?: RequestOptions) => request<T>(path, { method: 'PUT', body: JSON.stringify(body), ...opts }),
-  del:          (path: string, opts?: RequestOptions) => request(path, { method: 'DELETE', ...opts }),
+  get: <T>(params: GetParams): Promise<T> =>
+    request<T>(params),
+
+  post: <T>(params: BodyParams): Promise<T> => {
+    const { body, ...rest } = params
+    return request<T>({ ...rest, method: 'POST', body: JSON.stringify(body) })
+  },
+
+  put: <T>(params: BodyParams): Promise<T> => {
+    const { body, ...rest } = params
+    return request<T>({ ...rest, method: 'PUT', body: JSON.stringify(body) })
+  },
+
+  del: (params: DeleteParams): Promise<void> =>
+    request<void>({ ...params, method: 'DELETE' }),
 }
 ```
+
+Every function here — including the private `request` helper — takes a single named object, with no exception, per the Function Signatures rule.
 
 `authStore.tryRefreshToken()` owns the token lifecycle — it calls `authService.refresh()` and stores the new access token.
 
@@ -88,10 +105,10 @@ export const mainClient = {
 import { mainClient } from '@/service/api/main.httpClient'
 
 export const authService = {
-  refresh: () =>
-    mainClient.post<{ accessToken: string }>('/auth/refresh', {}, { skipAuth: true, credentials: 'include' }),
-  logout: () =>
-    mainClient.post('/auth/logout', {}, { skipAuth: true, credentials: 'include' }),
+  refresh: (): Promise<{ accessToken: string }> =>
+    mainClient.post<{ accessToken: string }>({ path: '/auth/refresh', body: {}, skipAuth: true, credentials: 'include' }),
+  logout: (): Promise<void> =>
+    mainClient.post({ path: '/auth/logout', body: {}, skipAuth: true, credentials: 'include' }),
 }
 
 // src/store/auth/auth.store.ts
@@ -136,18 +153,21 @@ Structure each service as a plain object with typed async methods. Always use th
 // src/service/produto/produto.service.ts
 import { mainClient } from '@/service/api/main.httpClient'
 import type { Produto, CreateProdutoRequest } from '@/type/produto/produto.type'
+import type { IdParams } from '@/type/common/id/id.type'
 
 export const produtoService = {
   getAll: (): Promise<Produto[]> =>
-    mainClient.get<Produto[]>('/produtos'),
+    mainClient.get<Produto[]>({ path: '/produtos' }),
 
-  getById: (id: string): Promise<Produto> =>
-    mainClient.get<Produto>(`/produtos/${id}`),
+  getById: (params: IdParams): Promise<Produto> =>
+    mainClient.get<Produto>({ path: `/produtos/${params.id}` }),
 
-  create: (data: CreateProdutoRequest): Promise<Produto> =>
-    mainClient.post<Produto>('/produtos', data),
+  create: (params: CreateProdutoRequest): Promise<Produto> =>
+    mainClient.post<Produto>({ path: '/produtos', body: params }),
 }
 ```
+
+`IdParams` (`src/type/common/id/id.type.ts`, `{ id: string }`) is the shared type every service reuses for single-entity lookups — see the Function Signatures rule.
 
 When using TanStack Query, the `queryFn` must call the service method — never inline a `fetch` call:
 
@@ -169,6 +189,7 @@ The service is responsible for converting the API response shape to the canonica
 // src/service/produto/produto.service.ts
 import { mainClient } from '@/service/api/main.httpClient'
 import type { Produto } from '@/type/produto/produto.type'
+import type { IdParams } from '@/type/common/id/id.type'
 
 type ProdutoApiResponse = {
   produto_id: string
@@ -182,11 +203,11 @@ function toProduto(raw: ProdutoApiResponse): Produto {
 
 export const produtoService = {
   getAll: async (): Promise<Produto[]> => {
-    const list = await mainClient.get<ProdutoApiResponse[]>('/produtos')
+    const list = await mainClient.get<ProdutoApiResponse[]>({ path: '/produtos' })
     return list.map(toProduto)
   },
-  getById: async (id: string): Promise<Produto> => {
-    const raw = await mainClient.get<ProdutoApiResponse>(`/produtos/${id}`)
+  getById: async (params: IdParams): Promise<Produto> => {
+    const raw = await mainClient.get<ProdutoApiResponse>({ path: `/produtos/${params.id}` })
     return toProduto(raw)
   },
 }
