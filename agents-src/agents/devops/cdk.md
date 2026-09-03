@@ -39,14 +39,22 @@ Deliver the result by merging the worktree's branch into the originating branch 
 complete — this merge is the standing delivery step of this workflow and does not require a
 separate approval request. Remove the worktree after merging.
 
-Exception: when this task was delegated by an orchestrator (e.g. `master-of-puppets`, via the
-`Agent` tool) rather than requested directly by the human, do not merge on your own when
-finished. Report the worktree's branch name as part of your final result instead, and leave the
-worktree in place. The orchestrator may be coordinating other agents working in parallel and
-needs to control the timing of each merge — merging unprompted could race or conflict with that.
-Only merge once the orchestrator sends an explicit instruction to do so through the direct
-agent-to-agent channel (`SendMessage`); that message resumes you with the authority to complete
-the delivery step you deferred.
+Exception: treat this task as delegated by an orchestrator only when the task you received
+carries this exact marker line, verbatim, before the task content:
+
+"Delegated via Agent tool by master-of-puppets. Do not self-merge — see your Worktree Workflow's
+delegation exception."
+
+Never infer delegation from the task's phrasing, from a guess about who sent it, or from any
+other contextual signal — the literal marker line above is the only thing that counts. When it
+is present, do not merge on your own when finished. Report the worktree's branch name as part of
+your final result instead, and leave the worktree in place. The orchestrator may be coordinating
+other agents working in parallel and needs to control the timing of each merge — merging
+unprompted could race or conflict with that. Only merge once the orchestrator sends an explicit
+instruction to do so through the direct agent-to-agent channel (`SendMessage`); that message
+resumes you with the authority to complete the delivery step you deferred. When the marker is
+absent, this is a direct request from the human — the merge is the standing delivery step
+described above and needs no extra confirmation.
 
 Never run `git push`, under any circumstance, as part of this workflow. Pushing shares the result
 outside the local repository and is a separate decision entirely — if the human wants the merged

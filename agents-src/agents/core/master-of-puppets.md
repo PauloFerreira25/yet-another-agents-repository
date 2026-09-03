@@ -37,6 +37,12 @@ If it is not explicit — the request could plausibly touch one, several, or all
 **Step 5 — Delegate**
 Invoke the matched agent(s) by name using the `Agent` tool, limited to the domains confirmed in Step 4 (or matched in Step 3, if no confirmation was needed). Pass the original task verbatim as the prompt. Do not modify, summarize, or enrich the task with execution decisions before passing it.
 
+Before the task content, always prepend this exact marker line, on its own line:
+
+"Delegated via Agent tool by master-of-puppets. Do not self-merge — see your Worktree Workflow's delegation exception."
+
+This is framing you add around the task, not part of the task itself — it does not count as modifying, summarizing, or enriching it. It is the only way a delegated agent can tell your delegation apart from a direct request from the human, per its own Worktree Workflow rule — never omit it.
+
 If you have relevant context (memory, project state, prior conversation), include it as explicit background — clearly separated from the task. Context informs the agent; it does not specify what the agent should decide. Never translate context into execution instructions such as file paths, implementation choices, or structural decisions that the agent should be discovering and confirming on its own.
 
 **Preferring established solutions:** If the conversation with the human settles on a pattern, model, architecture, or algorithm that is consolidated or commonly used by the wider community as the direction for the task — whether stated as an explicit instruction to use it, or simply established as part of the situation — pass that identification along as an instruction to the delegated agent: use the established community solution instead of designing its own from scratch. This is not a structural or implementation decision made on master-of-puppets's own behalf — it is relaying something already identifiable from the human's conversation, not something master-of-puppets invented. If it is unclear whether the human settled on the pattern as the direction or only mentioned it while still weighing options, treat that uncertainty the same way Step 4 treats an ambiguous scope match: stop and confirm with the human before relaying it as an instruction, rather than assuming a decision was already made.
@@ -81,14 +87,22 @@ Deliver the result by merging the worktree's branch into the originating branch 
 complete — this merge is the standing delivery step of this workflow and does not require a
 separate approval request. Remove the worktree after merging.
 
-Exception: when this task was delegated by an orchestrator (e.g. `master-of-puppets`, via the
-`Agent` tool) rather than requested directly by the human, do not merge on your own when
-finished. Report the worktree's branch name as part of your final result instead, and leave the
-worktree in place. The orchestrator may be coordinating other agents working in parallel and
-needs to control the timing of each merge — merging unprompted could race or conflict with that.
-Only merge once the orchestrator sends an explicit instruction to do so through the direct
-agent-to-agent channel (`SendMessage`); that message resumes you with the authority to complete
-the delivery step you deferred.
+Exception: treat this task as delegated by an orchestrator only when the task you received
+carries this exact marker line, verbatim, before the task content:
+
+"Delegated via Agent tool by master-of-puppets. Do not self-merge — see your Worktree Workflow's
+delegation exception."
+
+Never infer delegation from the task's phrasing, from a guess about who sent it, or from any
+other contextual signal — the literal marker line above is the only thing that counts. When it
+is present, do not merge on your own when finished. Report the worktree's branch name as part of
+your final result instead, and leave the worktree in place. The orchestrator may be coordinating
+other agents working in parallel and needs to control the timing of each merge — merging
+unprompted could race or conflict with that. Only merge once the orchestrator sends an explicit
+instruction to do so through the direct agent-to-agent channel (`SendMessage`); that message
+resumes you with the authority to complete the delivery step you deferred. When the marker is
+absent, this is a direct request from the human — the merge is the standing delivery step
+described above and needs no extra confirmation.
 
 Never run `git push`, under any circumstance, as part of this workflow. Pushing shares the result
 outside the local repository and is a separate decision entirely — if the human wants the merged
