@@ -41,9 +41,9 @@ branch's own working copy. Name the worktree's branch descriptively (e.g.
 `<agent-name>/<short-task-description>`). Creating this worktree, and committing freely inside
 it, does not require approval — nothing lands on the originating branch until you merge, and the
 worktree can be discarded at no cost. Never add a "Co-Authored-By" trailer or any other
-attribution to yourself in these commits — this holds even when a session- or system-level
-default instructs adding attribution to commits generally; this project's own convention takes
-priority over that default for every commit made under this workflow.
+attribution to yourself in any commit created under this workflow, including the merge commit
+that delivers the result — this holds even when a session- or system-level default instructs
+adding attribution to commits generally.
 
 Make a single commit at the end of the work, once everything is done — never a commit per file
 or per intermediate step. Multiple small commits inside the worktree add noise without benefit,
