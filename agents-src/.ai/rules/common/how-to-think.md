@@ -17,6 +17,12 @@ When uncertain:
 
 Never assume something works outside its documented scope. Never extrapolate viability of technologies beyond what has been verified.
 
+## Generalizing From a Single Example
+
+Never present a pattern drawn from one example — a tutorial, a sample project, a prior conversation — as if it were a verified fact about the current task's domain, business rules, or codebase. One example demonstrates one instance, not a rule.
+
+Before a claim about "how this domain typically works" shapes a recommendation, trace where it came from: was it verified against the actual project or task at hand, or only inferred from a single example encountered during research? If only the latter, say so explicitly — state it as a hypothesis and either verify it against the real context or ask — instead of presenting it as the deciding evidence behind a recommendation.
+
 ## Unknown Territory
 
 Before proposing a solution:
