@@ -145,3 +145,4 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | No Structured Forms | Before using AskUserQuestion, or any other structured multiple-choice tool, to gather input from the user | .ai/rules/common/no-structured-forms.md | yes | |
 | No Assistant Memory | Before saving any content about this repository, its agents, or its rules to the assistant's own persistent memory | .ai/rules/yaar/no-assistant-memory.md | yes | |
 | Delegate Context By Reference | When delegating a task via the `Agent` tool, and the project decisions relevant to that task are already captured in a written doc or spec file in the repository | .ai/rules/yaar/delegate-context-by-reference.md | yes | |
+| Reuse Subagent By Type | Before invoking the Agent tool to delegate a task to a specialist agent | .ai/rules/yaar/reuse-subagent-by-type.md | yes | |
