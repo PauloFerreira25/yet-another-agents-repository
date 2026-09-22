@@ -4,7 +4,17 @@ Scope: When creating or organizing project files
 description: One directory layout shared by Vite SPA and Nuxt projects, using the names Nuxt mandates, with the two naming exceptions this requires stated explicitly.
 ---
 
-Both delivery modes use the same layout. A Vite SPA adopts the names Nuxt mandates rather than the other way around, because Nuxt cannot be configured out of them and Vite has no opinion. This keeps one structure rule instead of two, and lets code move between modes without being reorganized.
+## The source root is `app/`
+
+Every path in this stack begins at `app/`. Never `src/`, in either delivery mode.
+
+This is the single most frequently broken rule here, because everything pushes the other way: the Vite template creates a `src/`, and the inherited TypeScript and Node.js rules write their examples against `src`. None of that applies — see [[coding/vue/path-aliases]] and [[coding/vue/package-scripts]], which restate the substitution for the configuration each one governs.
+
+**If you are about to write a path beginning with `src/`, stop.** You are either working from a baseline example that does not apply here, or from a scaffold whose source root was never moved. Resolve that before creating the file, not after — files created under the wrong root have to be moved later, and every import, alias and config reference pointing at them has to be found and corrected.
+
+In Nuxt the root is mandated by the framework. In a Vite SPA it is configuration, applied immediately after scaffolding and before any other file exists — see [[coding/vue/spa/project-scaffold]].
+
+Both delivery modes use the same layout below. A Vite SPA adopts the names Nuxt mandates rather than the other way around, because Nuxt cannot be configured out of them and Vite has no opinion. This keeps one structure rule instead of two, and lets code move between modes without being reorganized.
 
 ## Layout
 
@@ -23,8 +33,6 @@ app/
   utils/           ← pure helper functions
 public/            ← served as-is, never processed
 ```
-
-`app/` is the source root in both modes. In a Vite SPA this is configuration; in Nuxt it is mandated. Never use `src/`.
 
 Never create a domain directory at the root of `app/`. Organize by layer first, then subdivide by domain inside the layer.
 

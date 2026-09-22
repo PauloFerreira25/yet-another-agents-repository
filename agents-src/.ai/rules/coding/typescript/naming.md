@@ -95,13 +95,17 @@ UserDto     ← what the HTTP handler receives or returns
 
 ## Files and directories
 
-Use `camelCase` for all file and directory names. Always singular:
+Use `camelCase` for all file and directory names. Always singular.
+
+The paths below are illustrative. What they demonstrate is the naming of each segment, nothing else — the leading directories are one project's layout, chosen to make the example concrete, and are not prescribed here:
 
 ```
 src/domain/orderItem/orderItem.route.ts    // singular directory, singular file
 src/domain/orderItem/orderItem.handler.ts
 src/shared/config.ts
 ```
+
+Never read a source root out of an example. Where a stack defines its own directory layout, that layout governs, and this rule applies only to how each name within it is formed.
 
 Never use `kebab-case`, `snake_case`, or `PascalCase` for file or directory names.
 
