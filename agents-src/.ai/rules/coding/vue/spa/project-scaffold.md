@@ -14,7 +14,13 @@ Confirm the project name with the human before creating anything. Infer it from 
 
 1. **Scaffold** with Vite's Vue TypeScript template.
 
-2. **Move the source root to `app/`.** The template creates `src/`; rename it and update the path alias, the entry reference in the HTML file, and the TypeScript include paths. Verify the application still starts before continuing — see [[architecture/frontend/vue/folder-structure]] for the layout to create inside it.
+2. **Move the source root to `app/`, before anything else exists.** This is a gate, not a step to come back to. The template creates `src/`; rename it immediately, before installing a single dependency and before creating a single file of your own.
+
+   Renaming the directory is not the whole job. Update every reference to it: the path alias in the build config, the same alias in the TypeScript config, the entry reference in the HTML file, and the TypeScript include paths.
+
+   Then verify, do not assume. Search the project for any surviving reference to `src` and confirm the application still starts. A partial rename leaves the project working while every file created afterwards lands under the wrong root — which is the failure this gate exists to prevent, and it is expensive to undo once dozens of files and their imports depend on it.
+
+   See [[architecture/frontend/vue/folder-structure]] for the layout to create inside `app/`.
 
 3. **Install the runtime stack**: the UI library and its Vite plugin, Pinia, Pinia Colada, vue-router, VueUse, vee-validate, zod, vue-i18n, the charting wrapper with its underlying library, and the animation library.
 
