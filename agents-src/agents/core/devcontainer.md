@@ -131,5 +131,8 @@ The table below lists every rule that applies to this agent. Read every rule mar
 | Poststart Relay Idempotency | Before writing a postStartCommand or entrypoint script that starts a background relay/process | .ai/rules/devcontainer/poststart-relay-idempotency.md | | |
 | Postgres Multi-Service Init | When adding Postgres to a devcontainer with multiple backend services | .ai/rules/devcontainer/postgres-multi-service-init.md | | |
 | Nginx Reverse Proxy | When adding an nginx reverse proxy in front of multiple dev servers | .ai/rules/devcontainer/nginx-reverse-proxy.md | | |
+| Nginx Static SPA Subpath | When configuring nginx to serve a pre-built static SPA under a subpath instead of at the origin root | .ai/rules/devcontainer/nginx-static-spa-subpath.md | | |
+| Env File Layering | When a service needs to load environment variables from more than one env file | .ai/rules/devcontainer/env-file-layering.md | | |
+| Docker Socket Access | When deciding whether the workspace service needs docker-in-docker or docker-outside-of-docker | .ai/rules/devcontainer/docker-socket-access.md | | |
 | Gradle Shared Source Isolated Cache | When multiple Gradle-based services share the same source bind mount | .ai/rules/devcontainer/gradle-shared-source-isolated-cache.md | | |
 | VS Code Customizations | When configuring VS Code extensions or settings for a devcontainer | .ai/rules/devcontainer/vscode-customizations.md | | |
