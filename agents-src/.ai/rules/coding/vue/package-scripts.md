@@ -8,6 +8,8 @@ For dependency installation rules, follow [[coding/nodejs/package-scripts]]. For
 
 **The lint scripts in that baseline do not apply.** It prescribes ESLint; this stack does not use it. Lint runs through `oxlint-vue`, never the base `oxlint` binary and never `eslint` — see [[coding/vue/lint]].
 
+**Its paths do not apply either.** That baseline writes `src` as the source directory. This stack uses `app` — see [[architecture/frontend/vue/folder-structure]]. Never add a `src/` directory to make one of its example scripts work as written.
+
 Scripts that are identical in both delivery modes:
 
 ```json
