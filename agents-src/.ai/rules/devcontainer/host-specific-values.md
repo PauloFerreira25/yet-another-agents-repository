@@ -31,7 +31,9 @@ set_if_missing() {
 }
 ```
 
-The same script is the right place to pre-create any `.data-volumes/` subdirectory a service's
-bind mount expects (see `Volume Ownership`) — a mount target that doesn't exist yet gets
-auto-created by the Docker daemon as root, which then blocks the non-root container user from
-writing to it. Pre-create it as the host user instead, before the first container start.
+The same script is the right place to pre-create any host directory a service's bind mount
+expects but that doesn't exist yet — a `.data-volumes/` subdirectory, or any other bind-mount
+target, including one nested inside another bind mount's own source tree (see `Volume
+Ownership`). A mount target that doesn't exist yet gets auto-created by the Docker daemon as
+root, which then blocks the non-root container user from writing to it. Pre-create it as the
+host user instead, before the first container start.
