@@ -50,7 +50,7 @@ Never use single-letter names except for loop counters or well-known conventions
 
 ## Singular and suffixes
 
-Always use singular for directories, files, and identifiers. Never use plural forms (`services/`, `tests/`, `users`).
+Always use singular for directories, files, and identifiers. Never use plural forms (`models/`, `tests/`, `users`).
 
 The name alone identifies the unit. When an identifier represents multiple units or a specific data structure, append a suffix that makes the shape explicit:
 
