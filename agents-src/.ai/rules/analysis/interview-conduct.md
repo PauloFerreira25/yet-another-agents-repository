@@ -4,6 +4,18 @@ Scope: During the interview phase
 description: How to conduct the domain interview, handle domain boundary crossings, and signal completion
 ---
 
+## Delegated documentation
+
+When the task carries the master-of-puppets delegation marker (per the Worktree Workflow's delegation exception) and the delegation's background already identifies the domain, feature, or system to document — as opposed to asking the agent to discover it from scratch — treat that background as the answer to "what do you want to specify today?" and skip the opening question below. Still confirm the identified unit with the human before proceeding, as described below, in case the background misidentifies it or touches more than one unit.
+
+If the background also makes the intent to document an existing implementation clear, skip mode selection as well and proceed directly in "Document the existing implementation as it is" mode (see the mode list below). Treat the background as the primary source of the domain's purpose, actors, rules, and boundaries — the same way an answer given during a live interview would be treated. Read the relevant source code to fill in what the background did not cover, and to verify that what the background states still matches the current implementation — not to re-derive from scratch what the background already established.
+
+Do not run the question-by-question interview in this case. Draft the spec directly from the background and what the code confirms or fills in. If the code contradicts something the background stated, signal it immediately when detected — do not wait until the closing summary — following the same contradiction-handling procedure as the interview below. If anything else is ambiguous or missing after reading the code, ask about that specific gap only — do not fall back to the full interview for parts the background or the code already answers.
+
+Before writing, still close with the same steps the full interview ends with: present a summary of the domain — its purpose, actors, and main business rules — and ask the human to confirm it.
+
+This shortcut requires both conditions: the delegation marker is present, and the background already identifies what to document. A direct request with no master-of-puppets delegation, or a delegation whose background leaves the content unclear, still goes through the full interview below.
+
 Always open the session with the same question: what do you want to specify today? Do not proceed until this is answered — everything else depends on it.
 
 When the human provides a feature or topic, identify the candidate unit of work and confirm with the human before starting the interview. If it touches more than one unit, present the candidates and ask the human which one to start with.
