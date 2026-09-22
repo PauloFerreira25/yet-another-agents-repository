@@ -14,7 +14,9 @@ import { productService } from '../../../services/product/product.service'
 import { productService } from '@/services/product/product.service'
 ```
 
-For the TypeScript configuration itself, follow [[coding/typescript/path-aliases]]. The setup is identical; only the alias name and target differ — `@/*` resolving to `./app/*`.
+For the TypeScript configuration itself, follow [[coding/typescript/path-aliases]]. The mechanism is identical and the alias name is the same; only the target differs.
+
+**That baseline writes the target as `src`.** Wherever it shows `./src/*` or resolves a directory named `src`, this stack uses `app` — the source root defined by [[architecture/frontend/vue/folder-structure]], which never uses `src/`. So the mapping here is `@/*` to `./app/*`. Never create a `src/` directory to match the baseline's examples literally.
 
 **The ESLint section of that baseline does not apply.** ESLint is not part of this stack, so there is no import resolver to configure — see [[coding/vue/lint]]. Never add ESLint to a Vue project in order to satisfy it.
 
